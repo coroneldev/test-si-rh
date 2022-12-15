@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Rh;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -63,12 +64,14 @@ class UserController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        $request->user()->currentAccessToken()->delete();
+		return response()->json(null, 200);
+       /* auth()->user()->tokens()->delete();
         return response()->json([
             "status" => true,
             "msg" => "Cierre de Sesión",
-        ]);
+        ]);*/
     }
 }

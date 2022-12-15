@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('registrarse', [UserController::class, 'register']);
 Route::post('ingresar', [UserController::class, 'login']);
+Route::post('pre-registro', [TrnPersonaController::class, 'pregistro']);
 
 
 Route::group( ['middleware' => ["auth:sanctum"]], function(){
