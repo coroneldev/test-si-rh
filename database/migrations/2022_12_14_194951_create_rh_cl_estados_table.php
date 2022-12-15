@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('rh_cl_estados', function (Blueprint $table) {
             $table->id();
-
+            $table->string('descripcion_estado', 50);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

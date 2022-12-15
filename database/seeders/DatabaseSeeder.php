@@ -16,5 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RhClSistemaSeeder::class);
         $this->call(RhClRolSeeder::class);
+        $this->call(RhClEstadoSeeder::class);
+        $this->call(RhClEstadoCivilSeeder::class);
+        $this->call(RhClGeneroSeeder::class);
+        $this->call(RhClPaisSeeder::class);
+        $this->call(RhClCiudadSeeder::class);
+        $this->call(RhClParentescoSeeder::class);
     }
 }

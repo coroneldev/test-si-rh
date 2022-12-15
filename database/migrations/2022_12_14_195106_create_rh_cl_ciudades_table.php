@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('rh_cl_ciudades', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_ciudad', 50);
+            $table->string('sigla', 5);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

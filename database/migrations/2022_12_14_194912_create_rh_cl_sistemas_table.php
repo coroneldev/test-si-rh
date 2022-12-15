@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_sistema', 255);
             $table->boolean('activo')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

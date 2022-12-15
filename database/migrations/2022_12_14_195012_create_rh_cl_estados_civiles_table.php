@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('rh_cl_estados_civiles', function (Blueprint $table) {
             $table->id();
-
+            $table->string('descripcion_est_civil', 50);
+            $table->string('sigla', 15);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
