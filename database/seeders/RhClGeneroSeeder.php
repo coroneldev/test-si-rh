@@ -17,11 +17,9 @@ class RhClGeneroSeeder extends Seeder
     {
         DB::table('rh_cl_generos')->insert([
             'descripcion_genero'    => 'MASCULINO',
-            'sigla'                 => 'M',
         ]);
         DB::table('rh_cl_generos')->insert([
             'descripcion_genero'    => 'FEMENINO',
-            'sigla'                 => 'F',
         ]);
     }
 }

@@ -16,6 +16,11 @@ class RhTrnPersonaSeeder extends Seeder
     public function run()
     {
         DB::table('rh_trn_personas')->insert([
+            'user_id'               =>   1,
+            'estado_civil_id'       =>   1,
+            'genero_id'             =>   1,
+            'pais_id'               =>   1,
+            'ciudad_id'             =>   1,
             'apellido_paterno'      =>  'CONTRERAS',
             'apellido_materno'      =>  'VASQUEZ',
             'nombres'               =>  'ARNOLD',
@@ -31,15 +36,12 @@ class RhTrnPersonaSeeder extends Seeder
             'libreta_militar'       =>  '988754',
             'grupo_sanguineo'       =>  'OR+',
             'nro_nit'               =>  '6120501018',
-            'nombre_seguro'         =>  'CAJA PETROLERA',
+            'nombre_seguro_med'     =>  'CAJA PETROLERA',
             'nro_seguro_medico'     =>  '659832',
             'licencia_conducir'     =>  'TRUE',
             'licencia_categoria'    =>  'A',
             'domicilio'             =>  'ESQUINA ASPIAZU NRO 54, ZONA SOPOCACHI',
-            'estado_civil_id'       =>   1,
-            'genero_id'             =>   1,
-            'pais_id'               =>   1,
-            'ciudad_id'             =>   1,
+
 
         ]);
     }

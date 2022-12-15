@@ -17,7 +17,6 @@ class RhClPaisSeeder extends Seeder
     {
         DB::table('rh_cl_paises')->insert([
             'nombre_pais'     => 'BOLIVIA',
-            'sigla'           => 'BOL',
         ]);
         
     }
