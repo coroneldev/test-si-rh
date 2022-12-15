@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Rh\UserController;
 
+use App\Http\Controllers\Api\Rh\TrnPersonaController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,9 +25,11 @@ Route::post('registrarse', [UserController::class, 'register']);
 Route::post('ingresar', [UserController::class, 'login']);
 
 
-Route::group( ['' => ["auth:sanctum"]], function(){
+Route::group( ['middleware' => ["auth:sanctum"]], function(){
 
-    Route::get('recurso', [UserController::class, 'recursos']);
+    Route::get('/personas', [TrnPersonaController::class, 'index']);
     Route::get('logout', [UserController::class, 'logout']);
 
 });
+
+

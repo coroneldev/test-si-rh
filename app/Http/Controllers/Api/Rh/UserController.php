@@ -63,23 +63,14 @@ class UserController extends Controller
         }
     }
 
-    public function recursos()
+    public function logout()
     {
-        return response()->json([
-            "status" => true,
-            "msg" => "ya puedes acceder a los servicios del sistema pero no estas categorizado",
-            //"data" => auth()->user()
-        ]);
-    }
+        //auth()->user()->tokens()->delete();
 
-   /* public function logout()
-    {
-        auth()->user()->tokens()->delete();
-
+        session()->flush();
         return response()->json([
             "status" => true,
             "msg" => "Cierre de Sesión",
         ]);
-    }*/
-
+    }
 }

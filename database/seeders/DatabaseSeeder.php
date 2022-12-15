@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RhClPaisSeeder::class);
         $this->call(RhClCiudadSeeder::class);
         $this->call(RhClParentescoSeeder::class);
+        $this->call(RhTrnPersonaSeeder::class);
     }
 }
