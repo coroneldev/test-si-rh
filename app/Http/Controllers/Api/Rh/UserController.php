@@ -65,14 +65,10 @@ class UserController extends Controller
 
     public function logout()
     {
-        
-      //  auth()->user()->tokens()->delete();
-       // session()->flush();
-       auth()->logout();
-       return response()->json(['message' => 'Successfully logged out']);
-       /* return response()->json([
+        auth()->user()->tokens()->delete();
+        return response()->json([
             "status" => true,
             "msg" => "Cierre de Sesión",
-        ]);*/
+        ]);
     }
 }

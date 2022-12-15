@@ -28,6 +28,8 @@ Route::post('ingresar', [UserController::class, 'login']);
 Route::group( ['middleware' => ["auth:sanctum"]], function(){
 
     Route::get('/personas', [TrnPersonaController::class, 'index']);
+    Route::post('/personas', [TrnPersonaController::class, 'store']);
+    Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
     Route::get('logout', [UserController::class, 'logout']);
 
 });
