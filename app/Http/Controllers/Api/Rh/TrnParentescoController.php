@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
+use App\Models\RhTrnParentesco;
 use Illuminate\Http\Request;
 
 class TrnParentescoController extends Controller
@@ -14,7 +15,13 @@ class TrnParentescoController extends Controller
      */
     public function index()
     {
-        //
+        $parentescos = RhTrnParentesco::all()->first()::with('parentesco')->first();
+      //  $parentescos = RhTrnParentesco::all(); 
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de personas recuperadas exitosamente',
+            'data'      => $parentescos
+        ], 200);
     }
 
     /**

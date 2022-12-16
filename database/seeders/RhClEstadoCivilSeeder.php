@@ -16,16 +16,24 @@ class RhClEstadoCivilSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_estados_civiles')->insert([
-            'descripcion_est_civil'    => 'SOLTERO',
+            'descripcion'              => 'SOLTERO',
+            'created_at'               => date('Y-m-d H:i:s'),
+            'updated_at'               => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados_civiles')->insert([
-            'descripcion_est_civil'    => 'CASADO',
+            'descripcion'              => 'CASADO',
+            'created_at'               => date('Y-m-d H:i:s'),
+            'updated_at'               => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados_civiles')->insert([
-            'descripcion_est_civil'    => 'VIUDO',
+            'descripcion'              => 'VIUDO',
+            'created_at'               => date('Y-m-d H:i:s'),
+            'updated_at'               => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados_civiles')->insert([
-            'descripcion_est_civil'    => 'DIVORCIADO',
+            'descripcion'              => 'DIVORCIADO',
+            'created_at'               => date('Y-m-d H:i:s'),
+            'updated_at'               => date('Y-m-d H:i:s'),
         ]);
     }
 }

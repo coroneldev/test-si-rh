@@ -22,19 +22,19 @@ class RhTrnParentesco extends Model
         'cedula_identidad',
         'direccion_laboral',
         'direccion_parentesco',
-        'correo_electronico', 
+        'correo_electronico',
         'telefono',
         'vigente'
     ];
 
-    public function parentetsco()
+    public function parentesco()
     {
         return $this->belongsTo(RhClParentesco::class, 'parentesco_id');
     }
 
-    public function personas()
+    /* public function personas()
     {
         return $this->belongsToMany(RhTrnPersona::class, 'rh_trn_personas');
         
-    }
+    }*/
 }

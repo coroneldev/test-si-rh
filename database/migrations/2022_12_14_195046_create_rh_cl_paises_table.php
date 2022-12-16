@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_cl_paises', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_pais', 50);
+            $table->string('nombre', 50);
             $table->softDeletes();
             $table->timestamps();
         });

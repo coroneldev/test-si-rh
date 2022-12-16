@@ -17,12 +17,18 @@ class RhClEstadoSeeder extends Seeder
     {
         DB::table('rh_cl_estados')->insert([
             'descripcion_estado'    => 'CONCLUIDO',
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
             'descripcion_estado'    => 'EN PROCESO',
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
             'descripcion_estado'    => 'EN CURSO',
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
     }
 }

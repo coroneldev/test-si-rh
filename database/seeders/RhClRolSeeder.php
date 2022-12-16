@@ -16,28 +16,40 @@ class RhClRolSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'SUPER ADMINISTRADOR',
-            'activo'              => 1,
+            'descripcion'          => 'SUPER ADMINISTRADOR',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'ADMINISTRADOR',
-            'activo'              => 1,
+            'descripcion'          => 'ADMINISTRADOR',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'USUARIO ESPECIAL',
-            'activo'              => 1,
+            'descripcion'          => 'USUARIO ESPECIAL',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'USUARIO NORMAL',
-            'activo'              => 1,
+            'descripcion'          => 'USUARIO NORMAL',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'REPORTE GERENCIAL',
-            'activo'              => 1,
+            'descripcion'          => 'REPORTE GERENCIAL',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_roles')->insert([
-            'nombre_rol'          => 'REPORTE GENERICO',
-            'activo'              => 1,
+            'descripcion'          => 'REPORTE GENERICO',
+            'vigente'              => 1,
+            'created_at'           => date('Y-m-d H:i:s'),
+            'updated_at'           => date('Y-m-d H:i:s'),
         ]);
     }
 }

@@ -16,28 +16,40 @@ class RhClSistemaSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'RECURSOS HUMANOS',
-            'activo'              => 1,
+            'nombre'              => 'RECURSOS HUMANOS',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'ACTIVOS FIJOS',
-            'activo'              => 1,
+            'nombre'              => 'ACTIVOS FIJOS',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'PASAJES Y VIATICOS',
-            'activo'              => 1,
+            'nombre'              => 'PASAJES Y VIATICOS',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'ARCHIVOS',
-            'activo'              => 1,
+            'nombre'              => 'ARCHIVOS',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'ALMACENES',
-            'activo'              => 1,
+            'nombre'              => 'ALMACENES',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
-            'nombre_sistema'      => 'PROGRAMA OPERATIVO ANUAL',
-            'activo'              => 1,
+            'nombre'              => 'PROGRAMA OPERATIVO ANUAL',
+            'vigencia'            => 1,
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
     }
 }

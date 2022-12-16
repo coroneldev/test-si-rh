@@ -16,7 +16,9 @@ class RhClPaisSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_paises')->insert([
-            'nombre_pais'     => 'BOLIVIA',
+            'nombre'              => 'BOLIVIA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         
     }

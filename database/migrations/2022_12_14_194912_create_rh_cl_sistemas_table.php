@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('rh_cl_sistemas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_sistema', 255);
-            $table->boolean('activo')->default(1);
+            $table->string('nombre', 255);
+            $table->boolean('vigencia')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

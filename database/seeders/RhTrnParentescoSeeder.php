@@ -24,8 +24,11 @@ class RhTrnParentescoSeeder extends Seeder
             'cedula_identidad'      => '6120501',
             'direccion_laboral'     => 'CALLE MANUEL CARPIO NRO 22',
             'direccion_parentesco'  => 'ZONA SOPOCACHI',
-            'correo_electronico'    => 'JPEREZ@GMAIL.COM',
+            'correo_personal'    => 'JPEREZ@GMAIL.COM',
             'telefono'              => '2416525',
+            'vigente'              => 1,
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
     }
 }

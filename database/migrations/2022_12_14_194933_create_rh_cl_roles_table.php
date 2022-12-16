@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('rh_cl_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_rol', 255);
-            $table->boolean('activo')->default(1);
+            $table->string('descripcion', 255);
+            $table->boolean('vigente')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

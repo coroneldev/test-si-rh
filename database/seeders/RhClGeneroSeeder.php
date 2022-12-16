@@ -16,10 +16,14 @@ class RhClGeneroSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_generos')->insert([
-            'descripcion_genero'    => 'MASCULINO',
+            'descripcion'           => 'MASCULINO',
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_generos')->insert([
-            'descripcion_genero'    => 'FEMENINO',
+            'descripcion'           => 'FEMENINO',
+            'created_at'            => date('Y-m-d H:i:s'),
+            'updated_at'            => date('Y-m-d H:i:s'),
         ]);
     }
 }

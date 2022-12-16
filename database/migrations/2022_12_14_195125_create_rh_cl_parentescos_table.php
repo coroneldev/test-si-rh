@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_cl_parentescos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion_parentesco', 50);
+            $table->string('descripcion', 50);
             $table->softDeletes();
             $table->timestamps();
         });

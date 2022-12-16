@@ -16,40 +16,58 @@ class RhClCiudadSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'LA PAZ',
+            'nombre'              => 'LA PAZ',
             'sigla'               => 'LP',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'COCHABAMBA',
+            'nombre'              => 'COCHABAMBA',
             'sigla'               => 'CB',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'ORURO',
+            'nombre'              => 'ORURO',
             'sigla'               => 'OR',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'CHUQUISACA',
+            'nombre'              => 'CHUQUISACA',
             'sigla'               => 'CH',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'POTOSI',
+            'nombre'              => 'POTOSI',
             'sigla'               => 'PT',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'TARIJA',
+            'nombre'              => 'TARIJA',
             'sigla'               => 'TJ',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'SANTA CRUZ',
+            'nombre'              => 'SANTA CRUZ',
             'sigla'               => 'SC',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'BENI',
+            'nombre'              => 'BENI',
             'sigla'               => 'BE',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_ciudades')->insert([
-            'nombre_ciudad'       => 'PANDO',
+            'nombre'              => 'PANDO',
             'sigla'               => 'PD',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
         ]);
     }
 }

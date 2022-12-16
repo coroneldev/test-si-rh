@@ -16,16 +16,24 @@ class RhClParentescoSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_parentescos')->insert([
-            'descripcion_parentesco' => 'PADRE',
+            'descripcion'            => 'PADRE',
+            'created_at'             => date('Y-m-d H:i:s'),
+            'updated_at'             => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_parentescos')->insert([
-            'descripcion_parentesco' => 'MADRE',
+            'descripcion'            => 'MADRE',
+            'created_at'             => date('Y-m-d H:i:s'),
+            'updated_at'             => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_parentescos')->insert([
-            'descripcion_parentesco' => 'HIJO',
+            'descripcion'            => 'HIJO',
+            'created_at'             => date('Y-m-d H:i:s'),
+            'updated_at'             => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_parentescos')->insert([
-            'descripcion_parentesco' => 'HERMANO',
+            'descripcion'            => 'HERMANO',
+            'created_at'             => date('Y-m-d H:i:s'),
+            'updated_at'             => date('Y-m-d H:i:s'),
         ]);
         
     }
