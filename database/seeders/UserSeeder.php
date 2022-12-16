@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             'name'                      => 'rperez',
             'email'                     => 'rperez@gmail.com',
             'password'                  => '$2y$10$13Yfd5vgVjfuQWA174C8NenucdvgsYbeM0VZ1K6bckESa.KoFyHhe',
-            //'password_confirmation'     => '123456789',
         ]);
     }
 }

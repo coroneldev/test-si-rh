@@ -23,7 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('registrarse', [UserController::class, 'register']);
 Route::post('ingresar', [UserController::class, 'login']);
-Route::post('pre-registro', [TrnPersonaController::class, 'pregistro']);
 
 
 Route::group( ['middleware' => ["auth:sanctum"]], function(){
@@ -31,6 +30,7 @@ Route::group( ['middleware' => ["auth:sanctum"]], function(){
     Route::get('/personas', [TrnPersonaController::class, 'index']);
     Route::post('/personas', [TrnPersonaController::class, 'store']);
     Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
+    Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
     Route::get('logout', [UserController::class, 'logout']);
 
 });
