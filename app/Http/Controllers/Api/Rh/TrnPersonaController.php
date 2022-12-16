@@ -18,7 +18,7 @@ class TrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::all();
+        $personas = RhTrnPersona::all()->first()::with('genero', 'estadoCivil', 'pais', 'ciudad')->first(); 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',
@@ -34,7 +34,6 @@ class TrnPersonaController extends Controller
      */
     public function pregistro(Request $request)
     {
-
 
         $user = new User();
         $user->name = $request->name;
@@ -75,6 +74,7 @@ class TrnPersonaController extends Controller
             "msg" => "¡Registro de usuario exitoso!",
         ]);
     }
+    
     public function store(Request $request)
     {
         $persona = new RhTrnPersona();
