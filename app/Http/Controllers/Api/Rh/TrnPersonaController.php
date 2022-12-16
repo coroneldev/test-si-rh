@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
-use App\Models\User;
-
-use Illuminate\Support\Facades\Hash;
 
 class TrnPersonaController extends Controller
 {
