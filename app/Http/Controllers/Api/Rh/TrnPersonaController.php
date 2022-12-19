@@ -106,7 +106,7 @@ class TrnPersonaController extends Controller
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
-                'message'   => 'Registro no encontrado o no esta activo'
+                'message'   => 'Registro no encontrado'
             ], 404);
         }
 
@@ -140,7 +140,7 @@ class TrnPersonaController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de persona actualizada exitosamente',
+            'message'   => 'Registro de persona creado exitosamente',
             'data'      => $persona
         ], 201);
     }

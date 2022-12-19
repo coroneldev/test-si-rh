@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Rh\UserController;
 
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
+use App\Http\Controllers\Api\Rh\TrnDocumentoDigitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,10 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     Route::get('/parentescos', [TrnParentescoController::class, 'index']);
 
+    Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
+    Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
+    Route::get('/documentos/persona/{id_persona}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
+    Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
+    
     Route::get('logout', [UserController::class, 'logout']);
 });
