@@ -25,5 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(RhTrnPersonaSeeder::class);
         $this->call(RhTrnParentescoSeeder::class);
+        $this->call(RhClTipoDocumentoSeeder::class);
+        $this->call(RhTrnDeclaracionJuradaSeeder::class);
+        $this->call(RhTrnDocumentoDigitalSeeder::class);
     }
 }
