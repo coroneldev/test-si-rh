@@ -15,12 +15,28 @@ class TrnParentescoController extends Controller
      */
     public function index()
     {
-        $parentescos = RhTrnParentesco::all()->first()::with('parentesco')->first();
-      //  $parentescos = RhTrnParentesco::all(); 
+        $parentescos = RhTrnParentesco::all();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',
             'data'      => $parentescos
+        ], 200);
+    }
+
+    public function parentescoPersonaId($id)
+    {
+        $parentetsco = RhTrnParentesco::where('persona_id', $id)->get();
+        
+        if (is_null($parentetsco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $parentetsco
         ], 200);
     }
 

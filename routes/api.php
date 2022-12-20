@@ -38,8 +38,6 @@ Route::post('/personas', [TrnPersonaController::class, 'store']);
 Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
 
-Route::get('/parentescos', [TrnParentescoController::class, 'index']);
-
 Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
 
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
@@ -66,6 +64,11 @@ Route::put('/ciudades/{id}', [ClCiudadController::class, 'update']);
 Route::get('/parentescos', [ClParentescoController::class, 'index']);
 Route::post('/parentescos', [ClParentescoController::class, 'store']);
 Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
+
+
+Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
+Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoController::class, 'index']);
+
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);
