@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RhClCiudad;
 
 class ClCiudadController extends Controller
 {
@@ -14,7 +15,13 @@ class ClCiudadController extends Controller
      */
     public function index()
     {
-        //
+        $ciudades = RhClCiudad::all();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de ciudades recuperadas exitosamente',
+            'data'      => $ciudades
+        ], 200);
     }
 
     /**
@@ -25,7 +32,16 @@ class ClCiudadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ciudad = new RhClCiudad();
+        $ciudad->nombre        = $request->nombre;
+        $ciudad->sigla         = $request->sigla;
+        $ciudad->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro actualizado exitosamente',
+            'data'      => $ciudad
+        ], 201);
     }
 
     /**
@@ -48,7 +64,24 @@ class ClCiudadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ciudad = RhClCiudad::find($id);
+
+        if (is_null($ciudad)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 404);
+        }
+        
+        $ciudad->nombre        = $request->nombre;
+        $ciudad->sigla         = $request->sigla;
+        $ciudad->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $ciudad
+        ], 200);
     }
 
     /**

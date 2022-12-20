@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RhClPais;
 
 class ClPaisController extends Controller
 {
@@ -14,7 +15,12 @@ class ClPaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = RhClPais::all();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de paises recuperados exitosamente',
+            'data'      => $paises
+        ], 200);
     }
 
     /**
@@ -25,7 +31,15 @@ class ClPaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pais = new RhClPais();
+        $pais->nombre        = $request->nombre;
+        $pais->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro creado exitosamente',
+            'data'      => $pais
+        ], 201);
     }
 
     /**
@@ -48,7 +62,23 @@ class ClPaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pais = RhClPais::find($id);
+
+        if (is_null($pais)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 404);
+        }
+
+        $pais->nombre        = $request->nombre;
+        $pais->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $pais
+        ], 200);
     }
 
     /**

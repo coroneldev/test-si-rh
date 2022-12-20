@@ -41,7 +41,7 @@ Route::get('/parentescos', [TrnParentescoController::class, 'index']);
 
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
-Route::get('/documentos/persona/{id_persona}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
+Route::get('/documentos/persona/{id_persona}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
 Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
 
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);
@@ -51,6 +51,18 @@ Route::put('/estados-civiles/{id}', [ClEstadoCivilController::class, 'update']);
 Route::get('/generos', [ClGeneroController::class, 'index']);
 Route::post('/generos', [ClGeneroController::class, 'store']);
 Route::put('/generos/{id}', [ClGeneroController::class, 'update']);
+
+Route::get('/paises', [ClPaisController::class, 'index']);
+Route::post('/paises', [ClPaisController::class, 'store']);
+Route::put('/paises/{id}', [ClPaisController::class, 'update']);
+
+Route::get('/ciudades', [ClCiudadController::class, 'index']);
+Route::post('/ciudades', [ClCiudadController::class, 'store']);
+Route::put('/ciudades/{id}', [ClCiudadController::class, 'update']);
+
+Route::get('/parentescos', [ClParentescoController::class, 'index']);
+Route::post('/parentescos', [ClParentescoController::class, 'store']);
+Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

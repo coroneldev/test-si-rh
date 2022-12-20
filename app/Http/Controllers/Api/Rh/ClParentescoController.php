@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RhClParentesco;
 
 class ClParentescoController extends Controller
 {
@@ -14,7 +15,13 @@ class ClParentescoController extends Controller
      */
     public function index()
     {
-        //
+        $parentescos = RhClParentesco::all();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de parentescos recuperados exitosamente',
+            'data'      => $parentescos
+        ], 200);
     }
 
     /**
@@ -25,7 +32,15 @@ class ClParentescoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parentesco = new RhClParentesco();
+        $parentesco->descripcion        = $request->descripcion;
+        $parentesco->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro actualizado exitosamente',
+            'data'      => $parentesco
+        ], 201);
     }
 
     /**
@@ -48,7 +63,23 @@ class ClParentescoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $parentesco = RhClParentesco::find($id);
+
+        if (is_null($parentesco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 404);
+        }
+
+        $parentesco->descripcion     = $request->descripcion;
+        $parentesco->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $parentesco
+        ], 200);
     }
 
     /**
