@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Rh\ClGeneroController;
 use App\Http\Controllers\Api\Rh\ClParentescoController;
 use App\Http\Controllers\Api\Rh\ClPaisController;
 use App\Http\Controllers\Api\Rh\ClCiudadController;
+use App\Http\Controllers\Api\Rh\ClTipoDocumentoController;
 
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
@@ -38,6 +39,8 @@ Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
 
 Route::get('/parentescos', [TrnParentescoController::class, 'index']);
+
+Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
 
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);

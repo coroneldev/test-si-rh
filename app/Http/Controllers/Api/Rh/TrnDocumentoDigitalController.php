@@ -64,8 +64,7 @@ class TrnDocumentoDigitalController extends Controller
 
     public function documentoPersonaIdTabla($id, $tipo_documento_id, $id_registro_tabla)
     {
-        $documento  = RhTrnDocumentoDigital::where('persona_id', $id)
-                                                ->where('tipo_documento_id', $tipo_documento_id)
+        $documento  = RhTrnDocumentoDigital::where('persona_id', $id)->where('tipo_documento_id', $tipo_documento_id)
                                                     ->where('id_registro_tabla', $id_registro_tabla)
                                                         ->where('vigente', '=', 'true')->first();
 
