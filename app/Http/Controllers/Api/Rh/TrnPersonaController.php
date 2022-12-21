@@ -15,7 +15,6 @@ class TrnPersonaController extends Controller
      */
     public function index()
     {
-        //  $personas = RhTrnPersona::all()->first()::with('genero', 'estadoCivil', 'pais', 'ciudad')->first(); 
         $personas = RhTrnPersona::where('vigente', '=', 'true')->get();
         return response()->json([
             'status'    => true,

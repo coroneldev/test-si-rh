@@ -105,11 +105,14 @@ class TrnDocumentoDigitalController extends Controller
             ], 404);
         }
 
+        $file_adjunto = $request->file('enlace');
+        $path_adjunto = $file_adjunto->store('public');
+
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
         $documento->user_id                       = $request->user_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
-        $documento->enlace                        = $request->enlace;
+        $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
         $documento->edicion                       = $request->edicion;
         $documento->estado                        = $request->estado;

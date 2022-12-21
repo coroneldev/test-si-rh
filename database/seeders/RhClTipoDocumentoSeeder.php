@@ -41,6 +41,11 @@ class RhClTipoDocumentoSeeder extends Seeder
             'updated_at'               => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_tipos_documentos')->insert([
+            'descripcion'              => 'DECLARACIONES JURADAS',
+            'created_at'               => date('Y-m-d H:i:s'),
+            'updated_at'               => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_tipos_documentos')->insert([
             'descripcion'              => 'IDIOMAS',
             'created_at'               => date('Y-m-d H:i:s'),
             'updated_at'               => date('Y-m-d H:i:s'),
