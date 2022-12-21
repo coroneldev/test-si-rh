@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_cl_estados', function (Blueprint $table) {
             $table->id();
-           /* $table->unsignedBigInteger('seccion_id')->nullable();
-            $table->foreign('seccion_id')->references('id')->on('rh_cl_tipos_documentos');*/
+            $table->integer('seccion_id');
             $table->string('descripcion_estado', 50);
             $table->softDeletes();
             $table->timestamps();
