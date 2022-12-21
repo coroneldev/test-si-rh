@@ -25,11 +25,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RhClIdiomaSeeder::class);
         $this->call(RhClInstitucionSeeder::class);
         $this->call(RhClNivelEstudioSeeder::class);
-        $this->call(UserSeeder::class);
+      //  $this->call(UserSeeder::class);
         $this->call(RhTrnPersonaSeeder::class);
         $this->call(RhTrnParentescoSeeder::class);
         $this->call(RhClTipoDocumentoSeeder::class);
         $this->call(RhTrnDeclaracionJuradaSeeder::class);
         $this->call(RhTrnDocumentoDigitalSeeder::class);
+        $this->call(RhTrnIdiomaSeeder::class);
+        $this->call(RhTrnCursoSeeder::class);
+        $this->call(RhTrnFormacionAcademicaSeeder::class);
     }
 }
