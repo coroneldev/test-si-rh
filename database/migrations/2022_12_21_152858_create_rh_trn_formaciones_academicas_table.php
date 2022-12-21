@@ -33,6 +33,7 @@ return new class extends Migration
             $table->boolean('provision_nacional')->default(1);
             $table->string('registro_profesional', 25)->nullable();
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

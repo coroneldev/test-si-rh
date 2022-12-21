@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('duracion', 50)->nullable();
             $table->string('tipo', 50)->nullable();
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
 
         });

@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\Rh\ClTipoDocumentoController;
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
 use App\Http\Controllers\Api\Rh\TrnDocumentoDigitalController;
+use App\Http\Controllers\Api\Rh\TrnIdiomaController;
+use App\Http\Controllers\Api\Rh\TrnCursoController;
+use App\Http\Controllers\Api\Rh\TrnFormacionAcademicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +72,12 @@ Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
 Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoController::class, 'index']);
 
+
+Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
+
+Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
+
+Route::get('/formacion-academica', [TrnFormacionAcademicaController::class, 'index']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);
