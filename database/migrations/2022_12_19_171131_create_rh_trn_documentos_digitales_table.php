@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('tipo_documento_id')->references('id')->on('rh_cl_tipos_documentos');
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('id_registro_tabla');
             $table->string('enlace', 255);
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->boolean('edicion')->default(1);
             $table->string('estado', 50);
             $table->boolean('vigente')->default(1);
-            $table->string('motivo_solicitud', 255);
-            $table->string('observacion', 255);
+            $table->string('motivo_solicitud', 255)->nullable();
+            $table->string('observacion', 255)->nullable();
             $table->timestamps();
         });
     }
