@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('rh_cl_instituciones', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 50);
-            $table->string('sigla', 10);
-            $table->integer('tipo');
+            $table->string('nombre', 50)->nullable();
+            $table->string('sigla', 10)->nullable();
+            $table->integer('tipo')->nullable();
             $table->timestamps();
         });
     }

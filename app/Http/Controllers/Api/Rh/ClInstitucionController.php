@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RhClGenero;
+use App\Models\RhClInstitucion;
 
-class ClGeneroController extends Controller
+class ClInstitucionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,11 @@ class ClGeneroController extends Controller
      */
     public function index()
     {
-        $generos = RhClGenero::all();
-
+        $instituciones = RhClInstitucion::all();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de generos recuperadas exitosamente',
-            'data'      => $generos
+            'message'   => 'Registro de instituciones recuperadas exitosamente',
+            'data'      => $instituciones
         ], 200);
     }
 
@@ -32,14 +31,16 @@ class ClGeneroController extends Controller
      */
     public function store(Request $request)
     {
-        $genero = new RhClGenero();
-        $genero->descripcion        = $request->descripcion;
-        $genero->save();
+        $institucion = new RhClInstitucion();
+        $institucion->nombre     = $request->nombre;
+        $institucion->sigla      = $request->sigla;
+        $institucion->tipo       = $request->tipo;
+        $institucion->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro exitoso',
-            'data'      => $genero
+            'data'      => $institucion
         ], 201);
     }
 
@@ -51,7 +52,20 @@ class ClGeneroController extends Controller
      */
     public function show($id)
     {
-        //
+        $institucion = RhClInstitucion::find($id);
+
+        if (is_null($institucion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $institucion
+        ], 200);
     }
 
     /**
@@ -63,22 +77,24 @@ class ClGeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genero = RhClGenero::find($id);
+        $institucion = RhClInstitucion::find($id);
 
-        if (is_null($genero)) {
+        if (is_null($institucion)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 404);
         }
 
-        $genero->descripcion     = $request->descripcion;
-        $genero->save();
+        $institucion->nombre     = $request->nombre;
+        $institucion->sigla      = $request->sigla;
+        $institucion->tipo       = $request->tipo;
+        $institucion->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $genero
+            'data'      => $institucion
         ], 200);
     }
 

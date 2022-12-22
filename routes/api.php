@@ -10,6 +10,9 @@ use App\Http\Controllers\Api\Rh\ClParentescoController;
 use App\Http\Controllers\Api\Rh\ClPaisController;
 use App\Http\Controllers\Api\Rh\ClCiudadController;
 use App\Http\Controllers\Api\Rh\ClTipoDocumentoController;
+use App\Http\Controllers\Api\Rh\ClInstitucionController;
+use App\Http\Controllers\Api\Rh\ClNivelEstudioController;
+use App\Http\Controllers\Api\Rh\ClEstadoController;
 
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
@@ -76,6 +79,24 @@ Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoControlle
 Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
 
 Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
+
+
+Route::get('/instituciones', [ClInstitucionController::class, 'index']);
+Route::post('/instituciones', [ClInstitucionController::class, 'store']);
+Route::put('/instituciones/{id}', [ClInstitucionController::class, 'update']);
+Route::get('/instituciones/{id}', [ClInstitucionController::class, 'show']);
+
+Route::get('/niveles-estudios', [ClNivelEstudioController::class, 'index']);
+Route::post('/niveles-estudios', [ClNivelEstudioController::class, 'store']);
+Route::put('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'update']);
+Route::get('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'show']);
+
+
+Route::get('/estados', [ClEstadoController::class, 'index']);
+Route::post('/estados', [ClEstadoController::class, 'store']);
+Route::put('/estados/{id}', [ClEstadoController::class, 'update']);
+Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
+
 
 Route::get('/formacion-academica', [TrnFormacionAcademicaController::class, 'index']);
 

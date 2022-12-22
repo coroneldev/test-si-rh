@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RhClGenero;
+use App\Models\RhClNivelEstudio;
 
-class ClGeneroController extends Controller
+class ClNivelEstudioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,11 @@ class ClGeneroController extends Controller
      */
     public function index()
     {
-        $generos = RhClGenero::all();
-
+        $nivelesEstudios = RhClNivelEstudio::all();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de generos recuperadas exitosamente',
-            'data'      => $generos
+            'message'   => 'Registro de niveles de estudios  recuperados exitosamente',
+            'data'      => $nivelesEstudios
         ], 200);
     }
 
@@ -32,14 +31,14 @@ class ClGeneroController extends Controller
      */
     public function store(Request $request)
     {
-        $genero = new RhClGenero();
-        $genero->descripcion        = $request->descripcion;
-        $genero->save();
+        $nivelEstudio = new RhClNivelEstudio();
+        $nivelEstudio->descripcion     = $request->descripcion;
+        $nivelEstudio->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro exitoso',
-            'data'      => $genero
+            'data'      => $nivelEstudio
         ], 201);
     }
 
@@ -51,7 +50,20 @@ class ClGeneroController extends Controller
      */
     public function show($id)
     {
-        //
+        $nivelEstudio = RhClNivelEstudio::find($id);
+
+        if (is_null($nivelEstudio)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $nivelEstudio
+        ], 200);
     }
 
     /**
@@ -63,22 +75,22 @@ class ClGeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genero = RhClGenero::find($id);
+        $nivelEstudio = RhClNivelEstudio::find($id);
 
-        if (is_null($genero)) {
+        if (is_null($nivelEstudio)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 404);
         }
 
-        $genero->descripcion     = $request->descripcion;
-        $genero->save();
+        $nivelEstudio->descripcion     = $request->descripcion;
+        $nivelEstudio->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $genero
+            'data'      => $nivelEstudio
         ], 200);
     }
 
