@@ -43,7 +43,19 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function show($id)
     {
-        //
+        $formacion = RhtrnFormacionAcademica::find($id)->where('vigente', '=', 'true');
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 
     /**
@@ -55,7 +67,34 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $formacion = RhtrnFormacionAcademica::find($id)->where('vigente', '=', 'true');
+
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 404);
+        }
+
+        $formacion->persona_id            = $request->persona_id;
+        $formacion->pais_id               = $request->pais_id;
+        $formacion->ciudad_id             = $request->ciudad_id;
+        $formacion->institucion_id        = $request->institucion_id;
+        $formacion->estado_id             = $request->estado_id;
+        $formacion->nivel_id              = $request->nivel_id;
+        $formacion->titulo                = $request->titulo;
+        $formacion->fecha_inicio          = $request->fecha_inicio;
+        $formacion->fecha_fin             = $request->fecha_fin;
+        $formacion->provision_nacional    = $request->provision_nacional;
+        $formacion->registro_profesional  = $request->registro_profesional;
+        $formacion->vigente               = $request->vigente;
+        $formacion->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 
     /**
@@ -67,5 +106,21 @@ class TrnFormacionAcademicaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function formacionesPersonaId($id)
+    {
+        $formacion = RhtrnFormacionAcademica::where('vigente', '=', 'true')->where('persona_id', $id)->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->first();
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 }

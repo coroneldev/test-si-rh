@@ -20,4 +20,5 @@ class RhClPais extends Model
         return $this->hasMany(RhTrnPersona::class, 'id');
     }
 
+
 }

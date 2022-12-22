@@ -9,5 +9,5 @@ class RhClEstado extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_estados';
-    protected $fillable = ['seccion_id', 'descripcion_estado'];
+    protected $fillable = ['seccion_id', 'descripcion'];
 }

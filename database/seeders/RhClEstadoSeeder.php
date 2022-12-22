@@ -16,38 +16,38 @@ class RhClEstadoSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'CONCLUIDO',
             'seccion_id'            => '3',
+            'descripcion'           => 'CONCLUIDO',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'EN PROCESO',
             'seccion_id'            => '3',
+            'descripcion'           => 'EN PROCESO',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'EN CURSO',
             'seccion_id'            => '3',
+            'descripcion'           => 'EN CURSO',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'LEE',
             'seccion_id'            => '6',
+            'descripcion'           => 'LEE',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'ESCRIBE',
             'seccion_id'            => '6',
+            'descripcion'           => 'ESCRIBE',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_estados')->insert([
-            'descripcion_estado'    => 'HABLA',
             'seccion_id'            => '6',
+            'descripcion'           => 'HABLA',
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);

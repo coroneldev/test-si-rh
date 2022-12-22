@@ -99,6 +99,8 @@ Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 
 
 Route::get('/formacion-academica', [TrnFormacionAcademicaController::class, 'index']);
+Route::get('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'show']);
+Route::put('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'update']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

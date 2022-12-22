@@ -33,7 +33,7 @@ class ClEstadoController extends Controller
     {
         $estado = new RhClEstado();
         $estado->seccion_id             = $request->seccion_id;
-        $estado->descripcion_estado     = $request->descripcion_estado;
+        $estado->descripcion            = $request->descripcion;
         $estado->save();
 
         return response()->json([
@@ -86,7 +86,7 @@ class ClEstadoController extends Controller
         }
 
         $estado->seccion_id             = $request->seccion_id;
-        $estado->descripcion_estado     = $request->descripcion_estado;
+        $estado->descripcion            = $request->descripcion;
         $estado->save();
         
         return response()->json([
