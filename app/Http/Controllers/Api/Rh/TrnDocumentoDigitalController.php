@@ -40,7 +40,7 @@ class TrnDocumentoDigitalController extends Controller
 
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
-        $documento->user_id                       = $request->user_id;
+        $documento->usuario_validador_id          = $request->usuario_validador_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
         $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
@@ -110,7 +110,7 @@ class TrnDocumentoDigitalController extends Controller
 
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
-        $documento->user_id                       = $request->user_id;
+        $documento->usuario_validador_id          = $request->usuario_validador_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
         $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
