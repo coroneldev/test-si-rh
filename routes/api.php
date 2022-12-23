@@ -50,6 +50,8 @@ Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
 Route::get('/documentos/persona/{id_persona}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
 Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
+Route::post('/documentos/archivos', [TrnDocumentoDigitalController::class, 'cargarArchivo']);
+
 
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);
 Route::post('/estados-civiles', [ClEstadoCivilController::class, 'store']);
@@ -101,6 +103,7 @@ Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 Route::get('/formacion-academica', [TrnFormacionAcademicaController::class, 'index']);
 Route::get('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'show']);
 Route::put('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'update']);
+Route::get('/formacion-academica/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

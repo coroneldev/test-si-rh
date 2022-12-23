@@ -138,4 +138,49 @@ class TrnDocumentoDigitalController extends Controller
     {
         //
     }
+
+    /*public function cargarArchivo(Request $request)
+    {
+
+        $file_adjunto = $request->file('enlace');
+        $path_adjunto = $file_adjunto->store('public');
+
+        $documento = new RhTrnDocumentoDigital();
+        $documento->enlace                        = $path_adjunto;
+        $documento->nombre_archivo                = $request->nombre_archivo;
+        $documento->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de documento creado exitosamente',
+            'data'      => $documento
+        ], 201);
+    }
+    public function cargarDatosArchivo(Request $request)
+    {
+
+        $file_adjunto = $request->file('enlace');
+        $path_adjunto = $file_adjunto->store('public');
+
+        $documento = new RhTrnDocumentoDigital();
+
+        $documento->tipo_documento_id             = $request->tipo_documento_id;
+        $documento->persona_id                    = $request->persona_id;
+        $documento->user_id                       = $request->user_id;
+        $documento->id_registro_tabla             = $request->id_registro_tabla;
+        $documento->enlace                        = $path_adjunto;
+        $documento->nombre_archivo                = $request->nombre_archivo;
+        $documento->edicion                       = $request->edicion;
+        $documento->estado                        = $request->estado;
+        $documento->vigente                       = $request->vigente;
+        $documento->motivo_solicitud              = $request->motivo_solicitud;
+        $documento->observacion                   = $request->observacion;
+        $documento->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de documento creado exitosamente',
+            'data'      => $documento
+        ], 201);
+    }*/
 }
