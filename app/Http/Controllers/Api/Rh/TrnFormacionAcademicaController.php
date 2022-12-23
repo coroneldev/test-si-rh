@@ -43,7 +43,7 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function show($id)
     {
-        $formacion = RhtrnFormacionAcademica::where('id', $id)->where('vigente', '=', 'true')->first();
+        $formacion = RhtrnFormacionAcademica::where('id', $id)->first();
         if (is_null($formacion)) {
             return response()->json([
                 'status'    => false,
@@ -110,7 +110,7 @@ class TrnFormacionAcademicaController extends Controller
 
     public function formacionesPersonaId($id)
     {
-        $formacion = RhtrnFormacionAcademica::where('vigente', '=', 'true')->where('persona_id', $id)->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->first();
+        $formacion = RhtrnFormacionAcademica::find($id)->where('persona_id', $id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
         if (is_null($formacion)) {
             return response()->json([
                 'status'    => false,
