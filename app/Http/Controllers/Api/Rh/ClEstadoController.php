@@ -67,6 +67,25 @@ class ClEstadoController extends Controller
         ], 200);
     }
 
+
+    public function estadosPorSeccion($id)
+    {
+        $seccion = RhClEstado::where('seccion_id', $id)->get();
+
+        if (is_null($seccion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $seccion
+        ], 200);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -88,13 +107,12 @@ class ClEstadoController extends Controller
         $estado->seccion_id             = $request->seccion_id;
         $estado->descripcion            = $request->descripcion;
         $estado->save();
-        
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
             'data'      => $estado
         ], 200);
-        
     }
 
     /**

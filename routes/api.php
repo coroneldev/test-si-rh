@@ -96,14 +96,15 @@ Route::get('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'show']);
 
 Route::get('/estados', [ClEstadoController::class, 'index']);
 Route::post('/estados', [ClEstadoController::class, 'store']);
+Route::get('/estados/seccion/{id}', [ClEstadoController::class, 'estadosPorSeccion']);
 Route::put('/estados/{id}', [ClEstadoController::class, 'update']);
 Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 
 
-Route::get('/formacion-academica', [TrnFormacionAcademicaController::class, 'index']);
-Route::get('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'show']);
-Route::put('/formacion-academica/{id}', [TrnFormacionAcademicaController::class, 'update']);
-Route::get('/formacion-academica/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
+Route::get('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'index']);
+Route::get('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'show']);
+Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'upd ate']);
+Route::get('/formaciones-academicas/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);
