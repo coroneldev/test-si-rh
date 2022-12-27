@@ -82,7 +82,7 @@ class TrnPersonaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
+            ], 204);
         }
         return response()->json([
             'status'    => true,
@@ -106,7 +106,7 @@ class TrnPersonaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 204);
         }
 
         $persona->user_id             = $request->user_id;

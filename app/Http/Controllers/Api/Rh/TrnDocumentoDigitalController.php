@@ -78,7 +78,7 @@ class TrnDocumentoDigitalController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
+            ], 204);
         }
         return response()->json([
             'status'    => true,
@@ -102,7 +102,7 @@ class TrnDocumentoDigitalController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 204);
         }
 
         $file_adjunto = $request->file('enlace');

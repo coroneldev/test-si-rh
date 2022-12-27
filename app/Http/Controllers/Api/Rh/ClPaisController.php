@@ -68,7 +68,7 @@ class ClPaisController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 204);
         }
 
         $pais->nombre        = $request->nombre;

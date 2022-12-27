@@ -69,7 +69,7 @@ class ClParentescoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 204);
         }
 
         $parentesco->descripcion     = $request->descripcion;

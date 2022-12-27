@@ -70,7 +70,7 @@ class ClCiudadController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 204);
         }
         
         $ciudad->nombre        = $request->nombre;
