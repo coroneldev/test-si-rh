@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\Rh\TrnDocumentoDigitalController;
 use App\Http\Controllers\Api\Rh\TrnIdiomaController;
 use App\Http\Controllers\Api\Rh\TrnCursoController;
 use App\Http\Controllers\Api\Rh\TrnFormacionAcademicaController;
+use App\Http\Controllers\Api\Rh\TrnExperienciaLaboralController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,13 @@ Route::post('/formaciones-academicas', [TrnFormacionAcademicaController::class, 
 Route::get('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'show']);
 Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'update']);
 Route::get('/formaciones-academicas/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
+
+
+
+Route::get('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'index']);
+Route::post('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'store']);
+Route::get('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::class, 'show']);
+Route::put('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::class, 'update']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

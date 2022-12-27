@@ -15,12 +15,12 @@ class TrnExperienciaLaboralController extends Controller
      */
     public function index()
     {
-        $formaciones = RhTrnExperienciaLaboral::all();
+        $experiencias = RhTrnExperienciaLaboral::all();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de Experiencias Laborales recuperadas exitosamente',
-            'data'      => $formaciones
+            'data'      => $experiencias
         ], 200);
     }
 
@@ -32,7 +32,24 @@ class TrnExperienciaLaboralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $experiencia = new RhTrnExperienciaLaboral();
+        $experiencia->persona_id                    = $request->persona_id;
+        $experiencia->lugar_trabajo                 = $request->lugar_trabajo;
+        $experiencia->fecha_inicio                  = $request->fecha_inicio;
+        $experiencia->fecha_fin                     = $request->fecha_fin;
+        $experiencia->cargo_desempeñado             = $request->cargo_desempeñado;
+        $experiencia->funcion_desempeñada           = $request->funcion_desempeñada;
+        $experiencia->nombre_inmediato_superior     = $request->nombre_inmediato_superior;
+        $experiencia->cargo_inmediato_superior      = $request->cargo_inmediato_superior;
+        $experiencia->salario_percibido             = $request->salario_percibido;
+        $experiencia->motivo_desvinculacion         = $request->motivo_desvinculacion;
+        $experiencia->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencia laboral creada exitosamente',
+            'data'      => $experiencia
+        ], 201);
     }
 
     /**
@@ -43,7 +60,19 @@ class TrnExperienciaLaboralController extends Controller
      */
     public function show($id)
     {
-        //
+        $experiencia = RhTrnExperienciaLaboral::where('id', $id)->first();
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $experiencia
+        ], 200);
     }
 
     /**
@@ -55,7 +84,32 @@ class TrnExperienciaLaboralController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $experiencia = RhTrnExperienciaLaboral::find($id);
+
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+
+        $experiencia->persona_id                    = $request->persona_id;
+        $experiencia->lugar_trabajo                 = $request->lugar_trabajo;
+        $experiencia->fecha_inicio                  = $request->fecha_inicio;
+        $experiencia->fecha_fin                     = $request->fecha_fin;
+        $experiencia->cargo_desempeñado             = $request->cargo_desempeñado;
+        $experiencia->funcion_desempeñada           = $request->funcion_desempeñada;
+        $experiencia->nombre_inmediato_superior     = $request->nombre_inmediato_superior;
+        $experiencia->cargo_inmediato_superior      = $request->cargo_inmediato_superior;
+        $experiencia->salario_percibido             = $request->salario_percibido;
+        $experiencia->motivo_desvinculacion         = $request->motivo_desvinculacion;
+        $experiencia->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $experiencia
+        ], 200);
+
     }
 
     /**
@@ -68,7 +122,7 @@ class TrnExperienciaLaboralController extends Controller
     {
         //
     }
-    public function ExperienciaLaboralPersonaId($id)
+    /*/public function ExperienciaLaboralPersonaId($id)
     {
         $formacion = RhTrnExperienciaLaboral::find($id)->where('persona_id', $id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
         if (is_null($formacion)) {
@@ -82,5 +136,5 @@ class TrnExperienciaLaboralController extends Controller
             'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $formacion
         ], 200);
-    }
+    }*/
 }
