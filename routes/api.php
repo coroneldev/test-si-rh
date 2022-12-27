@@ -102,8 +102,9 @@ Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 
 
 Route::get('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'index']);
+Route::post('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'store']);
 Route::get('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'show']);
-Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'upd ate']);
+Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'update']);
 Route::get('/formaciones-academicas/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {

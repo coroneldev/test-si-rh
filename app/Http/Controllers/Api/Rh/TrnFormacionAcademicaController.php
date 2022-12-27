@@ -32,7 +32,26 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formacion = new RhTrnFormacionAcademica();
+        $formacion->persona_id             = $request->persona_id;
+        $formacion->pais_id                = $request->pais_id;
+        $formacion->ciudad_id              = $request->ciudad_id;
+        $formacion->institucion_id         = $request->institucion_id;
+        $formacion->estado_id              = $request->estado_id;
+        $formacion->nivel_id               = $request->nivel_id;
+        $formacion->titulo                 = $request->titulo;
+        $formacion->fecha_inicio           = $request->fecha_inicio;
+        $formacion->fecha_fin              = $request->fecha_fin;
+        $formacion->provision_nacional     = $request->provision_nacional;
+        $formacion->registro_profesional   = $request->registro_profesional;
+
+        $formacion->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de formacion academica creada exitosamente',
+            'data'      => $formacion
+        ], 201);
     }
 
     /**
