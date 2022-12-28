@@ -12,4 +12,15 @@ class RhTrnCurso extends Model
     use SoftDeletes;
 
     protected $table = 'rh_trn_cursos';
+    protected $fillable = [
+        'persona_id',
+        'estado_id',
+        'institucion_id',
+        'fecha_inicio',
+        'fecha_fin',
+        'nombre',
+        'duracion',
+        'tipo',
+        'vigente',
+    ];
 }

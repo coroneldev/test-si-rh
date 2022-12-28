@@ -118,8 +118,7 @@ Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
 Route::post('/cursos-personas', [TrnCursoController::class, 'store']);
 Route::get('/cursos-personas/{id}', [TrnCursoController::class, 'show']);
 Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
-Route::get('/cursos-personas/persona/{id}', [TrnCursoController::class, 'CursoPersonaId']);
-
+Route::get('/cursos-personas/persona/{id_persona}/{tipo}', [TrnCursoController::class, 'CursoPersonaIdTipo']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);
