@@ -115,6 +115,7 @@ Route::get('/experiencias-laborales', [TrnExperienciaLaboralController::class, '
 Route::post('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'store']);
 Route::get('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::class, 'show']);
 Route::put('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::class, 'update']);
+Route::get('/experiencias-laborales/persona/{id}', [TrnExperienciaLaboralController::class, 'ExperienciaLaboralPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

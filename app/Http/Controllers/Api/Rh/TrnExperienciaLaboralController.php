@@ -109,7 +109,6 @@ class TrnExperienciaLaboralController extends Controller
             'message'   => 'Registro modificado exitosamente',
             'data'      => $experiencia
         ], 200);
-
     }
 
     /**
@@ -122,10 +121,10 @@ class TrnExperienciaLaboralController extends Controller
     {
         //
     }
-    /*/public function ExperienciaLaboralPersonaId($id)
+    public function ExperienciaLaboralPersonaId($id)
     {
-        $formacion = RhTrnExperienciaLaboral::find($id)->where('persona_id', $id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
-        if (is_null($formacion)) {
+        $experiencia = RhTrnExperienciaLaboral::where('persona_id', $id)->where('vigente', '=', 'true')->get();
+        if (is_null($experiencia)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -134,7 +133,7 @@ class TrnExperienciaLaboralController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $formacion
+            'data'      => $experiencia
         ], 200);
-    }*/
+    }
 }
