@@ -115,10 +115,10 @@ Route::put('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::cla
 Route::get('/experiencias-laborales/persona/{id}', [TrnExperienciaLaboralController::class, 'ExperienciaLaboralPersonaId']);
 
 Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
-Route::post('/cursos-personas', [TrnExperienciaLaboralController::class, 'store']);
-Route::get('/cursos-personas/{id}', [TrnExperienciaLaboralController::class, 'show']);
-Route::put('/cursos-personas/{id}', [TrnExperienciaLaboralController::class, 'update']);
-Route::get('/cursos-personas/persona/{id}', [TrnExperienciaLaboralController::class, 'CursoPersonaId']);
+Route::post('/cursos-personas', [TrnCursoController::class, 'store']);
+Route::get('/cursos-personas/{id}', [TrnCursoController::class, 'show']);
+Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
+Route::get('/cursos-personas/persona/{id}', [TrnCursoController::class, 'CursoPersonaId']);
 
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
