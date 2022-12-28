@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('lugar_trabajo', 100)->nullable();
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_fin')->nullable();
-            $table->string('cargo_desempeñado', 50)->nullable();
-            $table->string('funcion_desempeñada', 50)->nullable();
+            $table->string('cargo_desempeniado', 50)->nullable();
+            $table->string('funcion_desempeniada', 50)->nullable();
             $table->string('nombre_inmediato_superior', 50)->nullable();
             $table->string('cargo_inmediato_superior', 50)->nullable();
             $table->decimal('salario_percibido', 8, 2)->nullable();
