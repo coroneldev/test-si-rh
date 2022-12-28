@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_validador_id')->nullable();
             $table->foreign('usuario_validador_id')->references('id')->on('users');
             $table->integer('id_registro_tabla')->nullable();
-            $table->string('enlace', 255);
-            $table->string('nombre_archivo', 255);
+            $table->string('enlace', 255)->nullable();
+            $table->string('nombre_archivo', 255)->nullable();
             $table->boolean('edicion')->default(1);
             $table->string('estado', 50)->nullable();
             $table->boolean('vigente')->default(1);

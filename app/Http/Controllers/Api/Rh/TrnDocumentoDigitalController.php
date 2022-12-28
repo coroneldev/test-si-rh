@@ -33,8 +33,8 @@ class TrnDocumentoDigitalController extends Controller
     public function store(Request $request)
     {
 
-        $file_adjunto = $request->file('enlace');
-        $path_adjunto = $file_adjunto->store('public');
+       /* $file_adjunto = $request->file('enlace');
+        $path_adjunto = $file_adjunto->store('public');*/
 
         $documento = new RhTrnDocumentoDigital();
 
@@ -42,13 +42,39 @@ class TrnDocumentoDigitalController extends Controller
         $documento->persona_id                    = $request->persona_id;
         $documento->usuario_validador_id          = $request->usuario_validador_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
-        $documento->enlace                        = $path_adjunto;
+      //  $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
         $documento->edicion                       = $request->edicion;
         $documento->estado                        = $request->estado;
         $documento->vigente                       = $request->vigente;
         $documento->motivo_solicitud              = $request->motivo_solicitud;
         $documento->observacion                   = $request->observacion;
+        $documento->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de documento creado exitosamente',
+            'data'      => $documento
+        ], 201);
+    }
+ 
+    public function DocuemntoAdjunto(Request $request, $id)
+    {
+        $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
+
+        if (is_null($documento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+
+        $file_adjunto = $request->file('enlace');
+        $path_adjunto = $file_adjunto->store('public');
+
+        $documento = new RhTrnDocumentoDigital();
+
+        $documento->enlace           = $path_adjunto;
         $documento->save();
 
         return response()->json([
