@@ -86,7 +86,7 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $formacion = RhtrnFormacionAcademica::find($id)->where('vigente', '=', 'true');
+        $formacion = RhtrnFormacionAcademica::find($id);
 
         if (is_null($formacion)) {
             return response()->json([
