@@ -37,6 +37,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RhTrnExperienciaLaboralSeeder::class);
         $this->call(RhClIdentificadorSeeder::class);
         $this->call(RhClClasificacionSeeder::class);
+        $this->call(RhClPuestoSeeder::class);
         $this->call(RhClCategoriaViajeSeeder::class);
+        $this->call(RhClHorarioSeeder::class);
+        $this->call(RhClEstructuraOrganizacionalSeeder::class);
+        $this->call(RhClOrganismoFinanciadorSeeder::class);
+        $this->call(RhClTipoContratoSeeder::class);
+        $this->call(RhTrnInsumoSeeder::class);
+        $this->call(RhTrnDatoLaboralSeeder::class);
+
     }
 }
