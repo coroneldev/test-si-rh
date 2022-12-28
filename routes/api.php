@@ -80,7 +80,10 @@ Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 
 
 Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
-Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoController::class, 'index']);
+Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);
+Route::put('/parentescos-personas/{id}', [TrnParentescoController::class, 'update']);
+Route::get('/parentescos-personas/{id}', [TrnParentescoController::class, 'show']);
+Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoController::class, 'parentescoPersonaId']);
 
 
 Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
