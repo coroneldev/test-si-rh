@@ -14,6 +14,16 @@ use App\Http\Controllers\Api\Rh\ClInstitucionController;
 use App\Http\Controllers\Api\Rh\ClNivelEstudioController;
 use App\Http\Controllers\Api\Rh\ClEstadoController;
 
+use App\Http\Controllers\Api\Rh\ClCategoriaViajeController;
+use App\Http\Controllers\Api\Rh\ClClasificacionController;
+use App\Http\Controllers\Api\Rh\ClEstructuraOrganizacionalController;
+use App\Http\Controllers\Api\Rh\ClHorarioController;
+use App\Http\Controllers\Api\Rh\ClIdentificadorController;
+use App\Http\Controllers\Api\Rh\ClOrganismoFinanciadorController;
+use App\Http\Controllers\Api\Rh\ClPuestoController;
+use App\Http\Controllers\Api\Rh\ClTipoContratoController;
+use App\Http\Controllers\Api\Rh\TrnInsumoController;
+
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
 use App\Http\Controllers\Api\Rh\TrnDocumentoDigitalController;
@@ -78,6 +88,17 @@ Route::get('/parentescos', [ClParentescoController::class, 'index']);
 Route::post('/parentescos', [ClParentescoController::class, 'store']);
 Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 
+/*Clasificadores Datos laborales
+*/ 
+Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
+Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
+Route::get('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'index']);
+Route::get('/horarios', [ClHorarioController::class, 'index']);
+Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
+Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
+Route::get('/puestos', [ClPuestoController::class, 'index']);
+Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
+Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
 
 Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
 Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);
