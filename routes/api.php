@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\Rh\TrnIdiomaController;
 use App\Http\Controllers\Api\Rh\TrnCursoController;
 use App\Http\Controllers\Api\Rh\TrnFormacionAcademicaController;
 use App\Http\Controllers\Api\Rh\TrnExperienciaLaboralController;
+use App\Http\Controllers\Api\Rh\TrnDatoLaboralController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -119,6 +121,12 @@ Route::post('/cursos-personas', [TrnCursoController::class, 'store']);
 Route::get('/cursos-personas/{id}', [TrnCursoController::class, 'show']);
 Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
 Route::get('/cursos-personas/persona/{id_persona}/{tipo}', [TrnCursoController::class, 'CursoPersonaIdTipo']);
+
+Route::get('/datos-laborales', [TrnDatoLaboralController::class, 'index']);
+Route::post('/datos-laborales', [TrnDatoLaboralController::class, 'store']);
+Route::get('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'show']);
+Route::put('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'update']);
+Route::get('/datos-laborales/persona/{id}', [TrnDatoLaboralController::class, 'DatoLaboralPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);
