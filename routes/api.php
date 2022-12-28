@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\Rh\TrnCursoController;
 use App\Http\Controllers\Api\Rh\TrnFormacionAcademicaController;
 use App\Http\Controllers\Api\Rh\TrnExperienciaLaboralController;
 use App\Http\Controllers\Api\Rh\TrnDatoLaboralController;
+use App\Http\Controllers\Api\Rh\TrnDeclaracionJuradaController;
 
 
 /*
@@ -83,6 +84,10 @@ Route::get('/parentescos-personas/persona/{id_persona}', [TrnParentescoControlle
 
 
 Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
+Route::post('/idiomas-personas', [TrnIdiomaController::class, 'store']);
+Route::put('/idiomas-personas/{id}', [TrnIdiomaController::class, 'update']);
+Route::get('/idiomas-personas/{id}', [TrnIdiomaController::class, 'show']);
+Route::get('/idiomas-personas/persona/{id}', [TrnIdiomaController::class, 'idiomaPersonaId']);
 
 Route::get('/instituciones', [ClInstitucionController::class, 'index']);
 Route::post('/instituciones', [ClInstitucionController::class, 'store']);
@@ -94,6 +99,11 @@ Route::post('/niveles-estudios', [ClNivelEstudioController::class, 'store']);
 Route::put('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'update']);
 Route::get('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'show']);
 
+Route::get('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'index']);
+Route::post('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'store']);
+Route::get('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'show']);
+Route::put('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'update']);
+Route::get('/declaraciones-juradas/persona/{id}', [TrnDeclaracionJuradaController::class, 'declaracionJuaradaPersonaId']);
 
 Route::get('/estados', [ClEstadoController::class, 'index']);
 Route::post('/estados', [ClEstadoController::class, 'store']);
@@ -101,14 +111,11 @@ Route::get('/estados/seccion/{id}', [ClEstadoController::class, 'estadosPorSecci
 Route::put('/estados/{id}', [ClEstadoController::class, 'update']);
 Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 
-
 Route::get('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'index']);
 Route::post('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'store']);
 Route::get('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'show']);
 Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'update']);
 Route::get('/formaciones-academicas/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
-
-
 
 Route::get('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'index']);
 Route::post('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'store']);
@@ -126,7 +133,7 @@ Route::get('/datos-laborales', [TrnDatoLaboralController::class, 'index']);
 Route::post('/datos-laborales', [TrnDatoLaboralController::class, 'store']);
 Route::get('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'show']);
 Route::put('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'update']);
-Route::get('/datos-laborales/persona/{id}', [TrnDatoLaboralController::class, 'DatoLaboralPersonaId']);
+Route::get('/datos-laborales/persona/{id}', [TrnDatoLaboralController::class, 'datoLaboralPersonaId']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::get('logout', [UserController::class, 'logout']);

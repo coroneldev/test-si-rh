@@ -122,7 +122,7 @@ class TrnDatoLaboralController extends Controller
         $laboral->nombre_banco                          = $request->nombre_banco;
         $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $laboral->vigente                               = $request->vigente;
-        
+        $laboral->save();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
