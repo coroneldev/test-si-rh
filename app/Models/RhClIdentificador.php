@@ -9,4 +9,9 @@ class RhClIdentificador extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_identificadores';
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

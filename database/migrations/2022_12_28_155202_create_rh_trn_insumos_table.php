@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_trn_insumos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 100)->nullable();
+            $table->string('descripcion', 255)->nullable();
             $table->boolean('vigente')->default(1);
             $table->timestamps();
         });

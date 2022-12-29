@@ -9,4 +9,9 @@ class RhClEstructuraOrganizacional extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_estructuras_organizacionales';
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

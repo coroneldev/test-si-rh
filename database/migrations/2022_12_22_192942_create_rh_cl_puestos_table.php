@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rh_cl_puestos', function (Blueprint $table) {
             $table->id();
             $table->string('denominacion', 150)->nullable();
-            $table->string('descripcion', 150)->nullable();
+            $table->string('descripcion', 255)->nullable();
             $table->string('abreviatura', 50)->nullable();
             $table->string('nivel_salarial', 50)->nullable();
             $table->string('haber_mensual', 50)->nullable();

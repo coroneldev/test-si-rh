@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnDatoLaboral;
-
 use App\Models\RhTrnPersona;
 
 class TrnDatoLaboralController extends Controller
@@ -17,9 +16,7 @@ class TrnDatoLaboralController extends Controller
      */
     public function index()
     {
-        //$personas = RhTrnPersona::where('vigente', '=', 'true')->get();
-        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->get();
-
+        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->with('tipoContrato', 'estructuraOrganizacional', 'horario', 'puesto', 'organismoFinanciador', 'categoriaViaje', 'clasificacion', 'identificador')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de datos laborales recuperados exitosamente',

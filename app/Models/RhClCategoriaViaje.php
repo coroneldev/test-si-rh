@@ -9,4 +9,9 @@ class RhClCategoriaViaje extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_categorias_viajes';
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

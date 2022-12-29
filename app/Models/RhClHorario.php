@@ -9,4 +9,10 @@ class RhClHorario extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_horarios';
+
+    
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

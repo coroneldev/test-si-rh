@@ -9,4 +9,9 @@ class RhClPuesto extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_puestos';
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

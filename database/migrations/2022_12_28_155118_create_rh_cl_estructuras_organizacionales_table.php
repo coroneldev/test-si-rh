@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_cl_estructuras_organizacionales', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_dependencia', 50)->nullable();
+            $table->string('nombre_dependencia', 255)->nullable();
             $table->string('sigla', 50)->nullable();
             $table->integer('dependencia')->nullable();
             $table->timestamps();

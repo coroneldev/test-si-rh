@@ -9,4 +9,9 @@ class RhClOrganismoFinanciador extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_organismos_financiadores';
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

@@ -84,7 +84,6 @@ class ClEstructuraOrganizacionalController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        $estructuraOrganizacional = new RhClEstructuraOrganizacional();
         $estructuraOrganizacional->nombre_dependencia                    = $request->nombre_dependencia;
         $estructuraOrganizacional->sigla                                 = $request->sigla;
         $estructuraOrganizacional->dependencia                           = $request->dependencia;

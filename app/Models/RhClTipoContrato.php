@@ -9,4 +9,12 @@ class RhClTipoContrato extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_tipos_contratos';
+
+
+    public function datosLaborales()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
+    
 }
+
