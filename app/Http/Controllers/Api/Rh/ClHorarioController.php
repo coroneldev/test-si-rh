@@ -32,7 +32,16 @@ class ClHorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $horario = new RhClHorario();
+        $horario->nombre        = $request->nombre;
+        $horario->hora_uno        = $request->nombre;
+        $horario->hora_dos        = $request->nombre;
+        $horario->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de horario creado exitosamente',
+            'data'      => $horario
+        ], 201);
     }
 
     /**
@@ -43,7 +52,20 @@ class ClHorarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $horario = RhClHorario::where('id', $id)->first();
+        if (is_null($horario)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $horario
+        ], 200);
+        
     }
 
     /**
@@ -55,7 +77,23 @@ class ClHorarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $horario = RhClHorario::find($id);
+
+        if (is_null($horario)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $horario->nombre        = $request->nombre;
+        $horario->hora_uno        = $request->hora_uno;
+        $horario->hora_dos        = $request->hora_dos;
+        $horario->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $horario
+        ], 200);
     }
 
     /**

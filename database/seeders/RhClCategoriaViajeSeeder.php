@@ -16,7 +16,17 @@ class RhClCategoriaViajeSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_categorias_viajes')->insert([
-            'descripcion'         => 'NO DEFINIDO',
+            'descripcion'         => 'PRIMERA CATEGORIA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_categorias_viajes')->insert([
+            'descripcion'         => 'SEGUNDA CATETGORIA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_categorias_viajes')->insert([
+            'descripcion'         => 'TERCERA CATEGORIA',
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);

@@ -16,7 +16,12 @@ class RhClClasificacionSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_clasificaciones')->insert([
-            'descripcion'         => 'NO DEFINIDO',
+            'descripcion'         => 'SUSTANTIVA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_clasificaciones')->insert([
+            'descripcion'         => 'ADMINISTRATIVA',
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);

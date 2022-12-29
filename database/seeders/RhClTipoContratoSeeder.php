@@ -16,7 +16,27 @@ class RhClTipoContratoSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_tipos_contratos')->insert([
-            'descripcion'         => 'CONSULTOR',
+            'descripcion'         => 'PLANTA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_tipos_contratos')->insert([
+            'descripcion'         => 'CONSULTOR LINEA',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_tipos_contratos')->insert([
+            'descripcion'         => 'CONSULTOR PRODUCTO',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_tipos_contratos')->insert([
+            'descripcion'         => 'CONSULTOR EVENTUAL',
+            'created_at'          => date('Y-m-d H:i:s'),
+            'updated_at'          => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('rh_cl_tipos_contratos')->insert([
+            'descripcion'         => 'CONVENIO',
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);

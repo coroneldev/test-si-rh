@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
+use App\Models\RhTrnDatoLaboral;
 
 class TrnPersonaController extends Controller
 {
@@ -13,13 +14,22 @@ class TrnPersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+/*    public function index()
     {
         $personas = RhTrnPersona::where('vigente', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',
             'data'      => $personas
+        ], 200);
+    }*/
+    public function index()
+    {
+        $datoLaboral = RhTrnDatoLaboral::where('vigente', '=', 'true')->get();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de personas recuperadas exitosamente',
+            'data'      => $datoLaboral
         ], 200);
     }
 

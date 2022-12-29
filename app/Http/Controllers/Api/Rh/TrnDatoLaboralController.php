@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnDatoLaboral;
 
+use App\Models\RhTrnPersona;
+
 class TrnDatoLaboralController extends Controller
 {
     /**
@@ -52,7 +54,6 @@ class TrnDatoLaboralController extends Controller
         $laboral->nombre_banco                          = $request->nombre_banco;
         $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $laboral->vigente                               = $request->vigente;
-
         $laboral->save();
 
         return response()->json([
@@ -60,6 +61,28 @@ class TrnDatoLaboralController extends Controller
             'message'   => 'Registro de dato laboral creado exitosamente',
             'data'      => $laboral
         ], 201);
+    }
+
+
+    /*Cambiar estado de persona vigente a false para no ver en la lista  de personas*/
+    public function personaAsignada(Request $request, $id)
+    {
+        $persona = RhTrnPersona::find($id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $persona->vigente            = 'FALSE';
+        $persona->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $persona
+        ], 200);
     }
 
     /**
@@ -102,7 +125,7 @@ class TrnDatoLaboralController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        
+
         $laboral->persona_id                            = $request->persona_id;
         $laboral->tipo_contrato_id                      = $request->tipo_contrato_id;
         $laboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
