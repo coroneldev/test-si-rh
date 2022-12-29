@@ -47,6 +47,7 @@ return new class extends Migration
             $table->string('licencia_categoria', 10)->nullable();
             $table->text('domicilio', 255)->nullable();
             $table->boolean('vigente')->default(1);
+            $table->boolean('identificador_dato_laboral')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

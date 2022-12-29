@@ -52,7 +52,6 @@ class TrnDatoLaboralController extends Controller
         $laboral->nombre_banco                          = $request->nombre_banco;
         $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $laboral->vigente                               = $request->vigente;
-
         $laboral->save();
 
         $persona = RhTrnPersona::find($request->persona_id);
@@ -62,7 +61,7 @@ class TrnDatoLaboralController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        $persona->vigente            = 'FALSE';
+        $persona->identificador_dato_laboral            = 'TRUE';
 
         $persona->save();
 

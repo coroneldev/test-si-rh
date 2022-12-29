@@ -40,6 +40,7 @@ class RhTrnPersona extends Model
         'licencia_categoria',
         'domicilio',
         'vigente',
+        'identificador_dato_laboral',
     ];
 
     public function estadoCivil()

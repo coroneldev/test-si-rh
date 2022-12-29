@@ -15,7 +15,7 @@ class TrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::where('vigente', '=', 'true')->get();
+        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',

@@ -28,7 +28,6 @@ class RhTrnDatoLaboral extends Model
         'nro_item',
         'cas',
         'nombre_banco',
-        'nro_cuenta_bancaria',
         'vigente',
     ];
 
