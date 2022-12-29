@@ -32,6 +32,11 @@ class RhTrnDatoLaboral extends Model
         'vigente',
     ];
 
+    public function persona()
+    {
+        return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+    }
+    
     public function tipoContrato()
     {
         return $this->belongsTo(RhClTipoContrato::class, 'tipo_contrato_id');

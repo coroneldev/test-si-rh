@@ -58,4 +58,9 @@ class RhTrnPersona extends Model
     {
         return $this->belongsTo(RhClCiudad::class, 'ciudad_id');
     }
+
+    public function datoLaboral()
+    {
+        return $this->hasMany(RhTrnDatoLaboral::class, 'id');
+    }
 }

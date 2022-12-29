@@ -16,7 +16,7 @@ class TrnDatoLaboralController extends Controller
      */
     public function index()
     {
-        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->with('tipoContrato', 'estructuraOrganizacional', 'horario', 'puesto', 'organismoFinanciador', 'categoriaViaje', 'clasificacion', 'identificador')->get();
+        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->with('persona', 'tipoContrato', 'estructuraOrganizacional', 'horario', 'puesto', 'organismoFinanciador', 'categoriaViaje', 'clasificacion', 'identificador')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de datos laborales recuperados exitosamente',
