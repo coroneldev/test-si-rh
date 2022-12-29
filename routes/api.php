@@ -88,17 +88,27 @@ Route::get('/parentescos', [ClParentescoController::class, 'index']);
 Route::post('/parentescos', [ClParentescoController::class, 'store']);
 Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 
-/*Clasificadores Datos laborales
-*/ 
+/*Clasificadores Datos laborales*/
+
+Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
+Route::post('/tipos-contratos', [ClTipoContratoController::class, 'store']);
+Route::get('/tipos-contratos/{id}', [ClTipoContratoController::class, 'show']);
+Route::put('/tipos-contratos/{id}', [ClTipoContratoController::class, 'update']);
+
+Route::get('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'index']);
+Route::post('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'store']);
+Route::get('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'show']);
+Route::put('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'update']);
+
+
 Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
 Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
-Route::get('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'index']);
 Route::get('/horarios', [ClHorarioController::class, 'index']);
 Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
 Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
 Route::get('/puestos', [ClPuestoController::class, 'index']);
-Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
 Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
+
 
 Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
 Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);

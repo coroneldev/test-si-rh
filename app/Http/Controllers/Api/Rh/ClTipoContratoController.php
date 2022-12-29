@@ -32,7 +32,14 @@ class ClTipoContratoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoContrato = new RhClTipoContrato();
+        $tipoContrato->descripcion                    = $request->descripcion;
+        $tipoContrato->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de tipo de contrato creado exitosamente',
+            'data'      => $tipoContrato
+        ], 201);
     }
 
     /**
@@ -43,7 +50,19 @@ class ClTipoContratoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoContrato = RhClTipoContrato::where('id', $id)->first();
+        if (is_null($tipoContrato)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $tipoContrato
+        ], 200);
     }
 
     /**
@@ -55,7 +74,21 @@ class ClTipoContratoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipoContrato = RhClTipoContrato::find($id);
+
+        if (is_null($tipoContrato)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $tipoContrato->descripcion                    = $request->persona_id;
+        $tipoContrato->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $tipoContrato
+        ], 200);
     }
 
     /**

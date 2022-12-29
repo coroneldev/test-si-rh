@@ -15,12 +15,12 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function index()
     {
-        $estructuras = RhClEstructuraOrganizacional::all();
+        $estructurasOrganizacionales = RhClEstructuraOrganizacional::all();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de estructuras recuperadas exitosamente',
-            'data'      => $estructuras
+            'data'      => $estructurasOrganizacionales
         ], 200);
     }
 
@@ -32,7 +32,16 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estructuraOrganizacional = new RhClEstructuraOrganizacional();
+        $estructuraOrganizacional->nombre_dependencia                    = $request->nombre_dependencia;
+        $estructuraOrganizacional->sigla                                 = $request->sigla;
+        $estructuraOrganizacional->dependencia                           = $request->dependencia;
+        $estructuraOrganizacional->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de estructura organizacional creada exitosamente',
+            'data'      => $estructuraOrganizacional
+        ], 201);
     }
 
     /**
@@ -43,7 +52,19 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function show($id)
     {
-        //
+        $estructuraOrganizacional = RhClEstructuraOrganizacional::where('id', $id)->first();
+        if (is_null($estructuraOrganizacional)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $estructuraOrganizacional
+        ], 200);
     }
 
     /**
@@ -55,7 +76,24 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estructuraOrganizacional = RhClEstructuraOrganizacional::find($id);
+
+        if (is_null($estructuraOrganizacional)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $estructuraOrganizacional = new RhClEstructuraOrganizacional();
+        $estructuraOrganizacional->nombre_dependencia                    = $request->nombre_dependencia;
+        $estructuraOrganizacional->sigla                                 = $request->sigla;
+        $estructuraOrganizacional->dependencia                           = $request->dependencia;
+        $estructuraOrganizacional->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $estructuraOrganizacional
+        ], 200);
     }
 
     /**
