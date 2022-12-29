@@ -72,8 +72,6 @@ class TrnDocumentoDigitalController extends Controller
         $file_adjunto = $request->file('enlace');
         $path_adjunto = $file_adjunto->store('public');
 
-        $documento = new RhTrnDocumentoDigital();
-
         $documento->enlace           = $path_adjunto;
         $documento->save();
 
