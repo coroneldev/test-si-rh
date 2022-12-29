@@ -15,12 +15,12 @@ class ClIdentificadorController extends Controller
      */
     public function index()
     {
-        $identificador = RhClIdentificador::all();
+        $identificadores = RhClIdentificador::all();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de identificadores recuperados exitosamente',
-            'data'      => $identificador
+            'data'      => $identificadores
         ], 200);
     }
 
@@ -32,7 +32,14 @@ class ClIdentificadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $identificador = new RhClIdentificador();
+        $identificador->descripcion        = $request->descripcion;
+        $identificador->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de identificador creado exitosamente',
+            'data'      => $identificador
+        ], 201);
     }
 
     /**
@@ -43,7 +50,19 @@ class ClIdentificadorController extends Controller
      */
     public function show($id)
     {
-        //
+        $identificador = RhClIdentificador::where('id', $id)->first();
+        if (is_null($identificador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $identificador
+        ], 200);
     }
 
     /**
@@ -55,7 +74,21 @@ class ClIdentificadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $identificador = RhClIdentificador::find($id);
+
+        if (is_null($identificador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $identificador->descripcion        = $request->descripcion;
+        $identificador->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $identificador
+        ], 200);
     }
 
     /**

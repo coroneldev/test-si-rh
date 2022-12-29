@@ -106,12 +106,32 @@ Route::get('/horarios/{id}', [ClHorarioController::class, 'show']);
 Route::put('/horarios/{id}', [ClHorarioController::class, 'update']);
 
 Route::get('/puestos', [ClPuestoController::class, 'index']);
-Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
-Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
-Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
-Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
-Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
+Route::post('/puestos', [ClPuestoController::class, 'store']);
+Route::get('/puestos/{id}', [ClPuestoController::class, 'show']);
+Route::put('/puestos/{id}', [ClPuestoController::class, 'update']);
 
+Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
+Route::post('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'store']);
+Route::get('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'show']);
+Route::put('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'update']);
+
+Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
+Route::post('/catetgorias-viaje', [ClCategoriaViajeController::class, 'store']);
+Route::get('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'show']);
+Route::put('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'update']);
+
+Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
+Route::post('/clasificaciones', [ClClasificacionController::class, 'store']);
+Route::get('/clasificaciones/{id}', [ClClasificacionController::class, 'show']);
+Route::put('/clasificaciones/{id}', [ClClasificacionController::class, 'update']);
+
+Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
+Route::post('/identificadores', [ClIdentificadorController::class, 'store']);
+Route::get('/identificadores/{id}', [ClIdentificadorController::class, 'show']);
+Route::put('/identificadores/{id}', [ClIdentificadorController::class, 'update']);
+
+
+Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
 
 Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
 Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);
@@ -167,7 +187,6 @@ Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
 Route::get('/cursos-personas/persona/{id_persona}/{tipo}', [TrnCursoController::class, 'CursoPersonaIdTipo']);
 
 Route::get('/datos-laborales', [TrnDatoLaboralController::class, 'index']);
-Route::put('/datos-laborales/asignar/persona/{id_persona}', [TrnDatoLaboralController::class, 'personaAsignada']);
 Route::post('/datos-laborales', [TrnDatoLaboralController::class, 'store']);
 Route::get('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'show']);
 Route::put('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'update']);

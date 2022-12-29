@@ -15,14 +15,13 @@ class ClCategoriaViajeController extends Controller
      */
     public function index()
     {
-        $categoriaViaje = RhClCategoriaViaje::all();
+        $categoriaViajes = RhClCategoriaViaje::all();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de categoria de viajes recuperadas exitosamente',
-            'data'      => $categoriaViaje
+            'data'      => $categoriaViajes
         ], 200);
-        
     }
 
     /**
@@ -33,7 +32,14 @@ class ClCategoriaViajeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoriaViaje = new RhClCategoriaViaje();
+        $categoriaViaje->descripcion        = $request->descripcion;
+        $categoriaViaje->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de categoria de viaje creado exitosamente',
+            'data'      => $categoriaViaje
+        ], 201);
     }
 
     /**
@@ -44,7 +50,19 @@ class ClCategoriaViajeController extends Controller
      */
     public function show($id)
     {
-        //
+        $categoriaViaje = RhClCategoriaViaje::where('id', $id)->first();
+        if (is_null($categoriaViaje)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $categoriaViaje
+        ], 200);
     }
 
     /**
@@ -56,7 +74,21 @@ class ClCategoriaViajeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoriaViaje = RhClCategoriaViaje::find($id);
+
+        if (is_null($categoriaViaje)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $categoriaViaje->descripcion        = $request->descripcion;
+        $categoriaViaje->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $categoriaViaje
+        ], 200);
     }
 
     /**

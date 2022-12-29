@@ -15,12 +15,12 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function index()
     {
-        $organismos = RhClOrganismoFinanciador::all();
+        $organismosFinanciadores = RhClOrganismoFinanciador::all();
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de organismos recuperados exitosamente',
-            'data'      => $organismos
+            'message'   => 'Registro de organismos financiadores recuperados exitosamente',
+            'data'      => $organismosFinanciadores
         ], 200);
     }
 
@@ -32,7 +32,14 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organismoFinanciador = new RhClOrganismoFinanciador();
+        $organismoFinanciador->nombre        = $request->nombre;
+        $organismoFinanciador->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de organismo creado exitosamente',
+            'data'      => $organismoFinanciador
+        ], 201);
     }
 
     /**
@@ -43,7 +50,19 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function show($id)
     {
-        //
+        $organismoFinanciador = RhClOrganismoFinanciador::where('id', $id)->first();
+        if (is_null($organismoFinanciador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $organismoFinanciador
+        ], 200);
     }
 
     /**
@@ -55,7 +74,21 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $organismoFinanciador = RhClOrganismoFinanciador::find($id);
+
+        if (is_null($organismoFinanciador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $organismoFinanciador->nombre        = $request->nombre;
+        $organismoFinanciador->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $organismoFinanciador
+        ], 200);
     }
 
     /**

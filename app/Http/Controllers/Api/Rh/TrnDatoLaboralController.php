@@ -17,7 +17,8 @@ class TrnDatoLaboralController extends Controller
      */
     public function index()
     {
-        $laborales = RhTrnDatoLaboral::all();
+        //$personas = RhTrnPersona::where('vigente', '=', 'true')->get();
+        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->get();
 
         return response()->json([
             'status'    => true,
@@ -54,21 +55,10 @@ class TrnDatoLaboralController extends Controller
         $laboral->nombre_banco                          = $request->nombre_banco;
         $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $laboral->vigente                               = $request->vigente;
+
         $laboral->save();
 
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registro de dato laboral creado exitosamente',
-            'data'      => $laboral
-        ], 201);
-    }
-
-
-    /*Cambiar estado de persona vigente a false para no ver en la lista  de personas*/
-    public function personaAsignada(Request $request, $id)
-    {
-        $persona = RhTrnPersona::find($id);
-
+        $persona = RhTrnPersona::find($request->persona_id);
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
@@ -76,13 +66,14 @@ class TrnDatoLaboralController extends Controller
             ], 204);
         }
         $persona->vigente            = 'FALSE';
+
         $persona->save();
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro modificado exitosamente',
-            'data'      => $persona
-        ], 200);
+            'message'   => 'Registro de dato laboral creado exitosamente',
+            'data'      => $laboral
+        ], 201);
     }
 
     /**

@@ -32,7 +32,14 @@ class ClClasificacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clasificacion = new RhClClasificacion();
+        $clasificacion->descripcion        = $request->descripcion;
+        $clasificacion->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de clasificacion creado exitosamente',
+            'data'      => $clasificacion
+        ], 201);
     }
 
     /**
@@ -43,7 +50,19 @@ class ClClasificacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $clasificacion = RhClClasificacion::where('id', $id)->first();
+        if (is_null($clasificacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $clasificacion
+        ], 200);
     }
 
     /**
@@ -55,7 +74,21 @@ class ClClasificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $clasificacion = RhClClasificacion::find($id);
+
+        if (is_null($clasificacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
+        $clasificacion->descripcion        = $request->descripcion;
+        $clasificacion->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $clasificacion
+        ], 200);
     }
 
     /**
