@@ -37,8 +37,8 @@ class TrnExperienciaLaboralController extends Controller
         $experiencia->lugar_trabajo                 = $request->lugar_trabajo;
         $experiencia->fecha_inicio                  = $request->fecha_inicio;
         $experiencia->fecha_fin                     = $request->fecha_fin;
-        $experiencia->cargo_desempeniado             = $request->cargo_desempeñado;
-        $experiencia->funcion_desempeniada           = $request->funcion_desempeñada;
+        $experiencia->cargo_desempeniado            = $request->cargo_desempeniado;
+        $experiencia->funcion_desempeniada          = $request->funcion_desempeniada;
         $experiencia->nombre_inmediato_superior     = $request->nombre_inmediato_superior;
         $experiencia->cargo_inmediato_superior      = $request->cargo_inmediato_superior;
         $experiencia->salario_percibido             = $request->salario_percibido;
