@@ -82,7 +82,7 @@ class ClTipoContratoController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        $tipoContrato->descripcion                    = $request->persona_id;
+        $tipoContrato->descripcion                    = $request->descripcion;
         $tipoContrato->save();
         return response()->json([
             'status'    => true,
