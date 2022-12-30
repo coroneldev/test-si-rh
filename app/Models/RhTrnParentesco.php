@@ -27,14 +27,19 @@ class RhTrnParentesco extends Model
         'vigente'
     ];
 
+    public function persona()
+    {
+        return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+    }
+    
     public function parentesco()
     {
         return $this->belongsTo(RhClParentesco::class, 'parentesco_id');
     }
 
-    /* public function personas()
+    public function expedido()
     {
-        return $this->belongsToMany(RhTrnPersona::class, 'rh_trn_personas');
-        
-    }*/
+        return $this->belongsTo(RhClCiudad::class, 'expedido_ci_id');
+    }
+
 }

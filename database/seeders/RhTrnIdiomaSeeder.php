@@ -19,6 +19,7 @@ class RhTrnIdiomaSeeder extends Seeder
             'persona_id'               => 1,
             'idioma_id'                => 1,
             'estado_id'                => 1,
+            'nivel_conocimiento_id'    => 1,
             'vigente'                  => 1,
             'created_at'               => date('Y-m-d H:i:s'),
             'updated_at'               => date('Y-m-d H:i:s'),

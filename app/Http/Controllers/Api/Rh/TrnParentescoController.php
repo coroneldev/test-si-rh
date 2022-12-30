@@ -125,8 +125,7 @@ class TrnParentescoController extends Controller
 
     public function parentescoPersonaId($id)
     {
-        $parentetsco = RhTrnParentesco::where('persona_id', $id)->get();
-        
+        $parentetsco = RhTrnParentesco::where('persona_id', $id)->with('persona', 'parentesco', 'expedido')->get();
         if (is_null($parentetsco)) {
             return response()->json([
                 'status'    => false,
@@ -135,7 +134,7 @@ class TrnParentescoController extends Controller
         }
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'message'   => 'Registro de parentescos recuperados exitosamente',
             'data'      => $parentetsco
         ], 200);
     }

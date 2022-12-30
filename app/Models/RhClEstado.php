@@ -21,4 +21,5 @@ class RhClEstado extends Model
     {
         return $this->hasMany(RhTrnIdioma::class, 'id');
     }
+
 }

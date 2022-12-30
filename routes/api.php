@@ -13,7 +13,6 @@ use App\Http\Controllers\Api\Rh\ClTipoDocumentoController;
 use App\Http\Controllers\Api\Rh\ClInstitucionController;
 use App\Http\Controllers\Api\Rh\ClNivelEstudioController;
 use App\Http\Controllers\Api\Rh\ClEstadoController;
-
 use App\Http\Controllers\Api\Rh\ClCategoriaViajeController;
 use App\Http\Controllers\Api\Rh\ClClasificacionController;
 use App\Http\Controllers\Api\Rh\ClEstructuraOrganizacionalController;
@@ -23,8 +22,8 @@ use App\Http\Controllers\Api\Rh\ClOrganismoFinanciadorController;
 use App\Http\Controllers\Api\Rh\ClPuestoController;
 use App\Http\Controllers\Api\Rh\ClTipoContratoController;
 use App\Http\Controllers\Api\Rh\ClIdiomaController;
-use App\Http\Controllers\Api\Rh\TrnInsumoController;
 
+use App\Http\Controllers\Api\Rh\TrnInsumoController;
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
 use App\Http\Controllers\Api\Rh\TrnDocumentoDigitalController;

@@ -111,7 +111,7 @@ class TrnIdiomaController extends Controller
 
     public function idiomaPersonaId($id)
     {
-        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->with('persona', 'idioma', 'estado')->get();
+        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->with('persona', 'idioma', 'estado', 'nivelConocimiento')->get();
         if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
