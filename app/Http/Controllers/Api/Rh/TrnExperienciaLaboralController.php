@@ -15,8 +15,7 @@ class TrnExperienciaLaboralController extends Controller
      */
     public function index()
     {
-        $experiencias = RhTrnExperienciaLaboral::all();
-
+        $experiencias = RhTrnExperienciaLaboral::where('vigente', '=', 'true')->with('persona')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de Experiencias Laborales recuperadas exitosamente',

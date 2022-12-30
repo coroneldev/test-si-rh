@@ -24,4 +24,10 @@ class RhTrnExperienciaLaboral extends Model
         'salario_percibido',
         'motivo_desvinculacion'
     ];
+    
+    public function persona()
+    {
+        return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+    }
+
 }

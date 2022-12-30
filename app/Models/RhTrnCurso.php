@@ -23,4 +23,19 @@ class RhTrnCurso extends Model
         'tipo',
         'vigente',
     ];
+
+    public function persona()
+    {
+        return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+    }
+
+    public function estado()
+    {
+        return $this->belongsTo(RhClEstado::class, 'estado_id');
+    }
+
+    public function institucion()
+    {
+        return $this->belongsTo(RhClInstitucion::class, 'institucion_id');
+    }
 }

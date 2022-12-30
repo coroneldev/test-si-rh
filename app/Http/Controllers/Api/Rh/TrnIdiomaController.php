@@ -15,12 +15,12 @@ class TrnIdiomaController extends Controller
      */
     public function index()
     {
-        $idiomas = RhTrnIdioma::all();
+        $idiomasPersonas = RhTrnIdioma::all();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de idiomas recuperadas exitosamente',
-            'data'      => $idiomas
+            'data'      => $idiomasPersonas
         ], 200);
     }
 
@@ -32,16 +32,16 @@ class TrnIdiomaController extends Controller
      */
     public function store(Request $request)
     {
-        $idioma = new RhTrnIdioma();
-        $idioma->persona_id                    = $request->persona_id;
-        $idioma->idioma_id                     = $request->idioma_id;
-        $idioma->estado_id                     = $request->estado_id;
-        $idioma->vigente                       = $request->vigente;
-        $idioma->save();
+        $idiomaPersona = new RhTrnIdioma();
+        $idiomaPersona->persona_id                    = $request->persona_id;
+        $idiomaPersona->idioma_id                     = $request->idioma_id;
+        $idiomaPersona->estado_id                     = $request->estado_id;
+        $idiomaPersona->vigente                       = $request->vigente;
+        $idiomaPersona->save();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de declaracion jurada creada exitosamente',
-            'data'      => $idioma
+            'data'      => $idiomaPersona
         ], 201);
     }
 
@@ -53,8 +53,8 @@ class TrnIdiomaController extends Controller
      */
     public function show($id)
     {
-        $idioma = RhTrnIdioma::where('id', $id)->first();
-        if (is_null($idioma)) {
+        $idiomaPersona = RhTrnIdioma::where('id', $id)->first();
+        if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -64,7 +64,7 @@ class TrnIdiomaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $idioma
+            'data'      => $idiomaPersona
         ], 200);
     }
 
@@ -77,23 +77,23 @@ class TrnIdiomaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $idioma = RhTrnIdioma::find($id);
+        $idiomaPersona = RhTrnIdioma::find($id);
 
-        if (is_null($idioma)) {
+        if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        $idioma->persona_id                    = $request->persona_id;
-        $idioma->idioma_id                     = $request->idioma_id;
-        $idioma->estado_id                     = $request->estado_id;
-        $idioma->vigente                       = $request->vigente;
-        $idioma->save();
+        $idiomaPersona->persona_id                    = $request->persona_id;
+        $idiomaPersona->idioma_id                     = $request->idioma_id;
+        $idiomaPersona->estado_id                     = $request->estado_id;
+        $idiomaPersona->vigente                       = $request->vigente;
+        $idiomaPersona->save();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $idioma
+            'data'      => $idiomaPersona
         ], 200);
         
     }
@@ -111,8 +111,8 @@ class TrnIdiomaController extends Controller
 
     public function idiomaPersonaId($id)
     {
-        $idioma = RhTrnIdioma::find($id)->where('persona_id', $id)->get();
-        if (is_null($idioma)) {
+        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->with('persona', 'idioma', 'estado')->get();
+        if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -121,7 +121,7 @@ class TrnIdiomaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $idioma
+            'data'      => $idiomaPersona
         ], 200);
     }
 }

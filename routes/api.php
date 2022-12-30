@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\Rh\ClIdentificadorController;
 use App\Http\Controllers\Api\Rh\ClOrganismoFinanciadorController;
 use App\Http\Controllers\Api\Rh\ClPuestoController;
 use App\Http\Controllers\Api\Rh\ClTipoContratoController;
+use App\Http\Controllers\Api\Rh\ClIdiomaController;
 use App\Http\Controllers\Api\Rh\TrnInsumoController;
 
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
@@ -88,7 +89,10 @@ Route::get('/parentescos', [ClParentescoController::class, 'index']);
 Route::post('/parentescos', [ClParentescoController::class, 'store']);
 Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
 
-/*Clasificadores Datos laborales*/
+Route::get('/idiomas', [ClIdiomaController::class, 'index']);
+Route::post('/idiomas', [ClIdiomaController::class, 'store']);
+Route::get('/idiomas/{id}', [ClIdiomaController::class, 'show']);
+Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
 
 Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
 Route::post('/tipos-contratos', [ClTipoContratoController::class, 'store']);

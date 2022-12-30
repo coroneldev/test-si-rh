@@ -123,7 +123,8 @@ class TrnCursoController extends Controller
 
     public function CursoPersonaIdTipo($id, $tipo)
     {
-        $curso = RhTrnCurso::where('persona_id', $id)->where('tipo', $tipo)->get();
+        $curso = RhTrnCurso::where('persona_id', $id)->where('tipo', $tipo)->where('vigente', '=', 'true')->with('persona', 'estado', 'institucion')->get();
+
         if (is_null($curso)) {
             return response()->json([
                 'status'    => false,

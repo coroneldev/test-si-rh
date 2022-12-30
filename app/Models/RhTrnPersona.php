@@ -64,4 +64,19 @@ class RhTrnPersona extends Model
     {
         return $this->hasMany(RhTrnDatoLaboral::class, 'id');
     }
+
+    public function experienciaLaboral()
+    {
+        return $this->hasMany(RhTrnExperienciaLaboral::class, 'id');
+    }
+
+    public function curso()
+    {
+        return $this->hasMany(RhTrnCurso::class, 'id');
+    }
+
+    public function idioma()
+    {
+        return $this->hasMany(RhTrnIdioma::class, 'id');
+    }
 }

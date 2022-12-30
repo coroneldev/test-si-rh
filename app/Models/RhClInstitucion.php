@@ -11,4 +11,11 @@ class RhClInstitucion extends Model
 
     protected $table = 'rh_cl_instituciones';
     protected $fillable = ['nombre', 'sigla', 'tipo'];
+
+    
+    public function curso()
+    {
+        return $this->hasMany(RhTrnCurso::class, 'id');
+    }
+    
 }

@@ -5,17 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RhClEstado extends Model
+class RhClIdioma extends Model
 {
     use HasFactory;
-    protected $table = 'rh_cl_estados';
-    protected $fillable = ['seccion_id', 'descripcion'];
-
-
-    public function curso()
-    {
-        return $this->hasMany(RhTrnCurso::class, 'id');
-    }
+    protected $table = 'rh_cl_idiomas';
 
     public function idiomas()
     {
