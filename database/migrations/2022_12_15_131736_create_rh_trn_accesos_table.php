@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('rh_trn_accesos', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('sistema_id')->nullable();
+            $table->foreign('sistema_id')->references('id')->on('rh_cl_sistemas');
+            $table->unsignedBigInteger('roles_id')->nullable();
+            $table->foreign('roles_id')->references('id')->on('rh_cl_roles');
+            $table->boolean('vigente')->default(1);
             $table->timestamps();
         });
     }

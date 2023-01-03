@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RhClTipoContratoSeeder::class);
         $this->call(RhTrnInsumoSeeder::class);
         $this->call(RhTrnDatoLaboralSeeder::class);
+        $this->call(RhTrnAccesoSeeder::class);
 
     }
 }

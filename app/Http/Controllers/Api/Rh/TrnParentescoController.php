@@ -126,6 +126,7 @@ class TrnParentescoController extends Controller
     public function parentescoPersonaId($id)
     {
         $parentetsco = RhTrnParentesco::where('persona_id', $id)->with('persona', 'parentesco', 'expedido')->get();
+        
         if (is_null($parentetsco)) {
             return response()->json([
                 'status'    => false,

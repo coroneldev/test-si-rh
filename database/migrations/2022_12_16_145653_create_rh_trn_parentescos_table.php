@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('nombres',50);
             $table->string('apellidos',100);
             $table->string('cedula_identidad',20)->nullable();
-            $table->text('direccion_laboral');
-            $table->text('direccion_parentesco');
+            $table->text('direccion_laboral')->nullable();
+            $table->text('direccion_parentesco')->nullable();
             $table->string('correo_personal',50)->nullable();
-            $table->string('telefono')->nullable();
+            $table->string('telefono');
             $table->boolean('vigente')->default(1);
             $table->softDeletes();
             $table->timestamps();

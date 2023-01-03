@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Rh\ClPuestoController;
 use App\Http\Controllers\Api\Rh\ClTipoContratoController;
 use App\Http\Controllers\Api\Rh\ClIdiomaController;
 
+use App\Http\Controllers\Api\Rh\TrnAccesoController;
 use App\Http\Controllers\Api\Rh\TrnInsumoController;
 use App\Http\Controllers\Api\Rh\TrnPersonaController;
 use App\Http\Controllers\Api\Rh\TrnParentescoController;
@@ -59,6 +60,8 @@ Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
 
 Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
+
+Route::get('/accesos', [TrnAccesoController::class, 'index']);
 
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
