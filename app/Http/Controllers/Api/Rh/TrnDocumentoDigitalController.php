@@ -16,11 +16,11 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnDocumentoDigital::where('vigente', '=', 'true')->get();
+        $documentos = RhTrnDocumentoDigital::where('vigente', '=', 'true')->get();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de documentos recuperadas exitosamente',
-            'data'      => $personas
+            'message'   => 'Registro de documentos recuperados exitosamente',
+            'data'      => $documentos
         ], 200);
     }
 
@@ -33,16 +33,11 @@ class TrnDocumentoDigitalController extends Controller
     public function store(Request $request)
     {
 
-       /* $file_adjunto = $request->file('enlace');
-        $path_adjunto = $file_adjunto->store('public');*/
-
         $documento = new RhTrnDocumentoDigital();
-
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
         $documento->usuario_validador_id          = $request->usuario_validador_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
-      //  $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
         $documento->edicion                       = $request->edicion;
         $documento->estado                        = $request->estado;
@@ -57,8 +52,8 @@ class TrnDocumentoDigitalController extends Controller
             'data'      => $documento
         ], 201);
     }
- 
-    public function DocuemntoAdjunto(Request $request, $id)
+
+    /* public function DocumentoAdjunto(Request $request, $id)
     {
         $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
 
@@ -80,7 +75,7 @@ class TrnDocumentoDigitalController extends Controller
             'message'   => 'Registro de documento creado exitosamente',
             'data'      => $documento
         ], 201);
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -95,8 +90,8 @@ class TrnDocumentoDigitalController extends Controller
     public function documentoPersonaIdTabla($id, $tipo_documento_id, $id_registro_tabla)
     {
         $documento  = RhTrnDocumentoDigital::where('persona_id', $id)->where('tipo_documento_id', $tipo_documento_id)
-                                                    ->where('id_registro_tabla', $id_registro_tabla)
-                                                        ->where('vigente', '=', 'true')->first();
+            ->where('id_registro_tabla', $id_registro_tabla)
+            ->where('vigente', '=', 'true')->first();
 
         if (is_null($documento)) {
             return response()->json([
@@ -128,15 +123,11 @@ class TrnDocumentoDigitalController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-
-        $file_adjunto = $request->file('enlace');
-        $path_adjunto = $file_adjunto->store('public');
-
+        $documento = new RhTrnDocumentoDigital();
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
         $documento->usuario_validador_id          = $request->usuario_validador_id;
         $documento->id_registro_tabla             = $request->id_registro_tabla;
-        $documento->enlace                        = $path_adjunto;
         $documento->nombre_archivo                = $request->nombre_archivo;
         $documento->edicion                       = $request->edicion;
         $documento->estado                        = $request->estado;
@@ -152,6 +143,7 @@ class TrnDocumentoDigitalController extends Controller
         ], 201);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -163,15 +155,21 @@ class TrnDocumentoDigitalController extends Controller
         //
     }
 
-    /*public function cargarArchivo(Request $request)
+    public function cargarAdjunto(Request $request, $id)
     {
+        $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
+
+        if (is_null($documento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 204);
+        }
 
         $file_adjunto = $request->file('enlace');
         $path_adjunto = $file_adjunto->store('public');
 
-        $documento = new RhTrnDocumentoDigital();
-        $documento->enlace                        = $path_adjunto;
-        $documento->nombre_archivo                = $request->nombre_archivo;
+        $documento->enlace           = $path_adjunto;
         $documento->save();
 
         return response()->json([
@@ -180,31 +178,4 @@ class TrnDocumentoDigitalController extends Controller
             'data'      => $documento
         ], 201);
     }
-    public function cargarDatosArchivo(Request $request)
-    {
-
-        $file_adjunto = $request->file('enlace');
-        $path_adjunto = $file_adjunto->store('public');
-
-        $documento = new RhTrnDocumentoDigital();
-
-        $documento->tipo_documento_id             = $request->tipo_documento_id;
-        $documento->persona_id                    = $request->persona_id;
-        $documento->user_id                       = $request->user_id;
-        $documento->id_registro_tabla             = $request->id_registro_tabla;
-        $documento->enlace                        = $path_adjunto;
-        $documento->nombre_archivo                = $request->nombre_archivo;
-        $documento->edicion                       = $request->edicion;
-        $documento->estado                        = $request->estado;
-        $documento->vigente                       = $request->vigente;
-        $documento->motivo_solicitud              = $request->motivo_solicitud;
-        $documento->observacion                   = $request->observacion;
-        $documento->save();
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registro de documento creado exitosamente',
-            'data'      => $documento
-        ], 201);
-    }*/
 }
