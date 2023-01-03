@@ -65,7 +65,7 @@ Route::get('/accesos', [TrnAccesoController::class, 'index']);
 
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
-Route::put('/documentos/adjunto/{id}', [TrnDocumentoDigitalController::class, 'DocuemntoAdjunto']);
+Route::post('/documentos/adjunto/{id}', [TrnDocumentoDigitalController::class, 'DocuemntoAdjunto']);
 Route::get('/documentos/persona/{id_persona}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
 Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
 Route::post('/documentos/archivos', [TrnDocumentoDigitalController::class, 'cargarArchivo']);
