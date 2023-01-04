@@ -60,7 +60,8 @@ class TrnParentescoController extends Controller
      */
     public function show($id)
     {
-        $parentesco = RhTrnParentesco::where('id', $id)->first();
+        $parentesco = RhTrnParentesco::where('id', $id)->get();
+
         if (is_null($parentesco)) {
             return response()->json([
                 'status'    => false,
@@ -109,7 +110,6 @@ class TrnParentescoController extends Controller
             'message'   => 'Registro modificado exitosamente',
             'data'      => $parentesco
         ], 200);
-        
     }
 
     /**
@@ -120,13 +120,26 @@ class TrnParentescoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parentesco = RhTrnParentesco::find($id);
+
+        if (is_null($parentesco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $parentesco->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $parentesco
+        ], 200);
     }
 
     public function parentescoPersonaId($id)
     {
         $parentetsco = RhTrnParentesco::where('persona_id', $id)->with('persona', 'parentesco', 'expedido')->get();
-        
+
         if (is_null($parentetsco)) {
             return response()->json([
                 'status'    => false,

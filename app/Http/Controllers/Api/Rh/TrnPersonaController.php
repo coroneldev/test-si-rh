@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\RhTrnPersona;
+use Illuminate\Support\Facades\Validator;
 
 class TrnPersonaController extends Controller
 {
@@ -143,7 +143,7 @@ class TrnPersonaController extends Controller
      */
     public function show($id)
     {
-        $persona  = RhTrnPersona::where('id', $id)->where('vigente', '=', 'true')->first();
+        $persona = RhTrnPersona::where('id', $id)->get();
 
         if (is_null($persona)) {
             return response()->json([
@@ -167,7 +167,7 @@ class TrnPersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $persona  = RhTrnPersona::where('id', $id)->where('vigente', '=', 'true')->first();
+        $persona = RhTrnPersona::find($id);
 
         if (is_null($persona)) {
             return response()->json([

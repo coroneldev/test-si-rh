@@ -118,7 +118,7 @@ class TrnDocumentoDigitalController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        $documento = new RhTrnDocumentoDigital();
+        
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
         $documento->usuario_validador_id          = $request->usuario_validador_id;
