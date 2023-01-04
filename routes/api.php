@@ -178,7 +178,8 @@ Route::get('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'in
 Route::post('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'store']);
 Route::get('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'show']);
 Route::put('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'update']);
-Route::get('/declaraciones-juradas/persona/{id}', [TrnDeclaracionJuradaController::class, 'declaracionJuaradaPersonaId']);
+Route::delete('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'destroy']);
+Route::get('/declaraciones-juradas/persona/{persona_id}', [TrnDeclaracionJuradaController::class, 'declaracionJuaradaPersonaId']);
 
 Route::get('/estados', [ClEstadoController::class, 'index']);
 Route::post('/estados', [ClEstadoController::class, 'store']);
