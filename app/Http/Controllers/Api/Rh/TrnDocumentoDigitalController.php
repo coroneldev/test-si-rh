@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\RhTrnDocumentoDigital;
 
 class TrnDocumentoDigitalController extends Controller
@@ -53,30 +52,6 @@ class TrnDocumentoDigitalController extends Controller
         ], 201);
     }
 
-    /* public function DocumentoAdjunto(Request $request, $id)
-    {
-        $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
-
-        if (is_null($documento)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro no encontrado'
-            ], 204);
-        }
-
-        $file_adjunto = $request->file('enlace');
-        $path_adjunto = $file_adjunto->store('public');
-
-        $documento->enlace           = $path_adjunto;
-        $documento->save();
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registro de documento creado exitosamente',
-            'data'      => $documento
-        ], 201);
-    }*/
-
     /**
      * Display the specified resource.
      *
@@ -87,11 +62,31 @@ class TrnDocumentoDigitalController extends Controller
     {
     }
 
-    public function documentoPersonaIdTabla($id, $tipo_documento_id, $id_registro_tabla)
+    /*   public function documentoPersonaIdTabla($id, $tipo_documento_id, $id_registro_tabla)
     {
         $documento  = RhTrnDocumentoDigital::where('persona_id', $id)->where('tipo_documento_id', $tipo_documento_id)
             ->where('id_registro_tabla', $id_registro_tabla)
             ->where('vigente', '=', 'true')->first();
+
+        if (is_null($documento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $documento
+        ], 200);
+    }*/
+
+    public function documentoPersonaIdTabla($persona_id, $tipo_documento_id, $id_registro_tabla)
+    {
+        $documento = RhTrnDocumentoDigital::where('persona_id', $persona_id)
+            ->where('tipo_documento_id', $tipo_documento_id)
+            ->where('id_registro_tabla', $id_registro_tabla)
+            ->get();
 
         if (is_null($documento)) {
             return response()->json([

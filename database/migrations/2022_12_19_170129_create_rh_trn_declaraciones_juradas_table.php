@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

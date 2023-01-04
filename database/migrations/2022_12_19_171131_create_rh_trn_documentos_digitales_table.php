@@ -29,6 +29,7 @@ return new class extends Migration
             $table->boolean('vigente')->default(1);
             $table->string('motivo_solicitud', 255)->nullable();
             $table->string('observacion', 255)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

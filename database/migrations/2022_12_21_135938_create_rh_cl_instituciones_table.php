@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre', 255)->nullable();
             $table->string('sigla', 10)->nullable();
             $table->integer('tipo')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

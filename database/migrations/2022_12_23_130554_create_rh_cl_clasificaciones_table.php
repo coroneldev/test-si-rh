@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rh_cl_clasificaciones', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion', 255)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

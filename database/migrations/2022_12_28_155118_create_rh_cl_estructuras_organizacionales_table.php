@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre_dependencia', 255)->nullable();
             $table->string('sigla', 50)->nullable();
             $table->integer('dependencia')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

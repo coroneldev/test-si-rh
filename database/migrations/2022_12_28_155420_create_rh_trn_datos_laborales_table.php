@@ -54,7 +54,7 @@ return new class extends Migration
             $table->string('nombre_banco', 150)->nullable();
             $table->string('nro_cuenta_bancaria', 50)->nullable();
             $table->boolean('vigente')->default(1);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

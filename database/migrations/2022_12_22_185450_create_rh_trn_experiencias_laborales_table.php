@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('salario_percibido', 8, 2)->nullable();
             $table->string('motivo_desvinculacion', 50)->nullable();
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

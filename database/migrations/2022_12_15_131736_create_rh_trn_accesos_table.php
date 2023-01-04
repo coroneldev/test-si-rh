@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('roles_id')->nullable();
             $table->foreign('roles_id')->references('id')->on('rh_cl_roles');
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

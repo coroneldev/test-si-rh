@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('haber_mensual', 50)->nullable();
             $table->string('nro_item', 50)->nullable();
             $table->boolean('vigente')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
