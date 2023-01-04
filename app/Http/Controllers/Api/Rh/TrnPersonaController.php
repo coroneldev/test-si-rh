@@ -91,7 +91,7 @@ class TrnPersonaController extends Controller
             ]
         );
 
-      /*  if ($validator->fails()) {
+        /*  if ($validator->fails()) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Error en validaciones',
@@ -217,8 +217,22 @@ class TrnPersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $persona = RhTrnPersona::find($id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $persona->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $persona
+        ], 200);
     }
 }

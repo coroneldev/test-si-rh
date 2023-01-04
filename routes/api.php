@@ -58,6 +58,7 @@ Route::get('/personas', [TrnPersonaController::class, 'index']);
 Route::post('/personas', [TrnPersonaController::class, 'store']);
 Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
+Route::delete('/personas/{id}', [TrnPersonaController::class, 'destroy']);
 
 Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
 
