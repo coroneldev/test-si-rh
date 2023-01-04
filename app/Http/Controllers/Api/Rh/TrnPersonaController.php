@@ -143,14 +143,14 @@ class TrnPersonaController extends Controller
      */
     public function show($id)
     {
-        $persona = RhTrnPersona::where('id', $id)->get();
-
+        $persona = RhTrnPersona::find($id);
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
+
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
@@ -173,7 +173,7 @@ class TrnPersonaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $persona->user_id             = $request->user_id;

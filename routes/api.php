@@ -53,37 +53,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('registrarse', [UserController::class, 'register']);
 Route::post('ingresar', [UserController::class, 'login']);
-
-/*Registro de personas*/ 
-Route::get('/personas', [TrnPersonaController::class, 'index']);
-Route::post('/personas', [TrnPersonaController::class, 'store']);
-Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
-Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
-Route::delete('/personas/{id}', [TrnPersonaController::class, 'destroy']);
-
-/*Relacion personal*/
-Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
-Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);
-Route::get('/parentescos-personas/{id}', [TrnParentescoController::class, 'show']);
-Route::put('/parentescos-personas/{id}', [TrnParentescoController::class, 'update']);
-Route::delete('/parentescos-personas/{id}', [TrnParentescoController::class, 'destroy']);
-Route::get('/parentescos-personas/persona/{persona_id}', [TrnParentescoController::class, 'parentescoPersonaId']);
-
-
-
-Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
-
-Route::get('/accesos', [TrnAccesoController::class, 'index']);
-
-Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
-Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
-Route::put('/documentos/adjunto/{documento_id}', [TrnDocumentoDigitalController::class, 'cargarAdjunto']);
-Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
-
-//Route::get('/documentos/persona/{persona_id}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
-Route::get('/documentos/persona/{persona_id}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
-
-
+/*CLASIFICADORES*/
+/**/
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);
 Route::post('/estados-civiles', [ClEstadoCivilController::class, 'store']);
 Route::put('/estados-civiles/{id}', [ClEstadoCivilController::class, 'update']);
@@ -138,6 +109,40 @@ Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
 Route::post('/catetgorias-viaje', [ClCategoriaViajeController::class, 'store']);
 Route::get('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'show']);
 Route::put('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'update']);
+
+
+
+/*TRANSACCIONES*/ 
+/*Registro de personas*/ 
+Route::get('/personas', [TrnPersonaController::class, 'index']);
+Route::post('/personas', [TrnPersonaController::class, 'store']);
+Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
+Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
+Route::delete('/personas/{id}', [TrnPersonaController::class, 'destroy']);
+
+/*Relacion personal*/
+Route::get('/parentescos-personas', [TrnParentescoController::class, 'index']);
+Route::post('/parentescos-personas', [TrnParentescoController::class, 'store']);
+Route::get('/parentescos-personas/{id}', [TrnParentescoController::class, 'show']);
+Route::put('/parentescos-personas/{id}', [TrnParentescoController::class, 'update']);
+Route::delete('/parentescos-personas/{id}', [TrnParentescoController::class, 'destroy']);
+Route::get('/parentescos-personas/persona/{persona_id}', [TrnParentescoController::class, 'parentescoPersonaId']);
+
+/*Administrar Documentacion*/
+Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
+Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
+Route::get('/documentos/{id}', [TrnDocumentoDigitalController::class, 'show']);
+Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
+Route::put('/documentos/adjunto/{documento_id}', [TrnDocumentoDigitalController::class, 'cargarAdjunto']);
+Route::get('/documentos/persona/{persona_id}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
+
+
+
+Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
+
+Route::get('/accesos', [TrnAccesoController::class, 'index']);
+
+
 
 Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
 Route::post('/clasificaciones', [ClClasificacionController::class, 'store']);

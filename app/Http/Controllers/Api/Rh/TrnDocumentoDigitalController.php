@@ -15,7 +15,7 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function index()
     {
-        $documentos = RhTrnDocumentoDigital::where('vigente', '=', 'true')->get();
+        $documentos = RhTrnDocumentoDigital::all();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de documentos recuperados exitosamente',
@@ -60,13 +60,7 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function show($id)
     {
-    }
-
-    /*   public function documentoPersonaIdTabla($id, $tipo_documento_id, $id_registro_tabla)
-    {
-        $documento  = RhTrnDocumentoDigital::where('persona_id', $id)->where('tipo_documento_id', $tipo_documento_id)
-            ->where('id_registro_tabla', $id_registro_tabla)
-            ->where('vigente', '=', 'true')->first();
+        $documento = RhTrnDocumentoDigital::where('id', $id)->get();
 
         if (is_null($documento)) {
             return response()->json([
@@ -74,33 +68,13 @@ class TrnDocumentoDigitalController extends Controller
                 'message'   => 'Solicitud de registro no encontrado'
             ], 204);
         }
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $documento
-        ], 200);
-    }*/
 
-    public function documentoPersonaIdTabla($persona_id, $tipo_documento_id, $id_registro_tabla)
-    {
-        $documento = RhTrnDocumentoDigital::where('persona_id', $persona_id)
-            ->where('tipo_documento_id', $tipo_documento_id)
-            ->where('id_registro_tabla', $id_registro_tabla)
-            ->get();
-
-        if (is_null($documento)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
-        }
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $documento
         ], 200);
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -111,14 +85,14 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
+        $documento = RhTrnDocumentoDigital::find($id);
         if (is_null($documento)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 204);
         }
-        
+
         $documento->tipo_documento_id             = $request->tipo_documento_id;
         $documento->persona_id                    = $request->persona_id;
         $documento->usuario_validador_id          = $request->usuario_validador_id;
@@ -147,18 +121,30 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function cargarAdjunto(Request $request, $id)
-    {
-        $documento  = RhTrnDocumentoDigital::find($id)->where('vigente', '=', 'true')->first();
+        $documento = RhTrnDocumentoDigital::find($id);
 
         if (is_null($documento)) {
             return response()->json([
                 'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $documento->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $documento
+        ], 200);
+    }
+
+    public function cargarAdjunto(Request $request, $id)
+    {
+        $documento  = RhTrnDocumentoDigital::find($id);
+        if (is_null($documento)) {
+            return response()->json([
+                'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $file_adjunto = $request->file('enlace');
@@ -172,5 +158,25 @@ class TrnDocumentoDigitalController extends Controller
             'message'   => 'Adjunto su documento exitosamente',
             'data'      => $documento
         ], 201);
+    }
+
+    public function documentoPersonaIdTabla($persona_id, $tipo_documento_id, $id_registro_tabla)
+    {
+        $documento = RhTrnDocumentoDigital::where('persona_id', $persona_id)
+            ->where('tipo_documento_id', $tipo_documento_id)
+            ->where('id_registro_tabla', $id_registro_tabla)
+            ->first();
+
+        if (is_null($documento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $documento
+        ], 200);
     }
 }

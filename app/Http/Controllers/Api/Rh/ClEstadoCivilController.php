@@ -50,7 +50,20 @@ class ClEstadoCivilController extends Controller
      */
     public function show($id)
     {
-        //
+        $estadoCivil = RhClEstadoCivil::where('id', $id)->get();
+
+        if (is_null($estadoCivil)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $estadoCivil
+        ], 200);
     }
 
     /**
