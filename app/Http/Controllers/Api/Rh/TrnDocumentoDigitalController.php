@@ -60,8 +60,7 @@ class TrnDocumentoDigitalController extends Controller
      */
     public function show($id)
     {
-        $documento = RhTrnDocumentoDigital::where('id', $id)->get();
-
+        $documento = RhTrnDocumentoDigital::find($id);
         if (is_null($documento)) {
             return response()->json([
                 'status'    => false,
@@ -90,7 +89,7 @@ class TrnDocumentoDigitalController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $documento->tipo_documento_id             = $request->tipo_documento_id;
