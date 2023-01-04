@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhTrnExperienciaLaboral extends Model
 {
     use HasFactory;
-   // use SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'rh_trn_experiencias_laborales';
     protected $fillable = [

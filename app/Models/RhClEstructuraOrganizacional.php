@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhClEstructuraOrganizacional extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = 'rh_cl_estructuras_organizacionales';
 
     public function datosLaborales()

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhClIdentificador extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = 'rh_cl_identificadores';
 
     public function datosLaborales()

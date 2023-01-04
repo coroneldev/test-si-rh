@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhTrnAcceso extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
 }

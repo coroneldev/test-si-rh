@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhClIdioma extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = 'rh_cl_idiomas';
 
     public function idiomas()

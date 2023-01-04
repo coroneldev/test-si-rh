@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhClInstitucion extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'rh_cl_instituciones';
     protected $fillable = ['nombre', 'sigla', 'tipo'];

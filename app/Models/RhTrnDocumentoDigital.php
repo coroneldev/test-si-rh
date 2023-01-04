@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhTrnDocumentoDigital extends Model
 {
     use HasFactory;
-   // use SoftDeletes;
+    use SoftDeletes;
+    
     protected $table = 'rh_trn_documentos_digitales';
     
     protected $fillable = [

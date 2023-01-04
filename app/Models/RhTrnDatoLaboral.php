@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RhTrnDatoLaboral extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = 'rh_trn_datos_laborales';
 
     protected $fillable = [
