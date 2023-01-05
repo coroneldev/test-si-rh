@@ -39,8 +39,9 @@ return new class extends Migration
             $table->unsignedBigInteger('clasificacion_id')->nullable();
             $table->foreign('clasificacion_id')->references('id')->on('rh_cl_clasificaciones');
 
-            $table->unsignedBigInteger('insumo_id')->nullable();
-            $table->foreign('insumo_id')->references('id')->on('rh_trn_insumos');
+            $table->string('insumo', 255)->nullable();
+           /* $table->unsignedBigInteger('insumo_id')->nullable();
+            $table->foreign('insumo_id')->references('id')->on('rh_trn_insumos');*/
 
             $table->unsignedBigInteger('identificador_id')->nullable();
             $table->foreign('identificador_id')->references('id')->on('rh_cl_identificadores');

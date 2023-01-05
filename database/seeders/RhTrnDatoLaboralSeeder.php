@@ -24,7 +24,7 @@ class RhTrnDatoLaboralSeeder extends Seeder
             'organismo_financiador_id'                   => 1,
             'categoria_viaje_id'                         => 1,
             'clasificacion_id'                           => 1,
-            'insumo_id'                                  => 1,
+            'insumo'                                     => 'LLAVES',
             'identificador_id'                           => 1,
             'fecha_inicio'                               => '2020-01-01',
             'fecha_fin'                                  => '2023-01-01',
