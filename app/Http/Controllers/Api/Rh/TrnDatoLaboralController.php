@@ -16,11 +16,11 @@ class TrnDatoLaboralController extends Controller
      */
     public function index()
     {
-        $laborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->with('persona', 'tipoContrato', 'estructuraOrganizacional', 'horario', 'puesto', 'organismoFinanciador', 'categoriaViaje', 'clasificacion', 'identificador')->get();
+        $datosLaborales = RhTrnDatoLaboral::where('vigente', '=', 'true')->with('persona', 'tipoContrato', 'estructuraOrganizacional', 'horario', 'puesto', 'organismoFinanciador', 'categoriaViaje', 'clasificacion', 'identificador')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de datos laborales recuperados exitosamente',
-            'data'      => $laborales
+            'data'      => $datosLaborales
         ], 200);
     }
 
@@ -32,34 +32,34 @@ class TrnDatoLaboralController extends Controller
      */
     public function store(Request $request)
     {
-        $laboral = new RhTrnDatoLaboral();
-        $laboral->persona_id                            = $request->persona_id;
-        $laboral->tipo_contrato_id                      = $request->tipo_contrato_id;
-        $laboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
-        $laboral->horario_id                            = $request->horario_id;
-        $laboral->puesto_id                             = $request->puesto_id;
-        $laboral->organismo_financiador_id              = $request->organismo_financiador_id;
-        $laboral->categoria_viaje_id                    = $request->categoria_viaje_id;
-        $laboral->clasificacion_id                      = $request->clasificacion_id;
-        $laboral->insumo_id                             = $request->insumo_id;
-        $laboral->identificador_id                      = $request->identificador_id;
-        $laboral->fecha_inicio                          = $request->fecha_inicio;
-        $laboral->fecha_fin                             = $request->fecha_fin;
-        $laboral->motivo_desvinculacion                 = $request->motivo_desvinculacion;
-        $laboral->nro_contrato                          = $request->nro_contrato;
-        $laboral->nro_item                              = $request->nro_item;
-        $laboral->cas                                   = $request->cas;
-        $laboral->nombre_banco                          = $request->nombre_banco;
-        $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
-        $laboral->vigente                               = $request->vigente;
-        $laboral->save();
+        $datoLaboral = new RhTrnDatoLaboral();
+        $datoLaboral->persona_id                            = $request->persona_id;
+        $datoLaboral->tipo_contrato_id                      = $request->tipo_contrato_id;
+        $datoLaboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
+        $datoLaboral->horario_id                            = $request->horario_id;
+        $datoLaboral->puesto_id                             = $request->puesto_id;
+        $datoLaboral->organismo_financiador_id              = $request->organismo_financiador_id;
+        $datoLaboral->categoria_viaje_id                    = $request->categoria_viaje_id;
+        $datoLaboral->clasificacion_id                      = $request->clasificacion_id;
+        $datoLaboral->insumo_id                             = $request->insumo_id;
+        $datoLaboral->identificador_id                      = $request->identificador_id;
+        $datoLaboral->fecha_inicio                          = $request->fecha_inicio;
+        $datoLaboral->fecha_fin                             = $request->fecha_fin;
+        $datoLaboral->motivo_desvinculacion                 = $request->motivo_desvinculacion;
+        $datoLaboral->nro_contrato                          = $request->nro_contrato;
+        $datoLaboral->nro_item                              = $request->nro_item;
+        $datoLaboral->cas                                   = $request->cas;
+        $datoLaboral->nombre_banco                          = $request->nombre_banco;
+        $datoLaboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
+        $datoLaboral->vigente                               = $request->vigente;
+        $datoLaboral->save();
 
         $persona = RhTrnPersona::find($request->persona_id);
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $persona->identificador_dato_laboral            = 'TRUE';
 
@@ -68,7 +68,7 @@ class TrnDatoLaboralController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de dato laboral creado exitosamente',
-            'data'      => $laboral
+            'data'      => $datoLaboral
         ], 201);
     }
 
@@ -80,8 +80,8 @@ class TrnDatoLaboralController extends Controller
      */
     public function show($id)
     {
-        $laboral = RhTrnDatoLaboral::where('id', $id)->first();
-        if (is_null($laboral)) {
+        $datoLaboral = RhTrnDatoLaboral::find($id);
+        if (is_null($datoLaboral)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -91,7 +91,7 @@ class TrnDatoLaboralController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $laboral
+            'data'      => $datoLaboral
         ], 200);
     }
 
@@ -104,39 +104,39 @@ class TrnDatoLaboralController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $laboral = RhTrnDatoLaboral::find($id);
+        $datoLaboral = RhTrnDatoLaboral::find($id);
 
-        if (is_null($laboral)) {
+        if (is_null($datoLaboral)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
-        $laboral->persona_id                            = $request->persona_id;
-        $laboral->tipo_contrato_id                      = $request->tipo_contrato_id;
-        $laboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
-        $laboral->horario_id                            = $request->horario_id;
-        $laboral->puesto_id                             = $request->puesto_id;
-        $laboral->organismo_financiador_id              = $request->organismo_financiador_id;
-        $laboral->categoria_viaje_id                    = $request->categoria_viaje_id;
-        $laboral->clasificacion_id                      = $request->clasificacion_id;
-        $laboral->insumo_id                             = $request->insumo_id;
-        $laboral->identificador_id                      = $request->identificador_id;
-        $laboral->fecha_inicio                          = $request->fecha_inicio;
-        $laboral->fecha_fin                             = $request->fecha_fin;
-        $laboral->motivo_desvinculacion                 = $request->motivo_desvinculacion;
-        $laboral->nro_contrato                          = $request->nro_contrato;
-        $laboral->nro_item                              = $request->nro_item;
-        $laboral->cas                                   = $request->cas;
-        $laboral->nombre_banco                          = $request->nombre_banco;
-        $laboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
-        $laboral->vigente                               = $request->vigente;
-        $laboral->save();
+        $datoLaboral->persona_id                            = $request->persona_id;
+        $datoLaboral->tipo_contrato_id                      = $request->tipo_contrato_id;
+        $datoLaboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
+        $datoLaboral->horario_id                            = $request->horario_id;
+        $datoLaboral->puesto_id                             = $request->puesto_id;
+        $datoLaboral->organismo_financiador_id              = $request->organismo_financiador_id;
+        $datoLaboral->categoria_viaje_id                    = $request->categoria_viaje_id;
+        $datoLaboral->clasificacion_id                      = $request->clasificacion_id;
+        $datoLaboral->insumo_id                             = $request->insumo_id;
+        $datoLaboral->identificador_id                      = $request->identificador_id;
+        $datoLaboral->fecha_inicio                          = $request->fecha_inicio;
+        $datoLaboral->fecha_fin                             = $request->fecha_fin;
+        $datoLaboral->motivo_desvinculacion                 = $request->motivo_desvinculacion;
+        $datoLaboral->nro_contrato                          = $request->nro_contrato;
+        $datoLaboral->nro_item                              = $request->nro_item;
+        $datoLaboral->cas                                   = $request->cas;
+        $datoLaboral->nombre_banco                          = $request->nombre_banco;
+        $datoLaboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
+        $datoLaboral->vigente                               = $request->vigente;
+        $datoLaboral->save();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $laboral
+            'data'      => $datoLaboral
         ], 200);
     }
 
@@ -148,13 +148,27 @@ class TrnDatoLaboralController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datoLaboral = RhTrnDatoLaboral::find($id);
+
+        if (is_null($datoLaboral)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $datoLaboral->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $datoLaboral
+        ], 200);
     }
 
-    public function datoLaboralPersonaId($id)
+    public function datoLaboralPersonaId($persona_id)
     {
-        $laboral = RhTrnDatoLaboral::find($id)->where('persona_id', $id)->where('vigente', '=', 'true')->get();
-        if (is_null($laboral)) {
+        $datoLaboral = RhTrnDatoLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->get();
+
+        if (is_null($datoLaboral)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -163,7 +177,7 @@ class TrnDatoLaboralController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $laboral
+            'data'      => $datoLaboral
         ], 200);
     }
 }

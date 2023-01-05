@@ -135,7 +135,7 @@ class TrnCursoController extends Controller
         ], 200);
     }
 
-    public function CursoPersonaIdTipo($persona_id, $tipo)
+    public function cursoTipoPersonaId($persona_id, $tipo)
     {
         $curso = RhTrnCurso::where('persona_id', $persona_id)->where('tipo', $tipo)->where('vigente', '=', 'true')->with('persona', 'estado', 'institucion')->get();
 
