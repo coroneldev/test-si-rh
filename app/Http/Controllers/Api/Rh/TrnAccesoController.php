@@ -32,7 +32,18 @@ class TrnAccesoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $acceso = new RhTrnAcceso();
+        $acceso->user_id        = $request->user_id;
+        $acceso->sistema_id     = $request->sistema_id;
+        $acceso->roles_id       = $request->roles_id;
+        $acceso->vigente        = $request->vigente;
+        $acceso->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro creado exitosamente',
+            'data'      => $acceso
+        ], 201);
     }
 
     /**
@@ -43,7 +54,20 @@ class TrnAccesoController extends Controller
      */
     public function show($id)
     {
-        //
+        $acceso = RhTrnAcceso::find($id);
+
+        if (is_null($acceso)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $acceso
+        ], 200);
     }
 
     /**
@@ -55,7 +79,26 @@ class TrnAccesoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $acceso = RhTrnAcceso::find($id);
+
+        if (is_null($acceso)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
+
+        $acceso->user_id        = $request->user_id;
+        $acceso->sistema_id     = $request->sistema_id;
+        $acceso->roles_id       = $request->roles_id;
+        $acceso->vigente        = $request->vigente;
+        $acceso->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $acceso
+        ], 200);
     }
 
     /**
@@ -66,6 +109,19 @@ class TrnAccesoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $acceso = RhTrnAcceso::find($id);
+
+        if (is_null($acceso)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $acceso->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $acceso
+        ], 200);
     }
 }

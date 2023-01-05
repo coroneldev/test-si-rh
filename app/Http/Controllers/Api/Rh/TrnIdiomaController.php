@@ -36,6 +36,7 @@ class TrnIdiomaController extends Controller
         $idiomaPersona->persona_id                    = $request->persona_id;
         $idiomaPersona->idioma_id                     = $request->idioma_id;
         $idiomaPersona->estado_id                     = $request->estado_id;
+        $idiomaPersona->nivel_conocimiento_id         = $request->nivel_conocimiento_id;
         $idiomaPersona->vigente                       = $request->vigente;
         $idiomaPersona->save();
         return response()->json([
@@ -89,6 +90,7 @@ class TrnIdiomaController extends Controller
         $idiomaPersona->persona_id                    = $request->persona_id;
         $idiomaPersona->idioma_id                     = $request->idioma_id;
         $idiomaPersona->estado_id                     = $request->estado_id;
+        $idiomaPersona->nivel_conocimiento_id         = $request->nivel_conocimiento_id;
         $idiomaPersona->vigente                       = $request->vigente;
         $idiomaPersona->save();
         return response()->json([

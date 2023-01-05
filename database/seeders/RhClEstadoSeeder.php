@@ -63,11 +63,5 @@ class RhClEstadoSeeder extends Seeder
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
         ]);
-        DB::table('rh_cl_estados')->insert([
-            'seccion_id'            => '9',
-            'descripcion'           => 'REGULAR',
-            'created_at'            => date('Y-m-d H:i:s'),
-            'updated_at'            => date('Y-m-d H:i:s'),
-        ]);
     }
 }

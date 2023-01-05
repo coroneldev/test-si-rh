@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\Rh\ClOrganismoFinanciadorController;
 use App\Http\Controllers\Api\Rh\ClPuestoController;
 use App\Http\Controllers\Api\Rh\ClTipoContratoController;
 use App\Http\Controllers\Api\Rh\ClIdiomaController;
+use App\Http\Controllers\Api\Rh\ClSistemaController;
 
 use App\Http\Controllers\Api\Rh\TrnAccesoController;
 use App\Http\Controllers\Api\Rh\TrnInsumoController;
@@ -164,7 +165,7 @@ Route::get('/idiomas/{id}', [ClIdiomaController::class, 'show']);
 Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
 Route::delete('/idiomas/{id}', [ClIdiomaController::class, 'destroy']);
 
-
+Route::get('/sistemas', [ClSistemaController::class, 'index']);
 
 /*TRANSACCIONES*/ 
 /*Registro de Personas*/ 
@@ -240,8 +241,15 @@ Route::delete('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'destro
 Route::get('/datos-laborales/persona/{persona_id}', [TrnDatoLaboralController::class, 'datoLaboralPersonaId']);
 
 /*Administracion de sistema*/
-
 Route::get('/accesos', [TrnAccesoController::class, 'index']);
+Route::post('/accesos', [TrnAccesoController::class, 'store']);
+Route::get('/accesos/{id}', [TrnAccesoController::class, 'show']);
+Route::put('/accesos/{id}', [TrnAccesoController::class, 'update']);
+Route::delete('/accesos/{id}', [TrnAccesoController::class, 'destroy']);
+
+
+
+
 Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
