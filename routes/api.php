@@ -239,13 +239,12 @@ Route::put('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'update'])
 Route::delete('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'destroy']);
 Route::get('/datos-laborales/persona/{persona_id}', [TrnDatoLaboralController::class, 'datoLaboralPersonaId']);
 
-
-
+/*Administracion de sistema*/
 
 Route::get('/accesos', [TrnAccesoController::class, 'index']);
 Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
-    Route::get('logout', [UserController::class, 'logout']);
+Route::get('logout', [UserController::class, 'logout']);
     
 });
