@@ -15,11 +15,11 @@ class ClEstadoCivilController extends Controller
      */
     public function index()
     {
-        $estadoCivil = RhClEstadoCivil::all();
+        $estadosCiviles = RhClEstadoCivil::all();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de estados civiles recuperados exitosamente',
-            'data'      => $estadoCivil
+            'data'      => $estadosCiviles
         ], 200);
     }
 
@@ -50,13 +50,13 @@ class ClEstadoCivilController extends Controller
      */
     public function show($id)
     {
-        $estadoCivil = RhClEstadoCivil::where('id', $id)->get();
+        $estadoCivil = RhClEstadoCivil::find($id);
 
         if (is_null($estadoCivil)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -81,7 +81,7 @@ class ClEstadoCivilController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $estadoCivil->descripcion        = $request->descripcion;
@@ -92,7 +92,6 @@ class ClEstadoCivilController extends Controller
             'message'   => 'Registro modificado exitosamente',
             'data'      => $estadoCivil
         ], 200);
-        
     }
 
     /**
@@ -103,6 +102,19 @@ class ClEstadoCivilController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estadoCivil = RhClEstadoCivil::find($id);
+
+        if (is_null($estadoCivil)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $estadoCivil->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $estadoCivil
+        ], 200);
     }
 }

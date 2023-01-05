@@ -15,12 +15,12 @@ class ClTipoDocumentoController extends Controller
      */
     public function index()
     {
-        $tipoDocumento = RhClTipoDocumento::all();
+        $tiposDocumentos = RhClTipoDocumento::all();
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de tipo de documentos recuperadas exitosamente',
-            'data'      => $tipoDocumento
+            'message'   => 'Registro de tipos de documentos recuperados exitosamente',
+            'data'      => $tiposDocumentos
         ], 200);
     }
 
@@ -32,7 +32,15 @@ class ClTipoDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoDocumento = new RhClTipoDocumento();
+        $tipoDocumento->descripcion        = $request->descripcion;
+        $tipoDocumento->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro creado exitosamente',
+            'data'      => $tipoDocumento
+        ], 201);
     }
 
     /**
@@ -43,7 +51,20 @@ class ClTipoDocumentoController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipoDocumento = RhClTipoDocumento::find($id);
+
+        if (is_null($tipoDocumento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $tipoDocumento
+        ], 200);
     }
 
     /**
@@ -55,7 +76,23 @@ class ClTipoDocumentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipoDocumento = RhClTipoDocumento::find($id);
+
+        if (is_null($tipoDocumento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
+
+        $tipoDocumento->descripcion        = $request->descripcion;
+        $tipoDocumento->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $tipoDocumento
+        ], 200);
     }
 
     /**
@@ -66,6 +103,19 @@ class ClTipoDocumentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipoDocumento = RhClTipoDocumento::find($id);
+
+        if (is_null($tipoDocumento)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $tipoDocumento->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $tipoDocumento
+        ], 200);
     }
 }

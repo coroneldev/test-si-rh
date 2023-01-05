@@ -56,7 +56,7 @@ class ClNivelEstudioController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -102,6 +102,19 @@ class ClNivelEstudioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nivelEstudio = RhClNivelEstudio::find($id);
+
+        if (is_null($nivelEstudio)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $nivelEstudio->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $nivelEstudio
+        ], 200);
     }
 }

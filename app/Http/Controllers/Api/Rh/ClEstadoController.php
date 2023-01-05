@@ -57,32 +57,13 @@ class ClEstadoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $estado
-        ], 200);
-    }
-
-
-    public function estadosPorSeccion($id)
-    {
-        $seccion = RhClEstado::where('seccion_id', $id)->get();
-
-        if (is_null($seccion)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
-        }
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $seccion
         ], 200);
     }
 
@@ -101,7 +82,7 @@ class ClEstadoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $estado->seccion_id             = $request->seccion_id;
@@ -123,6 +104,37 @@ class ClEstadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estado = RhClEstado::find($id);
+
+        if (is_null($estado)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $estado->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $estado
+        ], 200);
+    }
+
+    public function estadosPorSeccion($seccion_id)
+    {
+        $seccion = RhClEstado::where('seccion_id', $seccion_id)->get();
+
+        if (is_null($seccion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 204);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $seccion
+        ], 200);
     }
 }

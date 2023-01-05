@@ -38,7 +38,7 @@ class ClParentescoController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro actualizado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $parentesco
         ], 201);
     }
@@ -51,7 +51,20 @@ class ClParentescoController extends Controller
      */
     public function show($id)
     {
-        //
+        $parentesco = RhClParentesco::find($id);
+
+        if (is_null($parentesco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $parentesco
+        ], 200);
     }
 
     /**
@@ -69,7 +82,7 @@ class ClParentescoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $parentesco->descripcion     = $request->descripcion;
@@ -90,6 +103,19 @@ class ClParentescoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parentesco = RhClParentesco::find($id);
+
+        if (is_null($parentesco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $parentesco->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $parentesco
+        ], 200);
     }
 }

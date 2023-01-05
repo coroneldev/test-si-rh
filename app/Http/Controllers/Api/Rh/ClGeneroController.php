@@ -16,7 +16,6 @@ class ClGeneroController extends Controller
     public function index()
     {
         $generos = RhClGenero::all();
-
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de generos recuperadas exitosamente',
@@ -51,7 +50,20 @@ class ClGeneroController extends Controller
      */
     public function show($id)
     {
-        //
+        $genero = RhClGenero::find($id);
+
+        if (is_null($genero)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $genero
+        ], 200);
     }
 
     /**
@@ -69,7 +81,7 @@ class ClGeneroController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $genero->descripcion     = $request->descripcion;
@@ -90,6 +102,19 @@ class ClGeneroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $genero = RhClGenero::find($id);
+
+        if (is_null($genero)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $genero->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $genero
+        ], 200);
     }
 }

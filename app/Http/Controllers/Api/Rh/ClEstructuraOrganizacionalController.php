@@ -19,7 +19,7 @@ class ClEstructuraOrganizacionalController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de estructuras recuperadas exitosamente',
+            'message'   => 'Registro de estructuras organizacionales recuperadas exitosamente',
             'data'      => $estructurasOrganizacionales
         ], 200);
     }
@@ -52,12 +52,12 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function show($id)
     {
-        $estructuraOrganizacional = RhClEstructuraOrganizacional::where('id', $id)->first();
+        $estructuraOrganizacional = RhClEstructuraOrganizacional::find($id);
         if (is_null($estructuraOrganizacional)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -82,7 +82,7 @@ class ClEstructuraOrganizacionalController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $estructuraOrganizacional->nombre_dependencia                    = $request->nombre_dependencia;
         $estructuraOrganizacional->sigla                                 = $request->sigla;
@@ -103,6 +103,19 @@ class ClEstructuraOrganizacionalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estructuraOrganizacional = RhClEstructuraOrganizacional::find($id);
+
+        if (is_null($estructuraOrganizacional)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $estructuraOrganizacional->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $estructuraOrganizacional
+        ], 200);
     }
 }

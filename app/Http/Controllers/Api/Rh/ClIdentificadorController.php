@@ -50,12 +50,12 @@ class ClIdentificadorController extends Controller
      */
     public function show($id)
     {
-        $identificador = RhClIdentificador::where('id', $id)->first();
+        $identificador = RhClIdentificador::find($id);
         if (is_null($identificador)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -80,7 +80,7 @@ class ClIdentificadorController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $identificador->descripcion        = $request->descripcion;
         $identificador->save();
@@ -99,6 +99,19 @@ class ClIdentificadorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $identificador = RhClIdentificador::find($id);
+
+        if (is_null($identificador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $identificador->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $identificador
+        ], 200);
     }
 }

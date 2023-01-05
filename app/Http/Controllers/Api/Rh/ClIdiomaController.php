@@ -51,12 +51,13 @@ class ClIdiomaController extends Controller
      */
     public function show($id)
     {
-        $idioma = RhClIdioma::where('id', $id)->first();
+        $idioma = RhClIdioma::find($id);
+
         if (is_null($idioma)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -81,10 +82,12 @@ class ClIdiomaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
+
         $idioma->descripcion        = $request->descripcion;
         $idioma->save();
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
@@ -100,6 +103,19 @@ class ClIdiomaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $idioma = RhClIdioma::find($id);
+
+        if (is_null($idioma)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $idioma->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $idioma
+        ], 200);
     }
 }

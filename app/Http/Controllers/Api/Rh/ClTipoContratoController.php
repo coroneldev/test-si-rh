@@ -35,9 +35,10 @@ class ClTipoContratoController extends Controller
         $tipoContrato = new RhClTipoContrato();
         $tipoContrato->descripcion                    = $request->descripcion;
         $tipoContrato->save();
+
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de tipo de contrato creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $tipoContrato
         ], 201);
     }
@@ -50,12 +51,13 @@ class ClTipoContratoController extends Controller
      */
     public function show($id)
     {
-        $tipoContrato = RhClTipoContrato::where('id', $id)->first();
+        $tipoContrato = RhClTipoContrato::find($id);
+
         if (is_null($tipoContrato)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -80,10 +82,12 @@ class ClTipoContratoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
+
         $tipoContrato->descripcion                    = $request->descripcion;
         $tipoContrato->save();
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
@@ -99,6 +103,19 @@ class ClTipoContratoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipoContrato = RhClTipoContrato::find($id);
+
+        if (is_null($tipoContrato)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $tipoContrato->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $tipoContrato
+        ], 200);
     }
 }

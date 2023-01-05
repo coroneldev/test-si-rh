@@ -50,7 +50,20 @@ class ClPaisController extends Controller
      */
     public function show($id)
     {
-        //
+        $pais = RhClPais::find($id);
+
+        if (is_null($pais)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $pais
+        ], 200);
     }
 
     /**
@@ -68,7 +81,7 @@ class ClPaisController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $pais->nombre        = $request->nombre;
@@ -89,6 +102,19 @@ class ClPaisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pais = RhClPais::find($id);
+
+        if (is_null($pais)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $pais->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $pais
+        ], 200);
     }
 }

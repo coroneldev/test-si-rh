@@ -19,7 +19,7 @@ class ClCategoriaViajeController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de categoria de viajes recuperadas exitosamente',
+            'message'   => 'Registro de categoria de viajes recuperados exitosamente',
             'data'      => $categoriaViajes
         ], 200);
     }
@@ -50,12 +50,12 @@ class ClCategoriaViajeController extends Controller
      */
     public function show($id)
     {
-        $categoriaViaje = RhClCategoriaViaje::where('id', $id)->first();
+        $categoriaViaje = RhClCategoriaViaje::find($id);
         if (is_null($categoriaViaje)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -80,7 +80,7 @@ class ClCategoriaViajeController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $categoriaViaje->descripcion        = $request->descripcion;
         $categoriaViaje->save();
@@ -99,6 +99,19 @@ class ClCategoriaViajeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoriaViaje = RhClCategoriaViaje::find($id);
+
+        if (is_null($categoriaViaje)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $categoriaViaje->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $categoriaViaje
+        ], 200);
     }
 }

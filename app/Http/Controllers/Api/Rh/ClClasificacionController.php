@@ -16,10 +16,9 @@ class ClClasificacionController extends Controller
     public function index()
     {
         $clasificaciones = RhClClasificacion::all();
-
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de clasificaciones recuperadas exitosamente',
+            'message'   => 'Registro de clasificaciones recuperados exitosamente',
             'data'      => $clasificaciones
         ], 200);
     }
@@ -50,12 +49,12 @@ class ClClasificacionController extends Controller
      */
     public function show($id)
     {
-        $clasificacion = RhClClasificacion::where('id', $id)->first();
+        $clasificacion = RhClClasificacion::find($id);
         if (is_null($clasificacion)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -80,7 +79,7 @@ class ClClasificacionController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $clasificacion->descripcion        = $request->descripcion;
         $clasificacion->save();
@@ -99,6 +98,19 @@ class ClClasificacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clasificacion = RhClClasificacion::find($id);
+
+        if (is_null($clasificacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $clasificacion->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $clasificacion
+        ], 200);
     }
 }

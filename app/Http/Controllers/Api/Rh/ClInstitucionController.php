@@ -58,7 +58,7 @@ class ClInstitucionController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -83,7 +83,7 @@ class ClInstitucionController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $institucion->nombre     = $request->nombre;
@@ -106,6 +106,19 @@ class ClInstitucionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $institucion = RhClInstitucion::find($id);
+
+        if (is_null($institucion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $institucion->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $institucion
+        ], 200);
     }
 }

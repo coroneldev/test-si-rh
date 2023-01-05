@@ -19,7 +19,7 @@ class ClPuestoController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de Puestos recuperados exitosamente',
+            'message'   => 'Registro de puestos recuperados exitosamente',
             'data'      => $puestos
         ], 200);
     }
@@ -42,7 +42,7 @@ class ClPuestoController extends Controller
         $puesto->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de puesto creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $puesto
         ], 201);
     }
@@ -55,12 +55,13 @@ class ClPuestoController extends Controller
      */
     public function show($id)
     {
-        $puesto = RhClPuesto::where('id', $id)->first();
+        $puesto = RhClPuesto::find($id);
+
         if (is_null($puesto)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -85,7 +86,7 @@ class ClPuestoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $puesto->denominacion        = $request->denominacion;
         $puesto->descripcion         = $request->descripcion;
@@ -109,6 +110,19 @@ class ClPuestoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $puesto = RhClPuesto::find($id);
+
+        if (is_null($puesto)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $puesto->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $puesto
+        ], 200);
     }
 }

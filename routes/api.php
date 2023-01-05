@@ -50,66 +50,119 @@ use App\Http\Controllers\Api\Rh\TrnDeclaracionJuradaController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+ 
 Route::post('registrarse', [UserController::class, 'register']);
 Route::post('ingresar', [UserController::class, 'login']);
+
 /*CLASIFICADORES*/
-/**/
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);
 Route::post('/estados-civiles', [ClEstadoCivilController::class, 'store']);
+Route::get('/estados-civiles/{id}', [ClEstadoCivilController::class, 'show']);
 Route::put('/estados-civiles/{id}', [ClEstadoCivilController::class, 'update']);
+Route::delete('/estados-civiles/{id}', [ClEstadoCivilController::class, 'destroy']);
 
 Route::get('/generos', [ClGeneroController::class, 'index']);
 Route::post('/generos', [ClGeneroController::class, 'store']);
+Route::get('/generos/{id}', [ClGeneroController::class, 'show']);
 Route::put('/generos/{id}', [ClGeneroController::class, 'update']);
+Route::delete('/generos/{id}', [ClGeneroController::class, 'destroy']);
 
 Route::get('/paises', [ClPaisController::class, 'index']);
 Route::post('/paises', [ClPaisController::class, 'store']);
+Route::get('/paises/{id}', [ClPaisController::class, 'show']);
 Route::put('/paises/{id}', [ClPaisController::class, 'update']);
+Route::delete('/paises/{id}', [ClPaisController::class, 'destroy']);
 
 Route::get('/ciudades', [ClCiudadController::class, 'index']);
 Route::post('/ciudades', [ClCiudadController::class, 'store']);
+Route::get('/ciudades/{id}', [ClCiudadController::class, 'show']);
 Route::put('/ciudades/{id}', [ClCiudadController::class, 'update']);
+Route::delete('/ciudades/{id}', [ClCiudadController::class, 'destroy']);
 
 Route::get('/parentescos', [ClParentescoController::class, 'index']);
 Route::post('/parentescos', [ClParentescoController::class, 'store']);
+Route::get('/parentescos/{id}', [ClParentescoController::class, 'show']);
 Route::put('/parentescos/{id}', [ClParentescoController::class, 'update']);
+Route::delete('/parentescos/{id}', [ClParentescoController::class, 'destroy']);
 
-Route::get('/idiomas', [ClIdiomaController::class, 'index']);
-Route::post('/idiomas', [ClIdiomaController::class, 'store']);
-Route::get('/idiomas/{id}', [ClIdiomaController::class, 'show']);
-Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
+Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
+Route::post('/tipos-documentos', [ClTipoDocumentoController::class, 'store']);
+Route::get('/tipos-documentos/{id}', [ClTipoDocumentoController::class, 'show']);
+Route::put('/tipos-documentos/{id}', [ClTipoDocumentoController::class, 'update']);
+Route::delete('/tipos-documentos/{id}', [ClTipoDocumentoController::class, 'destroy']);
 
-Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
-Route::post('/tipos-contratos', [ClTipoContratoController::class, 'store']);
-Route::get('/tipos-contratos/{id}', [ClTipoContratoController::class, 'show']);
-Route::put('/tipos-contratos/{id}', [ClTipoContratoController::class, 'update']);
+Route::get('/instituciones', [ClInstitucionController::class, 'index']);
+Route::post('/instituciones', [ClInstitucionController::class, 'store']);
+Route::get('/instituciones/{id}', [ClInstitucionController::class, 'show']);
+Route::put('/instituciones/{id}', [ClInstitucionController::class, 'update']);
+Route::delete('/instituciones/{id}', [ClInstitucionController::class, 'destroy']);
 
-Route::get('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'index']);
-Route::post('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'store']);
-Route::get('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'show']);
-Route::put('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'update']);
+Route::get('/niveles-estudios', [ClNivelEstudioController::class, 'index']);
+Route::post('/niveles-estudios', [ClNivelEstudioController::class, 'store']);
+Route::get('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'show']);
+Route::put('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'update']);
+Route::delete('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'destroy']);
 
-Route::get('/horarios', [ClHorarioController::class, 'index']);
-Route::post('/horarios', [ClHorarioController::class, 'store']);
-Route::get('/horarios/{id}', [ClHorarioController::class, 'show']);
-Route::put('/horarios/{id}', [ClHorarioController::class, 'update']);
-
-Route::get('/puestos', [ClPuestoController::class, 'index']);
-Route::post('/puestos', [ClPuestoController::class, 'store']);
-Route::get('/puestos/{id}', [ClPuestoController::class, 'show']);
-Route::put('/puestos/{id}', [ClPuestoController::class, 'update']);
-
-Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
-Route::post('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'store']);
-Route::get('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'show']);
-Route::put('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'update']);
+Route::get('/estados', [ClEstadoController::class, 'index']);
+Route::post('/estados', [ClEstadoController::class, 'store']);
+Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
+Route::put('/estados/{id}', [ClEstadoController::class, 'update']);
+Route::delete('/estados/{id}', [ClEstadoController::class, 'destroy']);
+Route::get('/estados/seccion/{seccion_id}', [ClEstadoController::class, 'estadosPorSeccion']);
 
 Route::get('/catetgorias-viaje', [ClCategoriaViajeController::class, 'index']);
 Route::post('/catetgorias-viaje', [ClCategoriaViajeController::class, 'store']);
 Route::get('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'show']);
 Route::put('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'update']);
+Route::delete('/catetgorias-viaje/{id}', [ClCategoriaViajeController::class, 'destroy']);
 
+Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
+Route::post('/clasificaciones', [ClClasificacionController::class, 'store']);
+Route::get('/clasificaciones/{id}', [ClClasificacionController::class, 'show']);
+Route::put('/clasificaciones/{id}', [ClClasificacionController::class, 'update']);
+Route::delete('/clasificaciones/{id}', [ClClasificacionController::class, 'destroy']);
+
+Route::get('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'index']);
+Route::post('/estructuras-organizacionales', [ClEstructuraOrganizacionalController::class, 'store']);
+Route::get('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'show']);
+Route::put('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'update']);
+Route::delete('/estructuras-organizacionales/{id}', [ClEstructuraOrganizacionalController::class, 'destroy']);
+
+Route::get('/horarios', [ClHorarioController::class, 'index']);
+Route::post('/horarios', [ClHorarioController::class, 'store']);
+Route::get('/horarios/{id}', [ClHorarioController::class, 'show']);
+Route::put('/horarios/{id}', [ClHorarioController::class, 'update']);
+Route::delete('/horarios/{id}', [ClHorarioController::class, 'destroy']);
+
+Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
+Route::post('/identificadores', [ClIdentificadorController::class, 'store']);
+Route::get('/identificadores/{id}', [ClIdentificadorController::class, 'show']);
+Route::put('/identificadores/{id}', [ClIdentificadorController::class, 'update']);
+Route::delete('/identificadores/{id}', [ClIdentificadorController::class, 'destroy']);
+
+Route::get('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'index']);
+Route::post('/organismos-finaciadores', [ClOrganismoFinanciadorController::class, 'store']);
+Route::get('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'show']);
+Route::put('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'update']);
+Route::delete('/organismos-finaciadores/{id}', [ClOrganismoFinanciadorController::class, 'destroy']);
+
+Route::get('/puestos', [ClPuestoController::class, 'index']);
+Route::post('/puestos', [ClPuestoController::class, 'store']);
+Route::get('/puestos/{id}', [ClPuestoController::class, 'show']);
+Route::put('/puestos/{id}', [ClPuestoController::class, 'update']);
+Route::delete('/puestos/{id}', [ClPuestoController::class, 'destroy']);
+
+Route::get('/tipos-contratos', [ClTipoContratoController::class, 'index']);
+Route::post('/tipos-contratos', [ClTipoContratoController::class, 'store']);
+Route::get('/tipos-contratos/{id}', [ClTipoContratoController::class, 'show']);
+Route::put('/tipos-contratos/{id}', [ClTipoContratoController::class, 'update']);
+Route::delete('/tipos-contratos/{id}', [ClTipoContratoController::class, 'destroy']);
+
+Route::get('/idiomas', [ClIdiomaController::class, 'index']);
+Route::post('/idiomas', [ClIdiomaController::class, 'store']);
+Route::get('/idiomas/{id}', [ClIdiomaController::class, 'show']);
+Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
+Route::delete('/idiomas/{id}', [ClIdiomaController::class, 'destroy']);
 
 
 /*TRANSACCIONES*/ 
@@ -128,31 +181,17 @@ Route::put('/parentescos-personas/{id}', [TrnParentescoController::class, 'updat
 Route::delete('/parentescos-personas/{id}', [TrnParentescoController::class, 'destroy']);
 Route::get('/parentescos-personas/persona/{persona_id}', [TrnParentescoController::class, 'parentescoPersonaId']);
 
+
+
 /*Administrar Documentacion*/
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
 Route::get('/documentos/{id}', [TrnDocumentoDigitalController::class, 'show']);
 Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
-Route::put('/documentos/adjunto/{documento_id}', [TrnDocumentoDigitalController::class, 'cargarAdjunto']);
+Route::post('/documentos/adjunto/{documento_id}', [TrnDocumentoDigitalController::class, 'cargarAdjunto']);
 Route::get('/documentos/persona/{persona_id}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
 
-
-
-Route::get('/tipos-documentos', [ClTipoDocumentoController::class, 'index']);
-
 Route::get('/accesos', [TrnAccesoController::class, 'index']);
-
-
-
-Route::get('/clasificaciones', [ClClasificacionController::class, 'index']);
-Route::post('/clasificaciones', [ClClasificacionController::class, 'store']);
-Route::get('/clasificaciones/{id}', [ClClasificacionController::class, 'show']);
-Route::put('/clasificaciones/{id}', [ClClasificacionController::class, 'update']);
-
-Route::get('/identificadores', [ClIdentificadorController::class, 'index']);
-Route::post('/identificadores', [ClIdentificadorController::class, 'store']);
-Route::get('/identificadores/{id}', [ClIdentificadorController::class, 'show']);
-Route::put('/identificadores/{id}', [ClIdentificadorController::class, 'update']);
 
 
 Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
@@ -164,16 +203,6 @@ Route::put('/idiomas-personas/{id}', [TrnIdiomaController::class, 'update']);
 Route::get('/idiomas-personas/{id}', [TrnIdiomaController::class, 'show']);
 Route::get('/idiomas-personas/persona/{id}', [TrnIdiomaController::class, 'idiomaPersonaId']);
 
-Route::get('/instituciones', [ClInstitucionController::class, 'index']);
-Route::post('/instituciones', [ClInstitucionController::class, 'store']);
-Route::put('/instituciones/{id}', [ClInstitucionController::class, 'update']);
-Route::get('/instituciones/{id}', [ClInstitucionController::class, 'show']);
-
-Route::get('/niveles-estudios', [ClNivelEstudioController::class, 'index']);
-Route::post('/niveles-estudios', [ClNivelEstudioController::class, 'store']);
-Route::put('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'update']);
-Route::get('/niveles-estudios/{id}', [ClNivelEstudioController::class, 'show']);
-
 Route::get('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'index']);
 Route::post('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'store']);
 Route::get('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'show']);
@@ -181,11 +210,6 @@ Route::put('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class
 Route::delete('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'destroy']);
 Route::get('/declaraciones-juradas/persona/{persona_id}', [TrnDeclaracionJuradaController::class, 'declaracionJuaradaPersonaId']);
 
-Route::get('/estados', [ClEstadoController::class, 'index']);
-Route::post('/estados', [ClEstadoController::class, 'store']);
-Route::get('/estados/seccion/{id}', [ClEstadoController::class, 'estadosPorSeccion']);
-Route::put('/estados/{id}', [ClEstadoController::class, 'update']);
-Route::get('/estados/{id}', [ClEstadoController::class, 'show']);
 
 Route::get('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'index']);
 Route::post('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'store']);

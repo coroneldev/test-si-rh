@@ -35,9 +35,10 @@ class ClOrganismoFinanciadorController extends Controller
         $organismoFinanciador = new RhClOrganismoFinanciador();
         $organismoFinanciador->nombre        = $request->nombre;
         $organismoFinanciador->save();
+
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de organismo creado exitosamente',
+            'message'   => 'Registro de organismo financiador creado exitosamente',
             'data'      => $organismoFinanciador
         ], 201);
     }
@@ -50,7 +51,8 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function show($id)
     {
-        $organismoFinanciador = RhClOrganismoFinanciador::where('id', $id)->first();
+        $organismoFinanciador = RhClOrganismoFinanciador::find($id);
+
         if (is_null($organismoFinanciador)) {
             return response()->json([
                 'status'    => false,
@@ -80,10 +82,12 @@ class ClOrganismoFinanciadorController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
+
         $organismoFinanciador->nombre        = $request->nombre;
         $organismoFinanciador->save();
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
@@ -99,6 +103,19 @@ class ClOrganismoFinanciadorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $organismoFinanciador = RhClOrganismoFinanciador::find($id);
+
+        if (is_null($organismoFinanciador)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $organismoFinanciador->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $organismoFinanciador
+        ], 200);
     }
 }

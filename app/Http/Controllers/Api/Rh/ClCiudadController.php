@@ -39,7 +39,7 @@ class ClCiudadController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro actualizado exitosamente',
+            'message'   => 'Registro exitoso',
             'data'      => $ciudad
         ], 201);
     }
@@ -52,7 +52,20 @@ class ClCiudadController extends Controller
      */
     public function show($id)
     {
-        //
+        $ciudad = RhClCiudad::find($id);
+
+        if (is_null($ciudad)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $ciudad
+        ], 200);
     }
 
     /**
@@ -92,6 +105,19 @@ class ClCiudadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ciudad = RhClCiudad::find($id);
+
+        if (is_null($ciudad)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $ciudad->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $ciudad
+        ], 200);
     }
 }

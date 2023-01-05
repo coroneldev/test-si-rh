@@ -34,8 +34,8 @@ class ClHorarioController extends Controller
     {
         $horario = new RhClHorario();
         $horario->nombre        = $request->nombre;
-        $horario->hora_uno        = $request->nombre;
-        $horario->hora_dos        = $request->nombre;
+        $horario->hora_uno        = $request->hora_uno;
+        $horario->hora_dos        = $request->hora_dos;
         $horario->save();
         return response()->json([
             'status'    => true,
@@ -52,12 +52,13 @@ class ClHorarioController extends Controller
      */
     public function show($id)
     {
-        $horario = RhClHorario::where('id', $id)->first();
+        $horario = RhClHorario::find($id);
+
         if (is_null($horario)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -65,7 +66,6 @@ class ClHorarioController extends Controller
             'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $horario
         ], 200);
-        
     }
 
     /**
@@ -83,12 +83,13 @@ class ClHorarioController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $horario->nombre        = $request->nombre;
         $horario->hora_uno        = $request->hora_uno;
         $horario->hora_dos        = $request->hora_dos;
         $horario->save();
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
@@ -104,6 +105,19 @@ class ClHorarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $horario = RhClHorario::find($id);
+
+        if (is_null($horario)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $horario->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $horario
+        ], 200);
     }
 }
