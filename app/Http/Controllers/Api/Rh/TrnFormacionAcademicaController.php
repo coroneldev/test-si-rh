@@ -143,7 +143,7 @@ class TrnFormacionAcademicaController extends Controller
 
     public function formacionPersonaId($persona_id)
     {
-        $formacion = RhtrnFormacionAcademica::where('persona_id', $persona_id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
+        $formacion = RhtrnFormacionAcademica::where('persona_id', $persona_id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->first();
         
         if (is_null($formacion)) {
             return response()->json([

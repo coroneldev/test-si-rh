@@ -166,7 +166,7 @@ class TrnDatoLaboralController extends Controller
 
     public function datoLaboralPersonaId($persona_id)
     {
-        $datoLaboral = RhTrnDatoLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->get();
+        $datoLaboral = RhTrnDatoLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->first();
 
         if (is_null($datoLaboral)) {
             return response()->json([

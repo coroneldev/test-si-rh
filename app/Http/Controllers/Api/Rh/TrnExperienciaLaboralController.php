@@ -135,7 +135,7 @@ class TrnExperienciaLaboralController extends Controller
     }
     public function ExperienciaLaboralPersonaId($persona_id)
     {
-        $experienciaLaboral = RhTrnExperienciaLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->get();
+        $experienciaLaboral = RhTrnExperienciaLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->first();
 
         if (is_null($experienciaLaboral)) {
             return response()->json([
