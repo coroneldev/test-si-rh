@@ -165,6 +165,7 @@ Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
 Route::delete('/idiomas/{id}', [ClIdiomaController::class, 'destroy']);
 
 
+
 /*TRANSACCIONES*/ 
 /*Registro de personas*/ 
 Route::get('/personas', [TrnPersonaController::class, 'index']);
@@ -181,28 +182,16 @@ Route::put('/parentescos-personas/{id}', [TrnParentescoController::class, 'updat
 Route::delete('/parentescos-personas/{id}', [TrnParentescoController::class, 'destroy']);
 Route::get('/parentescos-personas/persona/{persona_id}', [TrnParentescoController::class, 'parentescoPersonaId']);
 
-
-
-/*Administrar Documentacion*/
+/*Documentacion*/
 Route::get('/documentos', [TrnDocumentoDigitalController::class, 'index']);
 Route::post('/documentos', [TrnDocumentoDigitalController::class, 'store']);
 Route::get('/documentos/{id}', [TrnDocumentoDigitalController::class, 'show']);
 Route::put('/documentos/{id}', [TrnDocumentoDigitalController::class, 'update']);
+Route::delete('/documentos/{id}', [TrnDocumentoDigitalController::class, 'destroy']);
 Route::post('/documentos/adjunto/{documento_id}', [TrnDocumentoDigitalController::class, 'cargarAdjunto']);
 Route::get('/documentos/persona/{persona_id}/{tipo_documento_id}/{id_tabla}', [TrnDocumentoDigitalController::class, 'documentoPersonaIdTabla']);
 
-Route::get('/accesos', [TrnAccesoController::class, 'index']);
-
-
-Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
-
-
-Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
-Route::post('/idiomas-personas', [TrnIdiomaController::class, 'store']);
-Route::put('/idiomas-personas/{id}', [TrnIdiomaController::class, 'update']);
-Route::get('/idiomas-personas/{id}', [TrnIdiomaController::class, 'show']);
-Route::get('/idiomas-personas/persona/{id}', [TrnIdiomaController::class, 'idiomaPersonaId']);
-
+/*Declaraciones juradas*/ 
 Route::get('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'index']);
 Route::post('/declaraciones-juradas', [TrnDeclaracionJuradaController::class, 'store']);
 Route::get('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'show']);
@@ -210,12 +199,39 @@ Route::put('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class
 Route::delete('/declaraciones-juradas/{id}', [TrnDeclaracionJuradaController::class, 'destroy']);
 Route::get('/declaraciones-juradas/persona/{persona_id}', [TrnDeclaracionJuradaController::class, 'declaracionJuaradaPersonaId']);
 
+/*Cursos realizados*/ 
+Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
+Route::post('/cursos-personas', [TrnCursoController::class, 'store']);
+Route::get('/cursos-personas/{id}', [TrnCursoController::class, 'show']);
+Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
+Route::delete('/cursos-personas/{id}', [TrnCursoController::class, 'destroy']);
+Route::get('/cursos-personas/persona/{persona_id}/{tipo}', [TrnCursoController::class, 'CursoPersonaIdTipo']);
 
+/*Idiomas persona*/
+Route::get('/idiomas-personas', [TrnIdiomaController::class, 'index']);
+Route::post('/idiomas-personas', [TrnIdiomaController::class, 'store']);
+Route::get('/idiomas-personas/{id}', [TrnIdiomaController::class, 'show']);
+Route::put('/idiomas-personas/{id}', [TrnIdiomaController::class, 'update']);
+Route::delete('/idiomas-personas/{id}', [TrnIdiomaController::class, 'destroy']);
+Route::get('/idiomas-personas/persona/{persona_id}', [TrnIdiomaController::class, 'idiomaPersonaId']);
+
+/*Formacion Academica*/
 Route::get('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'index']);
 Route::post('/formaciones-academicas', [TrnFormacionAcademicaController::class, 'store']);
 Route::get('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'show']);
 Route::put('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'update']);
-Route::get('/formaciones-academicas/persona/{id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
+Route::delete('/formaciones-academicas/{id}', [TrnFormacionAcademicaController::class, 'destroy']);
+Route::get('/formaciones-academicas/persona/{persona_id}', [TrnFormacionAcademicaController::class, 'formacionesPersonaId']);
+
+
+
+
+
+
+
+Route::get('/accesos', [TrnAccesoController::class, 'index']);
+Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
+
 
 Route::get('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'index']);
 Route::post('/experiencias-laborales', [TrnExperienciaLaboralController::class, 'store']);
@@ -223,11 +239,7 @@ Route::get('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::cla
 Route::put('/experiencias-laborales/{id}', [TrnExperienciaLaboralController::class, 'update']);
 Route::get('/experiencias-laborales/persona/{id}', [TrnExperienciaLaboralController::class, 'ExperienciaLaboralPersonaId']);
 
-Route::get('/cursos-personas', [TrnCursoController::class, 'index']);
-Route::post('/cursos-personas', [TrnCursoController::class, 'store']);
-Route::get('/cursos-personas/{id}', [TrnCursoController::class, 'show']);
-Route::put('/cursos-personas/{id}', [TrnCursoController::class, 'update']);
-Route::get('/cursos-personas/persona/{id_persona}/{tipo}', [TrnCursoController::class, 'CursoPersonaIdTipo']);
+
 
 Route::get('/datos-laborales', [TrnDatoLaboralController::class, 'index']);
 Route::post('/datos-laborales', [TrnDatoLaboralController::class, 'store']);

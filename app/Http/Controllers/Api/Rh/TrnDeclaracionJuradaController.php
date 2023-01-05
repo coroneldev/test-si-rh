@@ -39,6 +39,7 @@ class TrnDeclaracionJuradaController extends Controller
         $declaracionJurada->fecha_fin                        = $request->fecha_fin;
         $declaracionJurada->vigente                          = $request->vigente;
         $declaracionJurada->save();
+
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de declaracion jurada creada exitosamente',
@@ -55,6 +56,7 @@ class TrnDeclaracionJuradaController extends Controller
     public function show($id)
     {
         $declaracionJurada = RhTrnDeclaracionJurada::find($id);
+        
         if (is_null($declaracionJurada)) {
             return response()->json([
                 'status'    => false,
@@ -126,8 +128,9 @@ class TrnDeclaracionJuradaController extends Controller
 
     public function declaracionJuaradaPersonaId($persona_id)
     {
-        $laboral = RhTrnDeclaracionJurada::where('persona_id', $persona_id)->first();
-        if (is_null($laboral)) {
+        $declaracionJurada = RhTrnDeclaracionJurada::where('persona_id', $persona_id)->first();
+        
+        if (is_null($declaracionJurada)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -136,7 +139,7 @@ class TrnDeclaracionJuradaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $laboral
+            'data'      => $declaracionJurada
         ], 200);
     }
 }

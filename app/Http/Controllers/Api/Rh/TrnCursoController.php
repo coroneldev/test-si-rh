@@ -59,12 +59,13 @@ class TrnCursoController extends Controller
      */
     public function show($id)
     {
-        $curso = RhTrnCurso::where('id', $id)->first();
+        $curso = RhTrnCurso::find($id);
+
         if (is_null($curso)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -89,7 +90,7 @@ class TrnCursoController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $curso->persona_id                    = $request->persona_id;
@@ -118,12 +119,25 @@ class TrnCursoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $curso = RhTrnCurso::find($id);
+
+        if (is_null($curso)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $curso->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $curso
+        ], 200);
     }
 
-    public function CursoPersonaIdTipo($id, $tipo)
+    public function CursoPersonaIdTipo($persona_id, $tipo)
     {
-        $curso = RhTrnCurso::where('persona_id', $id)->where('tipo', $tipo)->where('vigente', '=', 'true')->with('persona', 'estado', 'institucion')->get();
+        $curso = RhTrnCurso::where('persona_id', $persona_id)->where('tipo', $tipo)->where('vigente', '=', 'true')->with('persona', 'estado', 'institucion')->get();
 
         if (is_null($curso)) {
             return response()->json([

@@ -61,11 +61,12 @@ class TrnDocumentoDigitalController extends Controller
     public function show($id)
     {
         $documento = RhTrnDocumentoDigital::find($id);
+
         if (is_null($documento)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -85,6 +86,7 @@ class TrnDocumentoDigitalController extends Controller
     public function update(Request $request, $id)
     {
         $documento = RhTrnDocumentoDigital::find($id);
+        
         if (is_null($documento)) {
             return response()->json([
                 'status'    => false,

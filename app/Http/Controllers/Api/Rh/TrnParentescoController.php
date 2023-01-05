@@ -47,7 +47,7 @@ class TrnParentescoController extends Controller
         $parentesco->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de parentesco creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $parentesco
         ], 201);
     }
@@ -61,6 +61,7 @@ class TrnParentescoController extends Controller
     public function show($id)
     {
         $parentesco = RhTrnParentesco::find($id);
+
         if (is_null($parentesco)) {
             return response()->json([
                 'status'    => false,
@@ -92,6 +93,7 @@ class TrnParentescoController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 200);
         }
+        
         $parentesco->persona_id                  = $request->persona_id;
         $parentesco->parentesco_id               = $request->parentesco_id;
         $parentesco->expedido_ci_id              = $request->expedido_ci_id;

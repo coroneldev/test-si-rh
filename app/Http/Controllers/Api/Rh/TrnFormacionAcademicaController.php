@@ -62,12 +62,13 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function show($id)
     {
-        $formacion = RhtrnFormacionAcademica::where('id', $id)->first();
+        $formacion = RhtrnFormacionAcademica::find($id);
+
         if (is_null($formacion)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -92,7 +93,7 @@ class TrnFormacionAcademicaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         $formacion->persona_id            = $request->persona_id;
@@ -124,12 +125,26 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $formacion = RhtrnFormacionAcademica::find($id);
+
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $formacion->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 
-    public function formacionesPersonaId($id)
+    public function formacionesPersonaId($persona_id)
     {
-        $formacion = RhtrnFormacionAcademica::find($id)->where('persona_id', $id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
+        $formacion = RhtrnFormacionAcademica::where('persona_id', $persona_id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
+        
         if (is_null($formacion)) {
             return response()->json([
                 'status'    => false,

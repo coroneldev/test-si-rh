@@ -19,7 +19,7 @@ class TrnIdiomaController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de idiomas recuperadas exitosamente',
+            'message'   => 'Registro de conocimiento de idiomas recuperados exitosamente',
             'data'      => $idiomasPersonas
         ], 200);
     }
@@ -53,12 +53,13 @@ class TrnIdiomaController extends Controller
      */
     public function show($id)
     {
-        $idiomaPersona = RhTrnIdioma::where('id', $id)->first();
+        $idiomaPersona = RhTrnIdioma::find($id);
+
         if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([
@@ -83,7 +84,7 @@ class TrnIdiomaController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 204);
+            ], 200);
         }
         $idiomaPersona->persona_id                    = $request->persona_id;
         $idiomaPersona->idioma_id                     = $request->idioma_id;
@@ -106,12 +107,25 @@ class TrnIdiomaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $idiomaPersona = RhTrnIdioma::find($id);
+
+        if (is_null($idiomaPersona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud no encontrado'
+            ], 200);
+        }
+        $idiomaPersona->delete();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud eliminado exitosamente',
+            'data'      => $idiomaPersona
+        ], 200);
     }
 
-    public function idiomaPersonaId($id)
+    public function idiomaPersonaId($persona_id)
     {
-        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->with('persona', 'idioma', 'estado', 'nivelConocimiento')->get();
+        $idiomaPersona = RhTrnIdioma::where('persona_id', $persona_id)->with('persona', 'idioma', 'estado', 'nivelConocimiento')->get();
         if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
