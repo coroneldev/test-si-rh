@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('usuarios', [UserController::class, 'index']);
 Route::post('usuarios', [UserController::class, 'store']);
 Route::post('usuarios/ingreso', [UserController::class, 'ingresar']);
+Route::get('usuarios/salir', [UserController::class, 'salir']);
 
 /*CLASIFICADORES*/
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);

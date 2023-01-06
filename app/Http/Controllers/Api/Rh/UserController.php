@@ -40,7 +40,7 @@ class UserController extends Controller
             'status'    => true,
             'message'   => 'Registro creado exitosamente',
             'data'      => $user
-        ], 200);
+        ], 201);
     }
 
     public function ingresar(Request $request)
@@ -55,30 +55,33 @@ class UserController extends Controller
 
         if (isset($user->id)) {
             if (Hash::check($request->password, $user->password)) {
+                
                 $token = $user->createToken("auth_token")->plainTextToken;
+
                 return response()->json([
-                    "status" => true,
-                    "msg" => "¡Usuario logueado exitosamente!",
+                    "status"       => true,
+                    "message"      => "Usuario Identificado Correctamente",
                     "access_token" => $token
                 ]);
             } else {
                 return response()->json([
-                    "status" => false,
-                    "msg" => "La password es incorrecta",
+                    "status"  => false,
+                    "message" => "La password es incorrecta",
                 ], 204);
             }
         } else {
             return response()->json([
-                "status" => 0,
-                "msg" => "Usuario no registrado",
+                "status"   => true,
+                "message"  => "Usuario no registrado",
             ], 204);
         }
     }
 
-    public function logout(Request $request)
+    public function salir(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json(null, 200);
+        // $request->user()->token()->revoke();
+        // $request->user()->currentAccessToken()->delete();
+        //return response()->json(null, 200);
         /* auth()->user()->tokens()->delete();
         return response()->json([
             "status" => true,
