@@ -52,9 +52,10 @@ use App\Http\Controllers\Api\Rh\TrnDeclaracionJuradaController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
- 
-Route::post('registrarse', [UserController::class, 'register']);
-Route::post('ingresar', [UserController::class, 'login']);
+
+Route::get('usuarios', [UserController::class, 'index']);
+Route::post('usuarios', [UserController::class, 'store']);
+Route::post('usuarios/ingreso', [UserController::class, 'ingresar']);
 
 /*CLASIFICADORES*/
 Route::get('/estados-civiles', [ClEstadoCivilController::class, 'index']);

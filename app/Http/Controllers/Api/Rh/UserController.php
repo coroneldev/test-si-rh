@@ -11,14 +11,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-    public function register(Request $request)
+    public function index()
     {
-        $request->validate([
+        $usuarios = User::all();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de usuarios recuperados exitosamente',
+            'data'      => $usuarios
+        ], 200);
+    }
+
+    public function store(Request $request)
+    {
+        /*$request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed'
-        ]);
+        ]);*/
 
         $user = new User();
         $user->name = $request->name;
@@ -27,12 +37,13 @@ class UserController extends Controller
         $user->save();
 
         return response()->json([
-            "status" => true,
-            "msg" => "¡Registro de usuario exitoso!",
-        ]);
+            'status'    => true,
+            'message'   => 'Registro creado exitosamente',
+            'data'      => $user
+        ], 200);
     }
 
-    public function login(Request $request)
+    public function ingresar(Request $request)
     {
 
         $request->validate([
@@ -67,8 +78,8 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-		return response()->json(null, 200);
-       /* auth()->user()->tokens()->delete();
+        return response()->json(null, 200);
+        /* auth()->user()->tokens()->delete();
         return response()->json([
             "status" => true,
             "msg" => "Cierre de Sesión",
