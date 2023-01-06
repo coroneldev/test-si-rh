@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnIdioma;
+use Illuminate\Support\Facades\Validator;
 
 class TrnIdiomaController extends Controller
 {
@@ -32,6 +33,32 @@ class TrnIdiomaController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'idioma_id'                         => 'required',
+                'estado_id'                         => 'required',
+                'nivel_conocimiento_id'             => 'required',
+
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'idioma_id.required'                => 'El campo parentesco id es requerido',
+                'estado_id.required'                => 'El campo expedido ci es requerido',
+                'nivel_conocimiento_id.required'    => 'El campo nombre es requerido',
+
+            ]
+        );
+
+        /*   if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
         $idiomaPersona = new RhTrnIdioma();
         $idiomaPersona->persona_id                    = $request->persona_id;
         $idiomaPersona->idioma_id                     = $request->idioma_id;
@@ -79,6 +106,31 @@ class TrnIdiomaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'idioma_id'                         => 'required',
+                'estado_id'                         => 'required',
+                'nivel_conocimiento_id'             => 'required',
+
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'idioma_id.required'                => 'El campo parentesco id es requerido',
+                'estado_id.required'                => 'El campo expedido ci es requerido',
+                'nivel_conocimiento_id.required'    => 'El campo nombre es requerido',
+
+            ]
+        );
+
+        /*   if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
         $idiomaPersona = RhTrnIdioma::find($id);
 
         if (is_null($idiomaPersona)) {
@@ -98,7 +150,6 @@ class TrnIdiomaController extends Controller
             'message'   => 'Registro modificado exitosamente',
             'data'      => $idiomaPersona
         ], 200);
-        
     }
 
     /**

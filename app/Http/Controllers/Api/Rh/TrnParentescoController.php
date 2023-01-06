@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use App\Models\RhTrnParentesco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TrnParentescoController extends Controller
 {
@@ -32,6 +33,42 @@ class TrnParentescoController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'parentesco_id'                     => 'required',
+                'expedido_ci_id'                    => 'required',
+                'nombres'                           => 'required',
+                'apellidos'                         => 'required',
+                'cedula_identidad'                  => 'required',
+                'direccion_laboral'                 => 'required',
+                'direccion_parentesco'              => 'required',
+                'correo_personal'                   => 'required',
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'parentesco_id.required'            => 'El campo parentesco id es requerido',
+                'expedido_ci_id.required'           => 'El campo expedido ci es requerido',
+                'nombres.required'                  => 'El campo nombre es requerido',
+                'apellidos.required'                => 'El campo apellido es requerido',
+                'cedula_identidad.required'         => 'El campo cedula de identidad es requerido',
+                'direccion_laboral.required'        => 'El campo direccion laboral es requerido',
+                'direccion_parentesco.required'     => 'El campo direccion parentesco es requerido',
+                'correo_personal.required'          => 'El campo correo personal es requerido',
+
+            ]
+        );
+
+     /*   if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
+
         $parentesco = new RhTrnParentesco();
         $parentesco->persona_id                  = $request->persona_id;
         $parentesco->parentesco_id               = $request->parentesco_id;
@@ -85,6 +122,43 @@ class TrnParentescoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'parentesco_id'                     => 'required',
+                'expedido_ci_id'                    => 'required',
+                'nombres'                           => 'required',
+                'apellidos'                         => 'required',
+                'cedula_identidad'                  => 'required',
+                'direccion_laboral'                 => 'required',
+                'direccion_parentesco'              => 'required',
+                'correo_personal'                   => 'required',
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'parentesco_id.required'            => 'El campo parentesco id es requerido',
+                'expedido_ci_id.required'           => 'El campo expedido ci es requerido',
+                'nombres.required'                  => 'El campo nombre es requerido',
+                'apellidos.required'                => 'El campo apellido es requerido',
+                'cedula_identidad.required'         => 'El campo cedula de identidad es requerido',
+                'direccion_laboral.required'        => 'El campo direccion laboral es requerido',
+                'direccion_parentesco.required'     => 'El campo direccion parentesco es requerido',
+                'correo_personal.required'          => 'El campo correo personal es requerido',
+
+            ]
+        );
+
+      /*  if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
+
         $parentesco = RhTrnParentesco::find($id);
 
         if (is_null($parentesco)) {
@@ -93,7 +167,7 @@ class TrnParentescoController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 200);
         }
-        
+
         $parentesco->persona_id                  = $request->persona_id;
         $parentesco->parentesco_id               = $request->parentesco_id;
         $parentesco->expedido_ci_id              = $request->expedido_ci_id;
@@ -140,7 +214,7 @@ class TrnParentescoController extends Controller
     public function parentescoPersonaId($persona_id)
     {
         $parentetsco = RhTrnParentesco::where('persona_id', $persona_id)->with('persona', 'parentesco', 'expedido')->first();
-        
+
         if (is_null($parentetsco)) {
             return response()->json([
                 'status'    => false,

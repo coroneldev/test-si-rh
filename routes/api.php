@@ -261,8 +261,6 @@ Route::put('/accesos/{id}', [TrnAccesoController::class, 'update']);
 Route::delete('/accesos/{id}', [TrnAccesoController::class, 'destroy']);
 
 
-
-
 Route::get('/insumos-personas', [TrnInsumoController::class, 'index']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {

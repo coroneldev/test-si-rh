@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnFormacionAcademica;
+use Illuminate\Support\Facades\Validator;
 
 class TrnFormacionAcademicaController extends Controller
 {
@@ -32,6 +33,45 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'pais_id'                           => 'required',
+                'ciudad_id'                         => 'required',
+                'institucion_id'                    => 'required',
+                'estado_id'                         => 'required',
+                'nivel_id'                          => 'required',
+                'titulo'                            => 'required',
+                'fecha_inicio'                      => 'required',
+                'fecha_fin'                         => 'required',
+                'provision_nacional'                => 'required',
+                'registro_profesional'              => 'required',
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'pais_id.required'                  => 'El campo pais id es requerido',
+                'ciudad_id.required'                => 'El campo ciudad id es requerido',
+                'institucion_id.required'           => 'El campo institucion id es requerido',
+                'estado_id.required'                => 'El campo estado id es requerido',
+                'nivel_id.required'                 => 'El campo nivel id es requerido',
+                'titulo.required'                   => 'El campo titulo es requerido',
+                'fecha_inicio.required'             => 'El campo fecha de inicio es requerido',
+                'fecha_fin.required'                => 'El campo fecha de finalizacion es requerido',
+                'provision_nacional.required'       => 'El campo provision nacional es requerido',
+                'registro_profesional.required'     => 'El campo registro profesional es requerido',
+
+            ]
+        );
+
+        /*   if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
         $formacion = new RhTrnFormacionAcademica();
         $formacion->persona_id             = $request->persona_id;
         $formacion->pais_id                = $request->pais_id;
@@ -87,6 +127,45 @@ class TrnFormacionAcademicaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'persona_id'                        => 'required',
+                'pais_id'                           => 'required',
+                'ciudad_id'                         => 'required',
+                'institucion_id'                    => 'required',
+                'estado_id'                         => 'required',
+                'nivel_id'                          => 'required',
+                'titulo'                            => 'required',
+                'fecha_inicio'                      => 'required',
+                'fecha_fin'                         => 'required',
+                'provision_nacional'                => 'required',
+                'registro_profesional'              => 'required',
+            ],
+            [
+                'persona_id.required'               => 'El campo persona id es requerido',
+                'pais_id.required'                  => 'El campo pais id es requerido',
+                'ciudad_id.required'                => 'El campo ciudad id es requerido',
+                'institucion_id.required'           => 'El campo institucion id es requerido',
+                'estado_id.required'                => 'El campo estado id es requerido',
+                'nivel_id.required'                 => 'El campo nivel id es requerido',
+                'titulo.required'                   => 'El campo titulo es requerido',
+                'fecha_inicio.required'             => 'El campo fecha de inicio es requerido',
+                'fecha_fin.required'                => 'El campo fecha de finalizacion es requerido',
+                'provision_nacional.required'       => 'El campo provision nacional es requerido',
+                'registro_profesional.required'     => 'El campo registro profesional es requerido',
+
+            ]
+        );
+
+        /*   if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
         $formacion = RhtrnFormacionAcademica::find($id);
 
         if (is_null($formacion)) {
@@ -143,8 +222,8 @@ class TrnFormacionAcademicaController extends Controller
 
     public function formacionPersonaId($persona_id)
     {
-        $formacion = RhtrnFormacionAcademica::where('persona_id', $persona_id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->first();
-        
+        $formacion = RhtrnFormacionAcademica::where('persona_id', $persona_id)->where('vigente', '=', 'true')->with('institucion', 'pais', 'ciudad', 'estado', 'nivelEstudio')->get();
+
         if (is_null($formacion)) {
             return response()->json([
                 'status'    => false,

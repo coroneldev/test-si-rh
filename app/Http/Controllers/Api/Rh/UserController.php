@@ -79,6 +79,7 @@ class UserController extends Controller
 
     public function salir(Request $request)
     {
+        
         // $request->user()->token()->revoke();
         // $request->user()->currentAccessToken()->delete();
         //return response()->json(null, 200);

@@ -34,6 +34,7 @@ class TrnDatoLaboralController extends Controller
     {
         $datoLaboral = new RhTrnDatoLaboral();
         $datoLaboral->persona_id                            = $request->persona_id;
+
         $datoLaboral->tipo_contrato_id                      = $request->tipo_contrato_id;
         $datoLaboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
         $datoLaboral->horario_id                            = $request->horario_id;
@@ -56,12 +57,14 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->save();
 
         $persona = RhTrnPersona::find($request->persona_id);
+
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 200);
         }
+
         $persona->identificador_dato_laboral            = 'TRUE';
 
         $persona->save();
@@ -181,6 +184,27 @@ class TrnDatoLaboralController extends Controller
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $datoLaboral
+        ], 200);
+    }
+
+    public function EstadoFuncionario($persona_id)
+    {
+        $buscador = RhTrnDatoLaboral::find($persona_id);
+
+        if (is_null($buscador)) {
+
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro de persona no encontrado'
+            ], 200);
+        }
+
+        $buscador->vigente                               = 'FALSE';
+        $buscador->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro encontrado exitosamente',
+            'data'      => $buscador
         ], 200);
     }
 }

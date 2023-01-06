@@ -93,10 +93,10 @@ class TrnPersonaController extends Controller
             ]
         );
 
-        /*  if ($validator->fails()) {
+       /*   if ($validator->fails()) {
             return response()->json([
                 'status'    => false,
-                'message'   => 'Error en validaciones',
+                'message'   => 'Error en validaciones ',
                 'errors'    => $validator->errors()
             ], 200);
         }*/
@@ -169,6 +169,72 @@ class TrnPersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'estado_civil_id'                   => 'required',
+                'genero_id'                         => 'required',
+                'pais_id'                           => 'required',
+                'ciudad_id'                         => 'required',
+                'expedido_ci_id'                    => 'required',
+                'apellido_paterno'                  => 'required',
+                'apellido_materno'                  => 'required',
+                'nombres'                           => 'required',
+                'cedula_identidad'                  => 'required',
+                'complemento_ci'                    => 'required',
+                'fecha_nacimiento'                  => 'required',
+                'telefono_fijo'                     => 'required',
+                'telefono_movil'                    => 'required',
+                'correo_personal'                   => 'required',
+                'nro_nua_afp'                       => 'required',
+                'nombre_afp'                        => 'required',
+                'nro_libreta_militar'               => 'required',
+                'grupo_sanguineo'                   => 'required',
+                'nro_nit'                           => 'required',
+                'nombre_seguro_medico'              => 'required',
+                'nro_seguro_medico'                 => 'required',
+                'licencia_conducir'                 => 'required',
+                'licencia_categoria'                => 'required',
+                'domicilio'                         => 'required',
+            ],
+            [
+                'estado_civil_id.required'          => 'El campo Estado Civil es requerido',
+                'genero_id.required'                => 'El campo Genero es requerido',
+                'pais_id.required'                  => 'El campo Pais es requerido',
+                'ciudad_id.required'                => 'El campo Ciudad es requerido',
+                'expedido_ci_id.required'           => 'El campo Expedido es requerido',
+                'apellido_paterno.required'         => 'El campo Apellido Paterno es requerido',
+                'apellido_materno.required'         => 'El campo Apellido Materno es requerido',
+                'nombres.required'                  => 'El campo Nombres es requerido',
+                'cedula_identidad.required'         => 'El campo Cedula de Identidad es requerido',
+                'complemento_ci.required'           => 'El campo Complemento de Carnet de Identidad es requerido',
+                'fecha_nacimiento.required'         => 'El campo Fecha de Nacimiento es requerido',
+                'telefono_fijo.required'            => 'El campo Telefono Fijo es requerido',
+                'telefono_movil.required'           => 'El campo Telefono Movil es requerido',
+                'correo_personal.required'          => 'El campo Correo Personal es requerido',
+                'nro_nua_afp.required'              => 'El campo Numero NUA AFP es requerido',
+                'nombre_afp.required'               => 'El campo Nombre de la AFP es requerido',
+                'nro_libreta_militar.required'      => 'El campo Nro. de Libreta Militar es requerido',
+                'grupo_sanguineo.required'          => 'El campo Grupo Sanguineo es requerido',
+                'nro_nit.required'                  => 'El campo Nro de Nit es requerido',
+                'nombre_seguro_medico.required'     => 'El campo Nombre de Seguro Medico es requerido',
+                'nro_seguro_medico.required'        => 'El campo Nro. Seguro Medico es requerido',
+                'nro_libreta_militar.required'      => 'El campo Nro. de Libreta Militar es requerido',
+                'licencia_conducir.required'        => 'El campo Licencia de Condumcir es requerido',
+                'licencia_categoria.required'       => 'El campo Licencia Categoria es requerido',
+                'domicilio.required'                => 'El campo Domicilio es requerido',
+
+            ]
+        );
+
+         /* if ($validator->fails()) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Error en validaciones ',
+                'errors'    => $validator->errors()
+            ], 200);
+        }*/
+
         $persona = RhTrnPersona::find($id);
 
         if (is_null($persona)) {
