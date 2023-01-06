@@ -17,37 +17,37 @@ class RhClSistemaSeeder extends Seeder
     {
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'RECURSOS HUMANOS',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'ACTIVOS FIJOS',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'PASAJES Y VIATICOS',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'ARCHIVOS',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'ALMACENES',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);
         DB::table('rh_cl_sistemas')->insert([
             'nombre'              => 'PROGRAMA OPERATIVO ANUAL',
-            'vigencia'            => 1,
+            'vigente'             => 1,
             'created_at'          => date('Y-m-d H:i:s'),
             'updated_at'          => date('Y-m-d H:i:s'),
         ]);

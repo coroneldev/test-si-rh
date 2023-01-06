@@ -81,11 +81,12 @@ class TrnDatoLaboralController extends Controller
     public function show($id)
     {
         $datoLaboral = RhTrnDatoLaboral::find($id);
+
         if (is_null($datoLaboral)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 204);
+            ], 200);
         }
 
         return response()->json([

@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Rh\ClPuestoController;
 use App\Http\Controllers\Api\Rh\ClTipoContratoController;
 use App\Http\Controllers\Api\Rh\ClIdiomaController;
 use App\Http\Controllers\Api\Rh\ClSistemaController;
+use App\Http\Controllers\Api\Rh\ClRolController;
 
 use App\Http\Controllers\Api\Rh\TrnAccesoController;
 use App\Http\Controllers\Api\Rh\TrnInsumoController;
@@ -166,6 +167,16 @@ Route::put('/idiomas/{id}', [ClIdiomaController::class, 'update']);
 Route::delete('/idiomas/{id}', [ClIdiomaController::class, 'destroy']);
 
 Route::get('/sistemas', [ClSistemaController::class, 'index']);
+Route::post('/sistemas', [ClSistemaController::class, 'store']);
+Route::get('/sistemas/{id}', [ClSistemaController::class, 'show']);
+Route::put('/sistemas/{id}', [ClSistemaController::class, 'update']);
+Route::delete('/sistemas/{id}', [ClSistemaController::class, 'destroy']);
+
+Route::get('/roles', [ClRolController::class, 'index']);
+Route::post('/roles', [ClRolController::class, 'store']);
+Route::get('/roles/{id}', [ClRolController::class, 'show']);
+Route::put('/roles/{id}', [ClRolController::class, 'update']);
+Route::delete('/roles/{id}', [ClRolController::class, 'destroy']);
 
 /*TRANSACCIONES*/ 
 /*Registro de Personas*/ 

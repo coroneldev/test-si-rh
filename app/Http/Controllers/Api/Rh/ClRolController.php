@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\Rh;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RhClSistema;
+use App\Models\RhClRol;
 
-class ClSistemaController extends Controller
+class ClRolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,11 @@ class ClSistemaController extends Controller
      */
     public function index()
     {
-        $sistemas = RhClSistema::all();
-
+        $roles = RhClRol::all();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de sistemas recuperados exitosamente',
-            'data'      => $sistemas
+            'message'   => 'Registro de roles recuperados exitosamente',
+            'data'      => $roles
         ], 200);
     }
 
@@ -32,15 +31,15 @@ class ClSistemaController extends Controller
      */
     public function store(Request $request)
     {
-        $sistema = new RhClSistema();
-        $sistema->nombre        = $request->nombre;
-        $sistema->vigente       = $request->vigente;
-        $sistema->save();
+        $rol = new RhClRol();
+        $rol->descripcion        = $request->descripcion;
+        $rol->vigente            = $request->vigente;
+        $rol->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro creado exitosamente',
-            'data'      => $sistema
+            'data'      => $rol
         ], 201);
     }
 
@@ -52,9 +51,9 @@ class ClSistemaController extends Controller
      */
     public function show($id)
     {
-        $sistema = RhClSistema::find($id);
+        $rol = RhClRol::find($id);
 
-        if (is_null($sistema)) {
+        if (is_null($rol)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -64,7 +63,7 @@ class ClSistemaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $sistema
+            'data'      => $rol
         ], 200);
     }
 
@@ -77,23 +76,23 @@ class ClSistemaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sistema = RhClSistema::find($id);
+        $rol = RhClRol::find($id);
 
-        if (is_null($sistema)) {
+        if (is_null($rol)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 200);
         }
 
-        $sistema->nombre        = $request->nombre;
-        $sistema->vigente       = $request->vigente;
-        $sistema->save();
+        $rol->descripcion        = $request->descripcion;
+        $rol->vigente            = $request->vigente;
+        $rol->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $sistema
+            'data'      => $rol
         ], 200);
     }
 
@@ -105,19 +104,19 @@ class ClSistemaController extends Controller
      */
     public function destroy($id)
     {
-        $sistema = RhClSistema::find($id);
+        $rol = RhClRol::find($id);
 
-        if (is_null($sistema)) {
+        if (is_null($rol)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud no encontrado'
             ], 200);
         }
-        $sistema->delete();
+        $rol->delete();
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud eliminado exitosamente',
-            'data'      => $sistema
+            'data'      => $rol
         ], 200);
     }
 }
