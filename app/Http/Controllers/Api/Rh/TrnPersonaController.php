@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Rh;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class TrnPersonaController extends Controller
@@ -126,12 +127,11 @@ class TrnPersonaController extends Controller
         $persona->licencia_conducir   = $request->licencia_conducir;
         $persona->licencia_categoria  = $request->licencia_categoria;
         $persona->domicilio           = $request->domicilio;
-
         $persona->save();
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de persona creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $persona
         ], 201);
     }
