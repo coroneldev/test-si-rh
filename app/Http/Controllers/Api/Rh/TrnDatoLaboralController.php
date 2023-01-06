@@ -49,6 +49,7 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->nro_contrato                          = $request->nro_contrato;
         $datoLaboral->nro_item                              = $request->nro_item;
         $datoLaboral->cas                                   = $request->cas;
+        $datoLaboral->nro_cas                               = $request->nro_cas;
         $datoLaboral->nombre_banco                          = $request->nombre_banco;
         $datoLaboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $datoLaboral->vigente                               = $request->vigente;
@@ -130,6 +131,7 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->nro_contrato                          = $request->nro_contrato;
         $datoLaboral->nro_item                              = $request->nro_item;
         $datoLaboral->cas                                   = $request->cas;
+        $datoLaboral->nro_cas                               = $request->nro_cas;
         $datoLaboral->nombre_banco                          = $request->nombre_banco;
         $datoLaboral->nro_cuenta_bancaria                   = $request->nro_cuenta_bancaria;
         $datoLaboral->vigente                               = $request->vigente;

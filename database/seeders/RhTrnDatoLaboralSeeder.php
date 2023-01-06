@@ -32,6 +32,7 @@ class RhTrnDatoLaboralSeeder extends Seeder
             'nro_contrato'                               => '0',
             'nro_item'                                   => '123',
             'cas'                                        => 1,
+            'nro_cas'                                    => '123456789',
             'nombre_banco'                               => 'BANCO UNION',
             'nro_cuenta_bancaria'                        => '123456789',
             'vigente'                                    => 1,
