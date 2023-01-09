@@ -269,6 +269,7 @@ class TrnPersonaController extends Controller
         $persona->licencia_conducir   = $request->licencia_conducir;
         $persona->licencia_categoria  = $request->licencia_categoria;
         $persona->domicilio           = $request->domicilio;
+        $persona->estado_finalizacion = $request->estado_finalizacion;
 
         $persona->save();
 

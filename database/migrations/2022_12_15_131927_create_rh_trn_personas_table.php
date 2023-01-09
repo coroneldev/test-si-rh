@@ -48,6 +48,7 @@ return new class extends Migration
             $table->text('domicilio', 255)->nullable();
             $table->boolean('vigente')->default(1);
             $table->boolean('identificador_dato_laboral')->default(0);
+            $table->integer('estado_finalizacion')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
