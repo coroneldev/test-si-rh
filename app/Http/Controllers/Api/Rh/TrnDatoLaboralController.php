@@ -35,6 +35,17 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral = new RhTrnDatoLaboral();
         $datoLaboral->persona_id                            = $request->persona_id;
 
+        $funcionario = RhTrnDatoLaboral::find($request->persona_id);
+        if (is_null($funcionario)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro de funcionario no encontrado'
+            ], 200);
+        }
+        $funcionario->vigente                               = 'FALSE';
+        $funcionario->save();
+
+
         $datoLaboral->tipo_contrato_id                      = $request->tipo_contrato_id;
         $datoLaboral->estructura_organizacional_id          = $request->estructura_organizacional_id;
         $datoLaboral->horario_id                            = $request->horario_id;
@@ -57,16 +68,13 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->save();
 
         $persona = RhTrnPersona::find($request->persona_id);
-
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
-                'message'   => 'Registro no encontrado'
+                'message'   => 'Registro de personas no encontrado'
             ], 200);
         }
-
         $persona->identificador_dato_laboral            = 'TRUE';
-
         $persona->save();
 
         return response()->json([
@@ -173,7 +181,6 @@ class TrnDatoLaboralController extends Controller
     public function datoLaboralPersonaId($persona_id)
     {
         $datoLaboral = RhTrnDatoLaboral::where('persona_id', $persona_id)->where('vigente', '=', 'true')->first();
-
         if (is_null($datoLaboral)) {
             return response()->json([
                 'status'    => false,

@@ -253,6 +253,8 @@ Route::put('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'update'])
 Route::delete('/datos-laborales/{id}', [TrnDatoLaboralController::class, 'destroy']);
 Route::get('/datos-laborales/persona/{persona_id}', [TrnDatoLaboralController::class, 'datoLaboralPersonaId']);
 
+Route::get('/datos-laborales/funcionario/{persona_id}', [TrnDatoLaboralController::class, 'EstadoFuncionario']);
+
 /*Administracion de sistema*/
 Route::get('/accesos', [TrnAccesoController::class, 'index']);
 Route::post('/accesos', [TrnAccesoController::class, 'store']);
