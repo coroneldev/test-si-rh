@@ -25,6 +25,7 @@ class RhTrnDatoLaboralSeeder extends Seeder
             'categoria_viaje_id'                         => 1,
             'clasificacion_id'                           => 1,
             'insumo'                                     => 'LLAVES',
+            'insumo_devuelto'                            => 'DEVOLUCION DE INSUMOS ASIGNADOS AL FUNCIONARIO. LLAVES, CREDENCIALES.',
             'identificador_id'                           => 1,
             'fecha_inicio'                               => '2020-01-01',
             'fecha_fin'                                  => '2023-01-01',

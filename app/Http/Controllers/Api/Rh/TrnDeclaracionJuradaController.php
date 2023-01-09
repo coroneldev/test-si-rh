@@ -128,7 +128,7 @@ class TrnDeclaracionJuradaController extends Controller
 
     public function declaracionJuaradaPersonaId($persona_id)
     {
-        $declaracionJurada = RhTrnDeclaracionJurada::where('persona_id', $persona_id)->first();
+        $declaracionJurada = RhTrnDeclaracionJurada::where('persona_id', $persona_id)->get();
         
         if (is_null($declaracionJurada)) {
             return response()->json([

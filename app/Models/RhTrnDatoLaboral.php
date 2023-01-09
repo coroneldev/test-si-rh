@@ -23,6 +23,7 @@ class RhTrnDatoLaboral extends Model
         'categoria_viaje_id',
         'clasificacion_id',
         'insumo',
+        'insumo_devuelto',
         'identificador_id',
         'fecha_inicio',
         'fecha_fin',

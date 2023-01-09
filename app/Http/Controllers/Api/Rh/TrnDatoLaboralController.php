@@ -54,6 +54,7 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->categoria_viaje_id                    = $request->categoria_viaje_id;
         $datoLaboral->clasificacion_id                      = $request->clasificacion_id;
         $datoLaboral->insumo                                = $request->insumo;
+        $datoLaboral->insumo_devuelto                       = $request->insumo_devuelto;
         $datoLaboral->identificador_id                      = $request->identificador_id;
         $datoLaboral->fecha_inicio                          = $request->fecha_inicio;
         $datoLaboral->fecha_fin                             = $request->fecha_fin;
@@ -135,6 +136,7 @@ class TrnDatoLaboralController extends Controller
         $datoLaboral->categoria_viaje_id                    = $request->categoria_viaje_id;
         $datoLaboral->clasificacion_id                      = $request->clasificacion_id;
         $datoLaboral->insumo                                = $request->insumo;
+        $datoLaboral->insumo_devuelto                       = $request->insumo_devuelto;
         $datoLaboral->identificador_id                      = $request->identificador_id;
         $datoLaboral->fecha_inicio                          = $request->fecha_inicio;
         $datoLaboral->fecha_fin                             = $request->fecha_fin;
