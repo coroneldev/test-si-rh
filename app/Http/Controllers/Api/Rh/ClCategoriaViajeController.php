@@ -37,7 +37,7 @@ class ClCategoriaViajeController extends Controller
         $categoriaViaje->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de categoria de viaje creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $categoriaViaje
         ], 201);
     }

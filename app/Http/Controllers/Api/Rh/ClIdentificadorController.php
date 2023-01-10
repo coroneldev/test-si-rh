@@ -37,7 +37,7 @@ class ClIdentificadorController extends Controller
         $identificador->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de identificador creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $identificador
         ], 201);
     }

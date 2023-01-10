@@ -36,7 +36,7 @@ class ClClasificacionController extends Controller
         $clasificacion->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de clasificacion creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $clasificacion
         ], 201);
     }

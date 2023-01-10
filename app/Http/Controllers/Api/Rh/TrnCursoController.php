@@ -46,7 +46,7 @@ class TrnCursoController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de cursos creada exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $curso
         ], 201);
     }

@@ -39,7 +39,7 @@ class ClCiudadController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro exitoso',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $ciudad
         ], 201);
     }

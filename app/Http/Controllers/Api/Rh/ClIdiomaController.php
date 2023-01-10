@@ -38,7 +38,7 @@ class ClIdiomaController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro exitoso',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $idioma
         ], 201);
     }

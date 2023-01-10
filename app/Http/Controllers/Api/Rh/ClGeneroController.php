@@ -37,7 +37,7 @@ class ClGeneroController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro exitoso',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $genero
         ], 201);
     }

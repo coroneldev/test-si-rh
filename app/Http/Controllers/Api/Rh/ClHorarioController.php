@@ -39,7 +39,7 @@ class ClHorarioController extends Controller
         $horario->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de horario creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $horario
         ], 201);
     }

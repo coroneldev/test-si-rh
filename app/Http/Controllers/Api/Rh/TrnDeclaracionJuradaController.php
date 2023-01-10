@@ -42,7 +42,7 @@ class TrnDeclaracionJuradaController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de declaracion jurada creada exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $declaracionJurada
         ], 201);
     }

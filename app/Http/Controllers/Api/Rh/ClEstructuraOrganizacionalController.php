@@ -39,7 +39,7 @@ class ClEstructuraOrganizacionalController extends Controller
         $estructuraOrganizacional->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de estructura organizacional creada exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $estructuraOrganizacional
         ], 201);
     }

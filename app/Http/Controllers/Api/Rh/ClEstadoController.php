@@ -38,7 +38,7 @@ class ClEstadoController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro exitoso',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $estado
         ], 201);
     }
