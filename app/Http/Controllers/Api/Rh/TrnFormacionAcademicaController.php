@@ -89,7 +89,7 @@ class TrnFormacionAcademicaController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de formacion academica creada exitosamente',
+            'message'   => 'Registro creado exitosamentee',
             'data'      => $formacion
         ], 201);
     }

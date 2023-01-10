@@ -38,7 +38,7 @@ class ClOrganismoFinanciadorController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de organismo financiador creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $organismoFinanciador
         ], 201);
     }

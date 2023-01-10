@@ -18,7 +18,7 @@ class ClPaisController extends Controller
         $paises = RhClPais::all();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de paises recuperados exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $paises
         ], 200);
     }

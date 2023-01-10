@@ -39,7 +39,7 @@ class ClInstitucionController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro exitoso',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $institucion
         ], 201);
     }

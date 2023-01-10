@@ -47,7 +47,7 @@ class TrnDocumentoDigitalController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de documento creado exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $documento
         ], 201);
     }

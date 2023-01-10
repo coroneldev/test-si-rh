@@ -68,7 +68,7 @@ class TrnIdiomaController extends Controller
         $idiomaPersona->save();
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de declaracion jurada creada exitosamente',
+            'message'   => 'Registro creado exitosamente',
             'data'      => $idiomaPersona
         ], 201);
     }
