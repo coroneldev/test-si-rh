@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class TrnPersonaController extends Controller
 {
@@ -17,9 +18,10 @@ class TrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
-                                        ->where('estado_finalizacion', '=', '1')
-                                            ->orWhere('estado_finalizacion', '=', '2')->get();
+        /*  $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
+            ->where('estado_finalizacion', '=', '1')
+            ->orWhere('estado_finalizacion', '=', '2')->get();*/
+        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')->get();;
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',
@@ -307,5 +309,54 @@ class TrnPersonaController extends Controller
             'message'   => 'Solicitud eliminado exitosamente',
             'data'      => $persona
         ], 200);
+    }
+
+    public function datosRegistrados($persona_id)
+    {
+        $persona = RhTrnPersona::find($persona_id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
+
+        if ($persona->estado_finalizacion == 1) {
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Registro Finalizado',
+                'data'      => $persona
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro todavia no Finalizo',
+            ], 200);
+        }
+    }
+    public function revisadoAdmin($persona_id)
+    {
+        $persona = RhTrnPersona::find($persona_id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
+
+        if ($persona->estado_finalizacion == 2) {
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Registro revisado por el administrador',
+                'data'      => $persona
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro todavia no reviso el administrador',
+            ], 200);
+        }
     }
 }
