@@ -17,8 +17,7 @@ class TrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')->get();
-
+        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')->where('estado_finalizacion', '=', '1')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de personas recuperadas exitosamente',
@@ -93,7 +92,7 @@ class TrnPersonaController extends Controller
             ]
         );
 
-       /*   if ($validator->fails()) {
+        /*   if ($validator->fails()) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Error en validaciones ',
@@ -127,6 +126,9 @@ class TrnPersonaController extends Controller
         $persona->licencia_conducir   = $request->licencia_conducir;
         $persona->licencia_categoria  = $request->licencia_categoria;
         $persona->domicilio           = $request->domicilio;
+        $persona->identificador_dato_laboral  = $request->identificador_dato_laboral;
+        $persona->estado_finalizacion = $request->estado_finalizacion;
+
         $persona->save();
 
         return response()->json([
@@ -145,7 +147,7 @@ class TrnPersonaController extends Controller
     public function show($id)
     {
         $persona = RhTrnPersona::find($id);
-        
+
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
@@ -227,7 +229,7 @@ class TrnPersonaController extends Controller
             ]
         );
 
-         /* if ($validator->fails()) {
+        /* if ($validator->fails()) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Error en validaciones ',

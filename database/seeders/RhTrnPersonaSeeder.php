@@ -43,7 +43,7 @@ class RhTrnPersonaSeeder extends Seeder
             'domicilio'             =>  'ESQUINA ASPIAZU NRO 54, ZONA SOPOCACHI',
             'vigente'               =>  1,
             'identificador_dato_laboral' =>  0,
-            'estado_finalizacion'   =>  0,
+            'estado_finalizacion'   =>  1,
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s'),
 
