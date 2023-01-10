@@ -313,24 +313,39 @@ class TrnPersonaController extends Controller
 
     public function datosRegistrados($estFin)
     {
-        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
-            ->where('estado_finalizacion', '=', $estFin == 1)->get();
+        if ($estFin == 1) {
+            $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
+                ->where('estado_finalizacion', '=', $estFin)->get();
 
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registros',
-            'data'      => $personas
-        ], 200);
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Registros',
+                'data'      => $personas
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
     }
-    
+
     public function revisadoAdmin($estFin)
     {
-        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
-            ->where('estado_finalizacion', '=', $estFin == 2)->get();
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registros',
-            'data'      => $personas
-        ], 200);
+        if ($estFin == 2) {
+            $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
+                ->where('estado_finalizacion', '=', $estFin)->get();
+
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Registros',
+                'data'      => $personas
+            ], 200);
+        } else {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 200);
+        }
     }
 }
