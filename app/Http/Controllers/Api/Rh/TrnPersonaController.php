@@ -311,52 +311,26 @@ class TrnPersonaController extends Controller
         ], 200);
     }
 
-    public function datosRegistrados($persona_id)
+    public function datosRegistrados($estFin)
     {
-        $persona = RhTrnPersona::find($persona_id);
+        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
+            ->where('estado_finalizacion', '=', $estFin == 1)->get();
 
-        if (is_null($persona)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro no encontrado'
-            ], 200);
-        }
-
-        if ($persona->estado_finalizacion == 1) {
-            return response()->json([
-                'status'    => true,
-                'message'   => 'Registro Finalizado',
-                'data'      => $persona
-            ], 200);
-        } else {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro todavia no Finalizo',
-            ], 200);
-        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registros',
+            'data'      => $personas
+        ], 200);
     }
-    public function revisadoAdmin($persona_id)
+    
+    public function revisadoAdmin($estFin)
     {
-        $persona = RhTrnPersona::find($persona_id);
-
-        if (is_null($persona)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro no encontrado'
-            ], 200);
-        }
-
-        if ($persona->estado_finalizacion == 2) {
-            return response()->json([
-                'status'    => true,
-                'message'   => 'Registro revisado por el administrador',
-                'data'      => $persona
-            ], 200);
-        } else {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro todavia no reviso el administrador',
-            ], 200);
-        }
+        $personas = RhTrnPersona::where('identificador_dato_laboral', '=', 'false')
+            ->where('estado_finalizacion', '=', $estFin == 2)->get();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registros',
+            'data'      => $personas
+        ], 200);
     }
 }

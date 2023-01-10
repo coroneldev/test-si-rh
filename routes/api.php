@@ -187,8 +187,8 @@ Route::post('/personas', [TrnPersonaController::class, 'store']);
 Route::get('/personas/{id}', [TrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [TrnPersonaController::class, 'update']);
 Route::delete('/personas/{id}', [TrnPersonaController::class, 'destroy']);
-Route::get('/personas/{id}/verifica-finalizado', [TrnPersonaController::class, 'datosRegistrados']);
-Route::get('/personas/{id}/administrador-verifica', [TrnPersonaController::class, 'revisadoAdmin']);
+Route::get('/personas/verifica-finalizado/{estFin}', [TrnPersonaController::class, 'datosRegistrados']);
+Route::get('/personas/administrador-verifica/{estFin}', [TrnPersonaController::class, 'revisadoAdmin']);
 
 
 /*Relacion Personal*/
