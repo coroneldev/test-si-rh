@@ -196,24 +196,4 @@ class TrnDatoLaboralController extends Controller
         ], 200);
     }
 
-    public function EstadoFuncionario($persona_id)
-    {
-        $buscador = RhTrnDatoLaboral::find($persona_id);
-
-        if (is_null($buscador)) {
-
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro de persona no encontrado'
-            ], 200);
-        }
-
-        $buscador->vigente                               = 'FALSE';
-        $buscador->save();
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro encontrado exitosamente',
-            'data'      => $buscador
-        ], 200);
-    }
 }
